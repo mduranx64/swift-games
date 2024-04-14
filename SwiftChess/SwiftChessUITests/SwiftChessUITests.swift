@@ -1,13 +1,13 @@
 //
-//  Swift_ChessUITests.swift
-//  Swift ChessUITests
+//  SwiftChessUITests.swift
+//  SwiftChessUITests
 //
 //  Created by Miguel Duran on 14-04-24.
 //
 
 import XCTest
 
-final class Swift_ChessUITests: XCTestCase {
+final class SwiftChessUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
