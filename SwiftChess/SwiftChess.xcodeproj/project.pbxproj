@@ -16,6 +16,8 @@
 		F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6442BCC9B3E004DF427 /* SwiftChessTests.swift */; };
 		F423A64F2BCC9B3E004DF427 /* SwiftChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A64E2BCC9B3E004DF427 /* SwiftChessUITests.swift */; };
 		F423A6512BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */; };
+		F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A65E2BCC9C77004DF427 /* Piece.swift */; };
+		F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6612BCC9D02004DF427 /* PieceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		F423A64A2BCC9B3E004DF427 /* SwiftChessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F423A64E2BCC9B3E004DF427 /* SwiftChessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessUITests.swift; sourceTree = "<group>"; };
 		F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F423A65E2BCC9C77004DF427 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		F423A6612BCC9D02004DF427 /* PieceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTests.swift; sourceTree = "<group>"; };
+		F49D34322BCD6B0800BC7B17 /* SwiftChess.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftChess.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,7 @@
 		F423A6212BCC9B3B004DF427 = {
 			isa = PBXGroup;
 			children = (
+				F49D34322BCD6B0800BC7B17 /* SwiftChess.xctestplan */,
 				F423A62C2BCC9B3B004DF427 /* SwiftChess */,
 				F423A6432BCC9B3E004DF427 /* SwiftChessTests */,
 				F423A64D2BCC9B3E004DF427 /* SwiftChessUITests */,
@@ -99,6 +105,7 @@
 		F423A62C2BCC9B3B004DF427 /* SwiftChess */ = {
 			isa = PBXGroup;
 			children = (
+				F423A65D2BCC9BE3004DF427 /* Classes */,
 				F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */,
 				F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */,
 				F423A6312BCC9B3B004DF427 /* ViewController.swift */,
@@ -113,6 +120,7 @@
 		F423A6432BCC9B3E004DF427 /* SwiftChessTests */ = {
 			isa = PBXGroup;
 			children = (
+				F423A6602BCC9CDC004DF427 /* Classes */,
 				F423A6442BCC9B3E004DF427 /* SwiftChessTests.swift */,
 			);
 			path = SwiftChessTests;
@@ -125,6 +133,22 @@
 				F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */,
 			);
 			path = SwiftChessUITests;
+			sourceTree = "<group>";
+		};
+		F423A65D2BCC9BE3004DF427 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F423A65E2BCC9C77004DF427 /* Piece.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F423A6602BCC9CDC004DF427 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F423A6612BCC9D02004DF427 /* PieceTests.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */,
 				F423A6322BCC9B3B004DF427 /* ViewController.swift in Sources */,
 				F423A62E2BCC9B3B004DF427 /* AppDelegate.swift in Sources */,
 				F423A6302BCC9B3B004DF427 /* SceneDelegate.swift in Sources */,
@@ -268,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */,
 				F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -425,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -446,11 +472,13 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftChess/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,11 +504,13 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftChess/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,7 +534,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Swift-ChessTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -525,7 +555,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Swift-ChessTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,6 +575,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Swift-ChessUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -564,6 +595,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Swift-ChessUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
