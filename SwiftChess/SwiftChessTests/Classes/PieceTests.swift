@@ -10,13 +10,14 @@ import XCTest
 final class PieceTests: XCTestCase {
 
     func testPieceInit() {
-        XCTAssertNotNil(makeSUT(.king))
-        let piece = makeSUT(.king)
-        XCTAssertEqual(piece.pieceType, PieceType.king)
+        XCTAssertNotNil(makeSUT(.king, color: .white))
+        let piece = makeSUT(.king, color: .white)
+        XCTAssertEqual(piece.type, PieceType.king)
+        XCTAssertEqual(piece.color, PieceColor.white)
     }
     
-    private func makeSUT(_ type: PieceType) -> Piece {
-        let piece = Piece(type)
+    private func makeSUT(_ type: PieceType, color: PieceColor) -> Piece {
+        let piece = Piece(type, color: color)
         return piece
     }
 

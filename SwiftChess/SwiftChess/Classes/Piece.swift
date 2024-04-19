@@ -16,10 +16,17 @@ public enum PieceType {
     case pawn
 }
 
+public enum PieceColor {
+    case white
+    case black
+}
+
 public class Piece {
-    private(set) var pieceType: PieceType
+    private(set) var type: PieceType
+    private(set) var color: PieceColor
     
-    public init(_ pieceType: PieceType) {
-        self.pieceType = pieceType
+    public init(_ type: PieceType, color: PieceColor) {
+        self.type = type
+        self.color = color
     }
 }

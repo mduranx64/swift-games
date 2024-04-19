@@ -16,8 +16,8 @@ final class SquareTests: XCTestCase {
     }
     
     func testSquareInitWithPiece() {
-        XCTAssertEqual(makeSUT(Piece(.king))?.squareState, SquareState.piece)
-        XCTAssertEqual(makeSUT(Piece(.king))?.piece?.pieceType, PieceType.king)
+        XCTAssertEqual(makeSUT(Piece(.king, color: .white))?.squareState, SquareState.piece)
+        XCTAssertEqual(makeSUT(Piece(.king, color: .black))?.piece?.type, PieceType.king)
     }
     
     private func makeSUT(_ piece: Piece? = nil) -> Square? {
