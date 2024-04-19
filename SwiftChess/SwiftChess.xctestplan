@@ -24,6 +24,7 @@
       }
     },
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:SwiftChess.xcodeproj",
         "identifier" : "F423A6492BCC9B3E004DF427",
