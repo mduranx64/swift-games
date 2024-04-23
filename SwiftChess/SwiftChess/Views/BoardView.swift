@@ -141,51 +141,23 @@ class BoardView: UIView {
         let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
         let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
         
-        for index in letters {
-            let label = UILabel(frame: .zero)
-            label.textAlignment = .center
-            label.text = index
-            label.translatesAutoresizingMaskIntoConstraints = false
-            letterTopStackView.addArrangedSubview(label)
-            NSLayoutConstraint.activate([
-                label.widthAnchor.constraint(equalToConstant: squareSize),
-                label.heightAnchor.constraint(equalToConstant: 32)
-            ])
-        }
+        addTextGuideToBoard(letterTopStackView, array: letters, width: squareSize, height: 32.0)
+        addTextGuideToBoard(letterBottomStackView, array: letters, width: squareSize, height: 32.0)
+        addTextGuideToBoard(letterLeftStackView, array: numbers.reversed(), width: 32.0, height: squareSize)
+        addTextGuideToBoard(letterRightStackView, array: numbers.reversed(), width: 32.0, height: squareSize)
         
-        for index in letters {
+    }
+    
+    func addTextGuideToBoard(_ stackView: UIStackView, array: [String], width: CGFloat, height: CGFloat) {
+        for char in array {
             let label = UILabel(frame: .zero)
             label.textAlignment = .center
-            label.text = index
+            label.text = char
             label.translatesAutoresizingMaskIntoConstraints = false
-            letterBottomStackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(label)
             NSLayoutConstraint.activate([
-                label.widthAnchor.constraint(equalToConstant: squareSize),
-                label.heightAnchor.constraint(equalToConstant: 32)
-            ])
-        }
-        
-        for index in numbers.reversed() {
-            let label = UILabel(frame: .zero)
-            label.textAlignment = .center
-            label.text = index
-            label.translatesAutoresizingMaskIntoConstraints = false
-            letterLeftStackView.addArrangedSubview(label)
-            NSLayoutConstraint.activate([
-                label.widthAnchor.constraint(equalToConstant: 32),
-                label.heightAnchor.constraint(equalToConstant: squareSize)
-            ])
-        }
-        
-        for index in numbers.reversed() {
-            let label = UILabel(frame: .zero)
-            label.textAlignment = .center
-            label.text = index
-            label.translatesAutoresizingMaskIntoConstraints = false
-            letterRightStackView.addArrangedSubview(label)
-            NSLayoutConstraint.activate([
-                label.widthAnchor.constraint(equalToConstant: 32),
-                label.heightAnchor.constraint(equalToConstant: squareSize)
+                label.widthAnchor.constraint(equalToConstant: width),
+                label.heightAnchor.constraint(equalToConstant: height)
             ])
         }
     }
