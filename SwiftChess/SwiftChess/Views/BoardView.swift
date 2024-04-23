@@ -105,14 +105,14 @@ class BoardView: UIView {
         
         NSLayoutConstraint.activate([
             letterLeftStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            letterLeftStackView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 32),
+            letterLeftStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             letterLeftStackView.rightAnchor.constraint(equalTo: board.leftAnchor),
             letterLeftStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ])
         
         NSLayoutConstraint.activate([
             letterRightStackView.leftAnchor.constraint(equalTo: board.rightAnchor),
-            letterRightStackView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 32),
+            letterRightStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             letterRightStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             letterRightStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ])
