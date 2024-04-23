@@ -21,6 +21,8 @@
 		F423A6512BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */; };
 		F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A65E2BCC9C77004DF427 /* Piece.swift */; };
 		F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6612BCC9D02004DF427 /* PieceTests.swift */; };
+		F45F2F072BD70BB000C0BC02 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F2F062BD70BB000C0BC02 /* BoardView.swift */; };
+		F45F2F0A2BD70C2600C0BC02 /* BoardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F423A65E2BCC9C77004DF427 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		F423A6612BCC9D02004DF427 /* PieceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTests.swift; sourceTree = "<group>"; };
+		F45F2F062BD70BB000C0BC02 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewTests.swift; sourceTree = "<group>"; };
 		F49D34322BCD6B0800BC7B17 /* SwiftChess.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftChess.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +115,7 @@
 		F423A62C2BCC9B3B004DF427 /* SwiftChess */ = {
 			isa = PBXGroup;
 			children = (
+				F45F2F052BD70B7000C0BC02 /* Views */,
 				F423A65D2BCC9BE3004DF427 /* Classes */,
 				F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */,
 				F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */,
@@ -125,6 +130,7 @@
 		F423A6432BCC9B3E004DF427 /* SwiftChessTests */ = {
 			isa = PBXGroup;
 			children = (
+				F45F2F082BD70C0500C0BC02 /* Views */,
 				F423A6602BCC9CDC004DF427 /* Classes */,
 				F423A6442BCC9B3E004DF427 /* SwiftChessTests.swift */,
 			);
@@ -158,6 +164,22 @@
 				F410162C2BD19BAC00E55A2C /* SquareTests.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		F45F2F052BD70B7000C0BC02 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F45F2F062BD70BB000C0BC02 /* BoardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F45F2F082BD70C0500C0BC02 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45F2F072BD70BB000C0BC02 /* BoardView.swift in Sources */,
 				F410162B2BD19B8200E55A2C /* Square.swift in Sources */,
 				F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */,
 				F423A6322BCC9B3B004DF427 /* ViewController.swift in Sources */,
@@ -305,6 +328,7 @@
 			files = (
 				F410162D2BD19BAC00E55A2C /* SquareTests.swift in Sources */,
 				F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */,
+				F45F2F0A2BD70C2600C0BC02 /* BoardViewTests.swift in Sources */,
 				F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */,
 				F41016292BD195B400E55A2C /* BoardTests.swift in Sources */,
 			);

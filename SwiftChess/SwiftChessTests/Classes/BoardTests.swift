@@ -58,6 +58,12 @@ final class BoardTests: XCTestCase {
             }
         }
     }
+    
+    func testBoardPiecesPositions() {
+        let pieces = makeSUT().pieces
+        XCTAssertEqual(pieces[0][0]?.color, PieceColor.black)
+        XCTAssertEqual(pieces[0][7]?.color, PieceColor.black)
+    }
 
 
     private func makeSUT() -> Board! {
