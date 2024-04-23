@@ -31,6 +31,38 @@ class BoardView: UIView {
         return view
     }()
     
+    let letterLeftStackView: UIStackView = {
+        let view = UIStackView(frame: .zero)
+        view.axis = .vertical
+        view.spacing = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let letterTopStackView: UIStackView = {
+        let view = UIStackView(frame: .zero)
+        view.axis = .horizontal
+        view.spacing = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let letterRightStackView: UIStackView = {
+        let view = UIStackView(frame: .zero)
+        view.axis = .vertical
+        view.spacing = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let letterBottomStackView: UIStackView = {
+        let view = UIStackView(frame: .zero)
+        view.axis = .horizontal
+        view.spacing = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()
@@ -40,6 +72,11 @@ class BoardView: UIView {
         self.addSubview(self.contentView)
         self.contentView.addSubview(self.board)
         self.board.addSubview(self.boardStackView)
+        self.contentView.addSubview(letterLeftStackView)
+        self.contentView.addSubview(letterTopStackView)
+        self.contentView.addSubview(letterRightStackView)
+        self.contentView.addSubview(letterBottomStackView)
+
         
         let screenSize: CGRect = UIScreen.main.bounds
         let boardHeight = screenSize.width
@@ -53,10 +90,31 @@ class BoardView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            self.board.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 32.0),
-            self.board.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 32.0),
-            self.board.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -32.0),
-            self.board.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -32.0)
+            letterTopStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            letterTopStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            letterTopStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
+            letterTopStackView.bottomAnchor.constraint(equalTo: board.topAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            letterBottomStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            letterBottomStackView.topAnchor.constraint(equalTo: board.bottomAnchor),
+            letterBottomStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
+            letterBottomStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            letterLeftStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            letterLeftStackView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 32),
+            letterLeftStackView.rightAnchor.constraint(equalTo: board.leftAnchor),
+            letterLeftStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
+        ])
+        
+        NSLayoutConstraint.activate([
+            letterRightStackView.leftAnchor.constraint(equalTo: board.rightAnchor),
+            letterRightStackView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 32),
+            letterRightStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            letterRightStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ])
         
         for i in 0...7  {
@@ -78,6 +136,57 @@ class BoardView: UIView {
                     imageView.heightAnchor.constraint(equalToConstant: squareSize)
                 ])
             }
+        }
+
+        let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+        let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
+        
+        for index in letters {
+            let label = UILabel(frame: .zero)
+            label.textAlignment = .center
+            label.text = index
+            label.translatesAutoresizingMaskIntoConstraints = false
+            letterTopStackView.addArrangedSubview(label)
+            NSLayoutConstraint.activate([
+                label.widthAnchor.constraint(equalToConstant: squareSize),
+                label.heightAnchor.constraint(equalToConstant: 32)
+            ])
+        }
+        
+        for index in letters {
+            let label = UILabel(frame: .zero)
+            label.textAlignment = .center
+            label.text = index
+            label.translatesAutoresizingMaskIntoConstraints = false
+            letterBottomStackView.addArrangedSubview(label)
+            NSLayoutConstraint.activate([
+                label.widthAnchor.constraint(equalToConstant: squareSize),
+                label.heightAnchor.constraint(equalToConstant: 32)
+            ])
+        }
+        
+        for index in numbers.reversed() {
+            let label = UILabel(frame: .zero)
+            label.textAlignment = .center
+            label.text = index
+            label.translatesAutoresizingMaskIntoConstraints = false
+            letterLeftStackView.addArrangedSubview(label)
+            NSLayoutConstraint.activate([
+                label.widthAnchor.constraint(equalToConstant: 32),
+                label.heightAnchor.constraint(equalToConstant: squareSize)
+            ])
+        }
+        
+        for index in numbers.reversed() {
+            let label = UILabel(frame: .zero)
+            label.textAlignment = .center
+            label.text = index
+            label.translatesAutoresizingMaskIntoConstraints = false
+            letterRightStackView.addArrangedSubview(label)
+            NSLayoutConstraint.activate([
+                label.widthAnchor.constraint(equalToConstant: 32),
+                label.heightAnchor.constraint(equalToConstant: squareSize)
+            ])
         }
     }
     
