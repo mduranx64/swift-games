@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let boardView = BoardView()
+    lazy var board = Board()
+    lazy var boardView = BoardView(pieces: board.pieces)
 
     override func loadView() {
         self.view = self.boardView

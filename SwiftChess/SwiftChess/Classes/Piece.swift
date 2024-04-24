@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum PieceType {
+public enum PieceType: String {
     case king
     case queen
     case rook

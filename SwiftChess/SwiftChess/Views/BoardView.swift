@@ -63,9 +63,31 @@ class BoardView: UIView {
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    let piecesStackView: UIStackView = {
+        let view = UIStackView(frame: .zero)
+        view.axis = .vertical
+        view.spacing = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        for _ in 0...7 {
+            let stackView = UIStackView()
+            stackView.spacing = 0
+            stackView.axis = .horizontal
+            view.addArrangedSubview(stackView)
+        }
+        return view
+    }()
+    
+    var pieces: [[Piece?]]
+    lazy var screenSize: CGRect = UIScreen.main.bounds
+    lazy var boardHeight = screenSize.width
+    lazy var squareSize = (boardHeight - 64) / 8
+    
+    init(pieces: [[Piece?]]) {
+        self.pieces = pieces
+        super.init(frame: .zero)
         setUpView()
+        setUpPieces(pieces)
     }
     
     private func setUpView() {
@@ -76,12 +98,8 @@ class BoardView: UIView {
         self.contentView.addSubview(letterTopStackView)
         self.contentView.addSubview(letterRightStackView)
         self.contentView.addSubview(letterBottomStackView)
+        self.board.addSubview(piecesStackView)
 
-        
-        let screenSize: CGRect = UIScreen.main.bounds
-        let boardHeight = screenSize.width
-        let squareSize = (boardHeight - 64) / 8
-        
         NSLayoutConstraint.activate([
             self.contentView.leftAnchor.constraint(equalTo: self.leftAnchor),
             self.contentView.rightAnchor.constraint(equalTo: self.rightAnchor),
@@ -117,10 +135,18 @@ class BoardView: UIView {
             letterRightStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ])
         
+        NSLayoutConstraint.activate([
+            piecesStackView.leftAnchor.constraint(equalTo: board.leftAnchor),
+            piecesStackView.topAnchor.constraint(equalTo: board.topAnchor),
+            piecesStackView.rightAnchor.constraint(equalTo: board.rightAnchor),
+            piecesStackView.bottomAnchor.constraint(equalTo: board.bottomAnchor)
+        ])
+        
         for i in 0...7  {
             let stackView = UIStackView()
             stackView.spacing = 0
             stackView.axis = .horizontal
+            stackView.translatesAutoresizingMaskIntoConstraints = false
             boardStackView.addArrangedSubview(stackView)
             for j in 0...7 {
                 var image: UIImage? {
@@ -130,7 +156,6 @@ class BoardView: UIView {
                 }
                 let imageView = UIImageView(image: image)
                 stackView.addArrangedSubview(imageView)
-                stackView.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
                     imageView.widthAnchor.constraint(equalToConstant: squareSize),
                     imageView.heightAnchor.constraint(equalToConstant: squareSize)
@@ -159,6 +184,42 @@ class BoardView: UIView {
                 label.widthAnchor.constraint(equalToConstant: width),
                 label.heightAnchor.constraint(equalToConstant: height)
             ])
+        }
+    }
+    
+    func setUpPieces(_ pieces: [[Piece?]]) {
+        
+        for (i, row) in pieces.enumerated() {
+            let rowStackView = piecesStackView.arrangedSubviews[i] as? UIStackView
+            for (_, piece) in row.enumerated() {
+                let colorLetter: String = {
+                    switch piece?.color {
+                    case .white:
+                        return "w"
+                    case .black:
+                        return  "b"
+                    case .none:
+                        return ""
+                    }
+                }()
+                
+                let pieceImage: UIImage? = {
+                    if let type = piece?.type, !colorLetter.isEmpty {
+                        return UIImage(named: "\(colorLetter)_\(type.rawValue)")?.withAlignmentRectInsets(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
+                    } else {
+                        return UIImage()
+                    }
+                }()
+                
+                let imageView = UIImageView(image: pieceImage)
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                imageView.contentMode = .scaleAspectFit
+                NSLayoutConstraint.activate([
+                    imageView.widthAnchor.constraint(equalToConstant: squareSize),
+                    imageView.heightAnchor.constraint(equalToConstant: squareSize)
+                ])
+                rowStackView?.addArrangedSubview(imageView)
+            }
         }
     }
     
