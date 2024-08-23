@@ -18,7 +18,7 @@ class BoardView: UIView {
     
     let board: UIView = {
         let view = UIView(frame: .zero)
-        view.backgroundColor = .white
+        view.backgroundColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -80,7 +80,7 @@ class BoardView: UIView {
     
     var pieces: [[Piece?]]
     lazy var screenSize: CGRect = UIScreen.main.bounds
-    lazy var boardHeight = screenSize.width
+    lazy var boardHeight = [screenSize.width, screenSize.height].min() ?? 0
     lazy var squareSize = (boardHeight - 64) / 8
     
     init(pieces: [[Piece?]]) {
@@ -101,10 +101,10 @@ class BoardView: UIView {
         self.board.addSubview(piecesStackView)
 
         NSLayoutConstraint.activate([
-            self.contentView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            self.contentView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            self.contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            self.contentView.heightAnchor.constraint(equalToConstant: boardHeight)
+            self.contentView.heightAnchor.constraint(equalToConstant: boardHeight),
+            self.contentView.widthAnchor.constraint(equalToConstant: boardHeight)
         ])
         
         NSLayoutConstraint.activate([
