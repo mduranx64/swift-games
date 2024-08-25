@@ -10,8 +10,6 @@
 		49D357082C7AD2FC005DBDDC /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D357072C7AD2FC005DBDDC /* PieceView.swift */; };
 		F41016272BD1959300E55A2C /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016262BD1959300E55A2C /* Board.swift */; };
 		F41016292BD195B400E55A2C /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016282BD195B400E55A2C /* BoardTests.swift */; };
-		F410162B2BD19B8200E55A2C /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410162A2BD19B8200E55A2C /* Square.swift */; };
-		F410162D2BD19BAC00E55A2C /* SquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410162C2BD19BAC00E55A2C /* SquareTests.swift */; };
 		F423A62E2BCC9B3B004DF427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */; };
 		F423A6302BCC9B3B004DF427 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */; };
 		F423A6322BCC9B3B004DF427 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6312BCC9B3B004DF427 /* ViewController.swift */; };
@@ -47,8 +45,6 @@
 		49D357072C7AD2FC005DBDDC /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
 		F41016262BD1959300E55A2C /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		F41016282BD195B400E55A2C /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
-		F410162A2BD19B8200E55A2C /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
-		F410162C2BD19BAC00E55A2C /* SquareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareTests.swift; sourceTree = "<group>"; };
 		F423A62A2BCC9B3B004DF427 /* SwiftChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,7 +149,6 @@
 			children = (
 				F423A65E2BCC9C77004DF427 /* Piece.swift */,
 				F41016262BD1959300E55A2C /* Board.swift */,
-				F410162A2BD19B8200E55A2C /* Square.swift */,
 				49D357072C7AD2FC005DBDDC /* PieceView.swift */,
 			);
 			path = Classes;
@@ -164,7 +159,6 @@
 			children = (
 				F423A6612BCC9D02004DF427 /* PieceTests.swift */,
 				F41016282BD195B400E55A2C /* BoardTests.swift */,
-				F410162C2BD19BAC00E55A2C /* SquareTests.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -316,7 +310,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45F2F072BD70BB000C0BC02 /* BoardView.swift in Sources */,
-				F410162B2BD19B8200E55A2C /* Square.swift in Sources */,
 				F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */,
 				49D357082C7AD2FC005DBDDC /* PieceView.swift in Sources */,
 				F423A6322BCC9B3B004DF427 /* ViewController.swift in Sources */,
@@ -330,7 +323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F410162D2BD19BAC00E55A2C /* SquareTests.swift in Sources */,
 				F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */,
 				F45F2F0A2BD70C2600C0BC02 /* BoardViewTests.swift in Sources */,
 				F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */,
