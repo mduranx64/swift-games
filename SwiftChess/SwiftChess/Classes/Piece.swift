@@ -22,7 +22,7 @@ public enum PieceType: String {
     case pawn
 }
 
-public enum PieceColor {
+public enum PieceColor: String {
     case white
     case black
 }

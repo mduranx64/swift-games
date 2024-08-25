@@ -16,7 +16,7 @@ class BoardView: UIView {
         return view
     }()
     
-    let board: UIView = {
+    let boardView: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,27 +78,27 @@ class BoardView: UIView {
         return view
     }()
     
-    var pieces: [[Piece?]]
+    var board: Board
     lazy var screenSize: CGRect = UIScreen.main.bounds
     lazy var boardHeight = [screenSize.width, screenSize.height].min() ?? 0
     lazy var squareSize = (boardHeight - 64) / 8
     
-    init(pieces: [[Piece?]]) {
-        self.pieces = pieces
+    init(board: Board) {
+        self.board = board
         super.init(frame: .zero)
         setUpView()
-        setUpPieces(pieces)
+        setUpPieces(board.pieces)
     }
     
     private func setUpView() {
         self.addSubview(self.contentView)
-        self.contentView.addSubview(self.board)
-        self.board.addSubview(self.boardStackView)
+        self.contentView.addSubview(self.boardView)
+        self.boardView.addSubview(self.boardStackView)
         self.contentView.addSubview(letterLeftStackView)
         self.contentView.addSubview(letterTopStackView)
         self.contentView.addSubview(letterRightStackView)
         self.contentView.addSubview(letterBottomStackView)
-        self.board.addSubview(piecesStackView)
+        self.boardView.addSubview(piecesStackView)
 
         NSLayoutConstraint.activate([
             self.contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -111,12 +111,12 @@ class BoardView: UIView {
             letterTopStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
             letterTopStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             letterTopStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
-            letterTopStackView.bottomAnchor.constraint(equalTo: board.topAnchor)
+            letterTopStackView.bottomAnchor.constraint(equalTo: boardView.topAnchor)
         ])
 
         NSLayoutConstraint.activate([
             letterBottomStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
-            letterBottomStackView.topAnchor.constraint(equalTo: board.bottomAnchor),
+            letterBottomStackView.topAnchor.constraint(equalTo: boardView.bottomAnchor),
             letterBottomStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
             letterBottomStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
@@ -124,22 +124,22 @@ class BoardView: UIView {
         NSLayoutConstraint.activate([
             letterLeftStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             letterLeftStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            letterLeftStackView.rightAnchor.constraint(equalTo: board.leftAnchor),
+            letterLeftStackView.rightAnchor.constraint(equalTo: boardView.leftAnchor),
             letterLeftStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ])
         
         NSLayoutConstraint.activate([
-            letterRightStackView.leftAnchor.constraint(equalTo: board.rightAnchor),
+            letterRightStackView.leftAnchor.constraint(equalTo: boardView.rightAnchor),
             letterRightStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             letterRightStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             letterRightStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ])
         
         NSLayoutConstraint.activate([
-            piecesStackView.leftAnchor.constraint(equalTo: board.leftAnchor),
-            piecesStackView.topAnchor.constraint(equalTo: board.topAnchor),
-            piecesStackView.rightAnchor.constraint(equalTo: board.rightAnchor),
-            piecesStackView.bottomAnchor.constraint(equalTo: board.bottomAnchor)
+            piecesStackView.leftAnchor.constraint(equalTo: boardView.leftAnchor),
+            piecesStackView.topAnchor.constraint(equalTo: boardView.topAnchor),
+            piecesStackView.rightAnchor.constraint(equalTo: boardView.rightAnchor),
+            piecesStackView.bottomAnchor.constraint(equalTo: boardView.bottomAnchor)
         ])
         
         for i in 0...7  {
@@ -211,8 +211,10 @@ class BoardView: UIView {
                     }
                 }()
                 
-                let imageView = UIImageView(image: pieceImage)
+                let imageView = PieceView(image: pieceImage, piece: piece)
                 imageView.translatesAutoresizingMaskIntoConstraints = false
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(movePiece(_:))))
                 imageView.contentMode = .scaleAspectFit
                 NSLayoutConstraint.activate([
                     imageView.widthAnchor.constraint(equalToConstant: squareSize),
@@ -221,6 +223,11 @@ class BoardView: UIView {
                 rowStackView?.addArrangedSubview(imageView)
             }
         }
+    }
+    
+    @objc func movePiece(_ sender: UITapGestureRecognizer) {
+        let view = sender.view as? PieceView
+        debugPrint("movePiece: \(view?.piece?.type.rawValue ?? "") color: \(view?.piece?.color.rawValue ?? "") x: \(view?.piece?.position.x ?? 0) y: \(view?.piece?.position.y ?? 0)")
     }
     
     @available(*, unavailable)

@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     lazy var board = Board()
-    lazy var boardView = BoardView(pieces: board.pieces)
+    lazy var boardView = BoardView(board: board)
 
     override func loadView() {
         self.view = self.boardView
