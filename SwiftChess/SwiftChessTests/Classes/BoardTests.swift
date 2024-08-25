@@ -30,10 +30,10 @@ final class BoardTests: XCTestCase {
         let pieces: [[PieceType?]] = [
             [.rook, .knight, .bishop, .queen, .king, .bishop, .knight, .rook],
             [.pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
             [.pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn],
             [.rook, .knight, .bishop, .queen, .king, .bishop, .knight, .rook]
             
@@ -42,10 +42,10 @@ final class BoardTests: XCTestCase {
         let colors: [[PieceColor?]] = [
             [.black, .black, .black, .black, .black, .black, .black, .black],
             [.black, .black, .black, .black, .black, .black, .black, .black],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
             [.white, .white, .white, .white, .white, .white, .white, .white],
             [.white, .white, .white, .white, .white, .white, .white, .white]
             
@@ -71,8 +71,8 @@ final class BoardTests: XCTestCase {
         checkPiece(piece, type: .pawn, color: .white)
         XCTAssertEqual(piece?.position.x, 6)
         XCTAssertEqual(piece?.position.y, 0)
-        let pieceNil = board?.selectPieceAt(position: Position(x: 5, y: 0))
-        XCTAssertNil(pieceNil)
+        let pieceEmpty = board?.selectPieceAt(position: Position(x: 5, y: 0))
+        XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
     }
     
     func testMovePieceIsNil() {
@@ -86,8 +86,8 @@ final class BoardTests: XCTestCase {
         let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
         let isMoved = board?.movePiece(piece, to: Position(x: 5, y: 0))
         XCTAssertTrue(isMoved ?? false)
-        let pieceNil = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        XCTAssertNil(pieceNil)
+        let pieceEmpty = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
         let pieceMoved = board?.selectPieceAt(position: Position(x: 5, y: 0))
         XCTAssertIdentical(piece, pieceMoved)
     }
@@ -97,8 +97,8 @@ final class BoardTests: XCTestCase {
         let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
         let isMoved = board?.movePiece(piece, to: Position(x: 4, y: 0))
         XCTAssertTrue(isMoved ?? false)
-        let pieceNil = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        XCTAssertNil(pieceNil)
+        let pieceEmpty = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
         let pieceMoved = board?.selectPieceAt(position: Position(x: 4, y: 0))
         XCTAssertIdentical(piece, pieceMoved)
     }

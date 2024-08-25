@@ -16,10 +16,10 @@ public class Board {
          Piece(.king, color: .black), Piece(.bishop, color: .black), Piece(.knight, color: .black), Piece(.rook, color: .black)],
         [Piece(.pawn, color: .black), Piece(.pawn, color: .black), Piece(.pawn, color: .black), Piece(.pawn, color: .black),
          Piece(.pawn, color: .black), Piece(.pawn, color: .black), Piece(.pawn, color: .black), Piece(.pawn, color: .black)],
-        [nil, nil, nil, nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil, nil, nil, nil],
+        [Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty)],
+        [Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty)],
+        [Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty)],
+        [Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty), Piece(.empty, color: .empty)],
         [Piece(.pawn, color: .white), Piece(.pawn, color: .white), Piece(.pawn, color: .white), Piece(.pawn, color: .white),
          Piece(.pawn, color: .white), Piece(.pawn, color: .white), Piece(.pawn, color: .white), Piece(.pawn, color: .white)],
         [Piece(.rook, color: .white), Piece(.knight, color: .white), Piece(.bishop, color: .white), Piece(.queen, color: .white),
@@ -43,7 +43,7 @@ public class Board {
     }
     
     public func movePiece(_ piece: Piece?, to: Position) -> Bool {
-        guard let piece = piece else {
+        guard let piece = piece, piece.type != .empty else {
             return false
         }
         var isMoved = false
@@ -52,7 +52,7 @@ public class Board {
         case .pawn:
             switch piece.color {
             case .white:
-                if getPieceBy(to) == nil && from.y == to.y {
+                if getPieceBy(to)?.type == .empty && from.y == to.y {
                     let xMinus = from.x - to.x
                     if xMinus == 1 {
                         piece.isFirstMove = false
@@ -66,12 +66,16 @@ public class Board {
                 }
             case .black:
                 break
+            case .empty:
+                break
             }
         case .queen:
             switch piece.color {
             case .white:
                 break
             case .black:
+                break
+            case .empty:
                 break
             }
         case .bishop:
@@ -80,12 +84,16 @@ public class Board {
                 break
             case .black:
                 break
+            case .empty:
+                break
             }
         case .knight:
             switch piece.color {
             case .white:
                 break
             case .black:
+                break
+            case .empty:
                 break
             }
         case .rook:
@@ -94,6 +102,8 @@ public class Board {
                 break
             case .black:
                 break
+            case .empty:
+                break
             }
         case .king:
             switch piece.color {
@@ -101,16 +111,22 @@ public class Board {
                 break
             case .black:
                 break
+            case .empty:
+                break
             }
+        case .empty:
+            break
         }
         
         return isMoved
     }
     
-    private func move(_ piece: Piece, from: Position, to: Position) {
-        pieces[to.x][to.y] = piece
-        pieces[from.x][from.y] = nil
-        piece.position = to
+    private func move(_ fromPiece: Piece, from: Position, to: Position) {
+        let toPiece = pieces[to.x][to.x]
+        toPiece?.position = from
+        fromPiece.position = to
+        pieces[from.x][from.y] = toPiece
+        pieces[to.x][to.y] = fromPiece
     }
     
     public func selectPieceAt(position: Position) -> Piece? {

@@ -82,6 +82,7 @@ class BoardView: UIView {
     lazy var screenSize: CGRect = UIScreen.main.bounds
     lazy var boardHeight = [screenSize.width, screenSize.height].min() ?? 0
     lazy var squareSize = (boardHeight - 64) / 8
+    var selectedPieceView: PieceView?
     
     init(board: Board) {
         self.board = board
@@ -198,14 +199,14 @@ class BoardView: UIView {
                         return "w"
                     case .black:
                         return  "b"
-                    case .none:
+                    default:
                         return ""
                     }
                 }()
                 
                 let pieceImage: UIImage? = {
                     if let type = piece?.type, !colorLetter.isEmpty {
-                        return UIImage(named: "\(colorLetter)_\(type.rawValue)")?.withAlignmentRectInsets(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
+                        return UIImage(named: "\(colorLetter)_\(type.rawValue)")
                     } else {
                         return UIImage()
                     }
@@ -214,7 +215,7 @@ class BoardView: UIView {
                 let imageView = PieceView(image: pieceImage, piece: piece)
                 imageView.translatesAutoresizingMaskIntoConstraints = false
                 imageView.isUserInteractionEnabled = true
-                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(movePiece(_:))))
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectPiece(_:))))
                 imageView.contentMode = .scaleAspectFit
                 NSLayoutConstraint.activate([
                     imageView.widthAnchor.constraint(equalToConstant: squareSize),
@@ -225,9 +226,16 @@ class BoardView: UIView {
         }
     }
     
-    @objc func movePiece(_ sender: UITapGestureRecognizer) {
+    @objc func selectPiece(_ sender: UITapGestureRecognizer) {
         let view = sender.view as? PieceView
         debugPrint("movePiece: \(view?.piece?.type.rawValue ?? "") color: \(view?.piece?.color.rawValue ?? "") x: \(view?.piece?.position.x ?? 0) y: \(view?.piece?.position.y ?? 0)")
+        if selectedPieceView === view, view?.isSelected == true {
+            selectedPieceView?.removeBorder()
+        } else {
+            selectedPieceView?.removeBorder()
+            view?.addBorder()
+            selectedPieceView = view
+        }
     }
     
     @available(*, unavailable)

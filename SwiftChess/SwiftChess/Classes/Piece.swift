@@ -20,11 +20,13 @@ public enum PieceType: String {
     case knight
     case bishop
     case pawn
+    case empty
 }
 
 public enum PieceColor: String {
     case white
     case black
+    case empty
 }
 
 public class Piece {

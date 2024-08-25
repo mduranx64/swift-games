@@ -149,7 +149,6 @@
 			children = (
 				F423A65E2BCC9C77004DF427 /* Piece.swift */,
 				F41016262BD1959300E55A2C /* Board.swift */,
-				49D357072C7AD2FC005DBDDC /* PieceView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -167,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				F45F2F062BD70BB000C0BC02 /* BoardView.swift */,
+				49D357072C7AD2FC005DBDDC /* PieceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
