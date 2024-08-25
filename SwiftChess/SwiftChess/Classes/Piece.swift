@@ -7,6 +7,12 @@
 
 import Foundation
 
+public struct Position {
+    let x: Int
+    let y: Int
+}
+
+
 public enum PieceType: String {
     case king
     case queen
@@ -24,6 +30,8 @@ public enum PieceColor {
 public class Piece {
     private(set) var type: PieceType
     private(set) var color: PieceColor
+    var isFirstMove = true
+    var position: Position = Position(x: 0, y: 0)
     
     public init(_ type: PieceType, color: PieceColor) {
         self.type = type

@@ -15,15 +15,15 @@ final class BoardTests: XCTestCase {
     }
     
     func testBoardPiecesCount() {
-        XCTAssertEqual(makeSUT()?.pieces.count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[0].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[1].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[2].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[3].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[4].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[5].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[6].count, 8)
-        XCTAssertEqual(makeSUT()?.pieces[7].count, 8)
+        XCTAssertEqual(makeSUT().pieces.count, 8)
+        XCTAssertEqual(makeSUT().pieces[0].count, 8)
+        XCTAssertEqual(makeSUT().pieces[1].count, 8)
+        XCTAssertEqual(makeSUT().pieces[2].count, 8)
+        XCTAssertEqual(makeSUT().pieces[3].count, 8)
+        XCTAssertEqual(makeSUT().pieces[4].count, 8)
+        XCTAssertEqual(makeSUT().pieces[5].count, 8)
+        XCTAssertEqual(makeSUT().pieces[6].count, 8)
+        XCTAssertEqual(makeSUT().pieces[7].count, 8)
     }
     
     func testBoardPiecesPositionsAndColors() {
@@ -61,12 +61,55 @@ final class BoardTests: XCTestCase {
     
     func testBoardPiecesPositions() {
         let pieces = makeSUT().pieces
-        XCTAssertEqual(pieces[0][0]?.color, PieceColor.black)
-        XCTAssertEqual(pieces[0][7]?.color, PieceColor.black)
+        checkPiece(pieces[0][0], type: .rook, color: .black)
+        checkPiece(pieces[0][7], type: .rook, color: .black)
+    }
+    
+    func testSelectPiece() {
+        let board = makeSUT()
+        let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        checkPiece(piece, type: .pawn, color: .white)
+        XCTAssertEqual(piece?.position.x, 6)
+        XCTAssertEqual(piece?.position.y, 0)
+        let pieceNil = board?.selectPieceAt(position: Position(x: 5, y: 0))
+        XCTAssertNil(pieceNil)
+    }
+    
+    func testMovePieceIsNil() {
+        let board = makeSUT()
+        let isMoved = board?.movePiece(nil, to: Position(x: 5, y: 0))
+        XCTAssertFalse(isMoved ?? true)
+    }
+    
+    func testMoveWhitePawnOne() {
+        let board = makeSUT()
+        let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        let isMoved = board?.movePiece(piece, to: Position(x: 5, y: 0))
+        XCTAssertTrue(isMoved ?? false)
+        let pieceNil = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        XCTAssertNil(pieceNil)
+        let pieceMoved = board?.selectPieceAt(position: Position(x: 5, y: 0))
+        XCTAssertIdentical(piece, pieceMoved)
+    }
+    
+    func testMoveWhitePawnTwo() {
+        let board = makeSUT()
+        let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        let isMoved = board?.movePiece(piece, to: Position(x: 4, y: 0))
+        XCTAssertTrue(isMoved ?? false)
+        let pieceNil = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        XCTAssertNil(pieceNil)
+        let pieceMoved = board?.selectPieceAt(position: Position(x: 4, y: 0))
+        XCTAssertIdentical(piece, pieceMoved)
     }
 
 
     private func makeSUT() -> Board! {
         return Board()
+    }
+    
+    private func checkPiece(_ piece: Piece?, type: PieceType, color: PieceColor) {
+        XCTAssertEqual(piece?.type, type)
+        XCTAssertEqual(piece?.color, color)
     }
 }
