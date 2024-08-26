@@ -39,4 +39,26 @@ public class Piece {
         self.type = type
         self.color = color
     }
+    
+    var imageName: String? {
+        var name: String? = nil
+        var colorLetter: String {
+            switch color {
+            case .white:
+                return "w"
+            case .black:
+                return "b"
+            default:
+                return ""
+            }
+        }
+        
+        switch type {
+        case .empty:
+            break
+        default:
+            name = "\(colorLetter)_\(type.rawValue)"
+        }
+        return name
+    }
 }

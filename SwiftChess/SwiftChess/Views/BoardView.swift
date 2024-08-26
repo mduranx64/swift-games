@@ -200,45 +200,53 @@ class BoardView: UIView {
         for (i, row) in pieces.enumerated() {
             let rowStackView = piecesStackView.arrangedSubviews[i] as? UIStackView
             for (_, piece) in row.enumerated() {
-                let colorLetter: String = {
-                    switch piece?.color {
-                    case .white:
-                        return "w"
-                    case .black:
-                        return  "b"
-                    default:
-                        return ""
-                    }
-                }()
-                
-                let pieceImage: UIImage? = {
-                    if let type = piece?.type, !colorLetter.isEmpty {
-                        return UIImage(named: "\(colorLetter)_\(type.rawValue)")
-                    } else {
-                        return UIImage()
-                    }
-                }()
-                
-                let imageView = PieceView(image: pieceImage, piece: piece)
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                imageView.isUserInteractionEnabled = true
-                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectPiece(_:))))
-                imageView.contentMode = .scaleAspectFit
-                NSLayoutConstraint.activate([
-                    imageView.widthAnchor.constraint(equalToConstant: squareSize),
-                    imageView.heightAnchor.constraint(equalToConstant: squareSize)
-                ])
-                rowStackView?.addArrangedSubview(imageView)
+
+                let pieceImage = piece?.imageName.map( { UIImage(named: $0) }) ?? UIImage()
+                                
+                piece.map { piece in
+                    let imageView = PieceView(image: pieceImage, position: piece.position, type: piece.type, color: piece.color)
+                    imageView.translatesAutoresizingMaskIntoConstraints = false
+                    imageView.isUserInteractionEnabled = true
+                    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectPiece(_:))))
+                    imageView.contentMode = .scaleAspectFit
+                    NSLayoutConstraint.activate([
+                        imageView.widthAnchor.constraint(equalToConstant: squareSize),
+                        imageView.heightAnchor.constraint(equalToConstant: squareSize)
+                    ])
+                    rowStackView?.addArrangedSubview(imageView)
+                }
             }
         }
     }
     
     @objc func selectPiece(_ sender: UITapGestureRecognizer) {
         let view = sender.view as? PieceView
-        debugPrint("movePiece: \(view?.piece?.type.rawValue ?? "") color: \(view?.piece?.color.rawValue ?? "") x: \(view?.piece?.position.x ?? 0) y: \(view?.piece?.position.y ?? 0)")
-        if selectedPieceView === view, view?.isSelected == true {
+        debugPrint("movePiece: \(view?.type.rawValue ?? "") color: \(view?.color.rawValue ?? "") x: \(view?.position.x ?? 0) y: \(view?.position.y ?? 0)")
+        
+        if selectedPieceView != nil && !(selectedPieceView === view) {
+            destinyPieceView = view
+            debugPrint("destination selected")
+            guard let from = selectedPieceView?.position,
+                    let to = destinyPieceView?.position else {
+                return
+            }
+            let piece = board.selectPieceAt(position: from)
+            if board.movePiece(piece, to: to) {
+                debugPrint("move view")
+                //TODO: move view
+            
+                let sImage = selectedPieceView?.image
+                let sColor = selectedPieceView?.color
+                let sType = selectedPieceView?.type
+                
+                
+            }
+
+        } else if selectedPieceView === view, view?.isSelected == true {
             selectedPieceView?.removeBorder()
+            debugPrint("deselected")
         } else {
+            debugPrint("selected")
             selectedPieceView?.removeBorder()
             view?.addBorder()
             selectedPieceView = view
