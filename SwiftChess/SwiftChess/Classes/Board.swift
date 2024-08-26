@@ -42,8 +42,8 @@ public class Board {
         return pieces[position.x][position.y]
     }
     
-    public func movePiece(_ piece: Piece?, to: Position) -> Bool {
-        guard let piece = piece, piece.type != .empty else {
+    public func movePiece(from: Position, to: Position) -> Bool {
+        guard let piece = getPieceBy(from), piece.type != .empty else {
             return false
         }
         var isMoved = false
@@ -117,7 +117,17 @@ public class Board {
         case .empty:
             break
         }
-        
+        #if DEBUG
+        if isMoved {
+            for row in pieces {
+                var rowText = ""
+                for piece in row {
+                    rowText += "\(piece?.symbol ?? "") "
+                }
+                debugPrint(rowText)
+            }
+        }
+        #endif
         return isMoved
     }
     

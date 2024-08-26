@@ -75,16 +75,16 @@ final class BoardTests: XCTestCase {
         XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
     }
     
-    func testMovePieceIsNil() {
+    func testMovePieceEmpty() {
         let board = makeSUT()
-        let isMoved = board?.movePiece(nil, to: Position(x: 5, y: 0))
+        let isMoved = board?.movePiece(from: Position(x: 5, y: 0), to: Position(x: 5, y: 0))
         XCTAssertFalse(isMoved ?? true)
     }
     
     func testMoveWhitePawnOne() {
         let board = makeSUT()
         let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        let isMoved = board?.movePiece(piece, to: Position(x: 5, y: 0))
+        let isMoved = board?.movePiece(from: Position(x: 6, y: 0), to: Position(x: 5, y: 0))
         XCTAssertTrue(isMoved ?? false)
         let pieceEmpty = board?.selectPieceAt(position: Position(x: 6, y: 0))
         XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
@@ -95,7 +95,7 @@ final class BoardTests: XCTestCase {
     func testMoveWhitePawnTwo() {
         let board = makeSUT()
         let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        let isMoved = board?.movePiece(piece, to: Position(x: 4, y: 0))
+        let isMoved = board?.movePiece(from: Position(x: 6, y: 0), to: Position(x: 4, y: 0))
         XCTAssertTrue(isMoved ?? false)
         let pieceEmpty = board?.selectPieceAt(position: Position(x: 6, y: 0))
         XCTAssertEqual(pieceEmpty?.type, PieceType.empty)

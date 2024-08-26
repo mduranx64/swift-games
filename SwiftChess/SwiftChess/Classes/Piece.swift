@@ -48,7 +48,7 @@ public class Piece {
                 return "w"
             case .black:
                 return "b"
-            default:
+            case .empty:
                 return ""
             }
         }
@@ -60,5 +60,46 @@ public class Piece {
             name = "\(colorLetter)_\(type.rawValue)"
         }
         return name
+    }
+    
+    var symbol: String {
+        switch color {
+        case .white:
+            switch type {
+            case .king:
+                return "♚"
+            case .queen:
+                return "♛"
+            case .rook:
+                return "♜"
+            case .knight:
+                return "♞"
+            case .bishop:
+                return "♝"
+            case .pawn:
+                return "♟"
+            case .empty:
+                return "ˣ"
+            }
+        case .black:
+            switch type {
+            case .king:
+                return "♔"
+            case .queen:
+                return "♕"
+            case .rook:
+                return "♖"
+            case .knight:
+                return "♘"
+            case .bishop:
+                return "♗"
+            case .pawn:
+                return "♙"
+            case .empty:
+                return "ˣ"
+            }
+        case .empty:
+            return "ˣ"
+        }
     }
 }
