@@ -227,7 +227,7 @@ class BoardView: UIView {
         debugPrint("movePiece: \(view?.type.rawValue ?? "") color: \(view?.color.rawValue ?? "") x: \(view?.position.x ?? 0) y: \(view?.position.y ?? 0)")
         
         // select a piece
-        if selectedPieceView == nil {
+        if selectedPieceView == nil, view?.type != .empty {
             selectedPieceView = view
             view?.addBorder()
             debugPrint("piece selected")

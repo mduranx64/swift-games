@@ -53,19 +53,30 @@ public class Board {
             switch piece.color {
             case .white:
                 if getPieceBy(to)?.type == .empty && from.y == to.y {
-                    let xMinus = from.x - to.x
-                    if xMinus == 1 {
+                    let xStep = from.x - to.x
+                    if xStep == 1 {
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
-                    } else if xMinus == 2 && piece.isFirstMove == true {
+                    } else if xStep == 2 && piece.isFirstMove == true {
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
                     }
                 }
             case .black:
-                break
+                if getPieceBy(to)?.type == .empty && from.y == to.y {
+                    let xStep = from.x - to.x
+                    if xStep == -1 {
+                        piece.isFirstMove = false
+                        move(piece, from: from, to: to)
+                        isMoved = true
+                    } else if xStep == -2 && piece.isFirstMove == true {
+                        piece.isFirstMove = false
+                        move(piece, from: from, to: to)
+                        isMoved = true
+                    }
+                }
             case .empty:
                 break
             }
@@ -132,8 +143,10 @@ public class Board {
     }
     
     private func move(_ fromPiece: Piece, from: Position, to: Position) {
-        let toPiece = getPieceBy(to)
-        toPiece?.update(type: fromPiece.type, color: fromPiece.color)
-        fromPiece.update(type: .empty, color: .empty)
+        let toPiece = pieces[to.x][to.y]
+        toPiece?.position = from
+        fromPiece.position = to
+        pieces[from.x][from.y] = toPiece
+        pieces[to.x][to.y] = fromPiece
     }
 }
