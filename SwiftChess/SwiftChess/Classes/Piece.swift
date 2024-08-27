@@ -40,6 +40,11 @@ public class Piece {
         self.color = color
     }
     
+    func update(type: PieceType, color: PieceColor) {
+        self.type = type
+        self.color = color
+    }
+    
     var imageName: String? {
         var name: String? = nil
         var colorLetter: String {

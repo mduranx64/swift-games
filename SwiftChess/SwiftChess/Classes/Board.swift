@@ -38,7 +38,7 @@ public class Board {
         }
     }
     
-    private func getPieceBy(_ position: Position) -> Piece? {
+    func getPieceBy(_ position: Position) -> Piece? {
         return pieces[position.x][position.y]
     }
     
@@ -132,15 +132,8 @@ public class Board {
     }
     
     private func move(_ fromPiece: Piece, from: Position, to: Position) {
-        let toPiece = pieces[to.x][to.x]
-        toPiece?.position = from
-        fromPiece.position = to
-        pieces[from.x][from.y] = toPiece
-        pieces[to.x][to.y] = fromPiece
-    }
-    
-    public func selectPieceAt(position: Position) -> Piece? {
-        self.selectedPiece = getPieceBy(position)
-        return selectedPiece
+        let toPiece = getPieceBy(to)
+        toPiece?.update(type: fromPiece.type, color: fromPiece.color)
+        fromPiece.update(type: .empty, color: .empty)
     }
 }

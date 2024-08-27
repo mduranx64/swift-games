@@ -67,11 +67,11 @@ final class BoardTests: XCTestCase {
     
     func testSelectPiece() {
         let board = makeSUT()
-        let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
+        let piece = board?.getPieceBy(Position(x: 6, y: 0))
         checkPiece(piece, type: .pawn, color: .white)
         XCTAssertEqual(piece?.position.x, 6)
         XCTAssertEqual(piece?.position.y, 0)
-        let pieceEmpty = board?.selectPieceAt(position: Position(x: 5, y: 0))
+        let pieceEmpty = board?.getPieceBy(Position(x: 5, y: 0))
         XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
     }
     
@@ -83,24 +83,30 @@ final class BoardTests: XCTestCase {
     
     func testMoveWhitePawnOne() {
         let board = makeSUT()
-        let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        let isMoved = board?.movePiece(from: Position(x: 6, y: 0), to: Position(x: 5, y: 0))
+        let from = Position(x: 6, y: 0)
+        let to = Position(x: 5, y: 0)
+        let isMoved = board?.movePiece(from: from, to: to)
+        let origin = board?.getPieceBy(from)
+        let destiny = board?.getPieceBy(to)
         XCTAssertTrue(isMoved ?? false)
-        let pieceEmpty = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
-        let pieceMoved = board?.selectPieceAt(position: Position(x: 5, y: 0))
-        XCTAssertIdentical(piece, pieceMoved)
+        XCTAssertEqual(origin?.type, PieceType.empty)
+        XCTAssertEqual(origin?.color, PieceColor.empty)
+        XCTAssertEqual(destiny?.type, PieceType.pawn)
+        XCTAssertEqual(destiny?.color, PieceColor.white)
     }
     
     func testMoveWhitePawnTwo() {
         let board = makeSUT()
-        let piece = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        let isMoved = board?.movePiece(from: Position(x: 6, y: 0), to: Position(x: 4, y: 0))
+        let from = Position(x: 6, y: 0)
+        let to = Position(x: 4, y: 0)
+        let isMoved = board?.movePiece(from: from, to: to)
+        let origin = board?.getPieceBy(from)
+        let destiny = board?.getPieceBy(to)
         XCTAssertTrue(isMoved ?? false)
-        let pieceEmpty = board?.selectPieceAt(position: Position(x: 6, y: 0))
-        XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
-        let pieceMoved = board?.selectPieceAt(position: Position(x: 4, y: 0))
-        XCTAssertIdentical(piece, pieceMoved)
+        XCTAssertEqual(origin?.type, PieceType.empty)
+        XCTAssertEqual(origin?.color, PieceColor.empty)
+        XCTAssertEqual(destiny?.type, PieceType.pawn)
+        XCTAssertEqual(destiny?.color, PieceColor.white)
     }
 
 
