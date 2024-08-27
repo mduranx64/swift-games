@@ -202,32 +202,30 @@ class BoardView: UIView {
         
         for (i, row) in pieces.enumerated() {
             let rowStackView = piecesStackView.arrangedSubviews[i] as? UIStackView
-            for (_, piece) in row.enumerated() {
+            for (j, piece) in row.enumerated() {
 
                 let pieceImage = piece?.imageName.map( { UIImage(named: $0) }) ?? UIImage()
-                                
-                piece.map { piece in
-                    let imageView = PieceView(image: pieceImage, position: piece.position, type: piece.type, color: piece.color)
-                    imageView.translatesAutoresizingMaskIntoConstraints = false
-                    imageView.isUserInteractionEnabled = true
-                    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectPiece(_:))))
-                    imageView.contentMode = .scaleAspectFit
-                    NSLayoutConstraint.activate([
-                        imageView.widthAnchor.constraint(equalToConstant: squareSize),
-                        imageView.heightAnchor.constraint(equalToConstant: squareSize)
-                    ])
-                    rowStackView?.addArrangedSubview(imageView)
-                }
+
+                let imageView = PieceView(image: pieceImage, position: Position(x: i, y: j), type: piece?.type, color: piece?.color)
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectPiece(_:))))
+                imageView.contentMode = .scaleAspectFit
+                NSLayoutConstraint.activate([
+                    imageView.widthAnchor.constraint(equalToConstant: squareSize),
+                    imageView.heightAnchor.constraint(equalToConstant: squareSize)
+                ])
+                rowStackView?.addArrangedSubview(imageView)
             }
         }
     }
 
     @objc func selectPiece(_ sender: UITapGestureRecognizer) {
         let view = sender.view as? PieceView
-        debugPrint("movePiece: \(view?.type.rawValue ?? "") color: \(view?.color.rawValue ?? "") x: \(view?.position.x ?? 0) y: \(view?.position.y ?? 0)")
+        debugPrint("movePiece: \(view?.type?.rawValue ?? "") color: \(view?.color?.rawValue ?? "") x: \(view?.position.x ?? 0) y: \(view?.position.y ?? 0)")
         
         // select a piece
-        if selectedPieceView == nil, view?.type != .empty {
+        if selectedPieceView == nil, view?.type != nil {
             selectedPieceView = view
             view?.addBorder()
             debugPrint("piece selected")
@@ -243,7 +241,7 @@ class BoardView: UIView {
         }
         
         // if space is empty
-        if view?.type == .empty && selectedPieceView != nil {
+        if view?.type == nil && selectedPieceView != nil {
             debugPrint("next space empty")
             guard let selected = selectedPieceView,
                   let destiny = view else {
@@ -251,7 +249,7 @@ class BoardView: UIView {
             }
             if board.movePiece(from: selected.position, to: destiny.position) {
                 destiny.update(image: selected.image, type: selected.type, color: selected.color)
-                selected.update(image: nil, type: .empty, color: .empty)
+                selected.update(image: nil, type: nil, color: nil)
                 selected.removeBorder()
                 selectedPieceView = nil
                 debugPrint("piece moved")
@@ -260,7 +258,7 @@ class BoardView: UIView {
         }
         
         // if space has a piece
-        if view?.type != .empty {
+        if view?.type != nil {
             debugPrint("next space has a piece")
             
             // if the piece is same color

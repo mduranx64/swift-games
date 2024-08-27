@@ -8,12 +8,12 @@
 import UIKit
 
 class PieceView: UIImageView {
-    var type: PieceType
-    var color: PieceColor
+    var type: PieceType?
+    var color: PieceColor?
     var isSelected = false
     let position: Position
     
-    init(image: UIImage?, position: Position, type: PieceType, color: PieceColor) {
+    init(image: UIImage?, position: Position, type: PieceType?, color: PieceColor?) {
         self.position = position
         self.type = type
         self.color = color
@@ -24,7 +24,7 @@ class PieceView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(image: UIImage?, type: PieceType, color: PieceColor) {
+    func update(image: UIImage?, type: PieceType?, color: PieceColor?) {
         self.image = image
         self.type = type
         self.color = color

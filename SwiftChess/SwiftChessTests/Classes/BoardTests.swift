@@ -30,10 +30,10 @@ final class BoardTests: XCTestCase {
         let pieces: [[PieceType?]] = [
             [.rook, .knight, .bishop, .queen, .king, .bishop, .knight, .rook],
             [.pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
             [.pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn, .pawn],
             [.rook, .knight, .bishop, .queen, .king, .bishop, .knight, .rook]
             
@@ -42,10 +42,10 @@ final class BoardTests: XCTestCase {
         let colors: [[PieceColor?]] = [
             [.black, .black, .black, .black, .black, .black, .black, .black],
             [.black, .black, .black, .black, .black, .black, .black, .black],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
-            [.empty, .empty, .empty, .empty, .empty, .empty, .empty, .empty],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
             [.white, .white, .white, .white, .white, .white, .white, .white],
             [.white, .white, .white, .white, .white, .white, .white, .white]
             
@@ -67,12 +67,10 @@ final class BoardTests: XCTestCase {
     
     func testSelectPiece() {
         let board = makeSUT()
-        let piece = board?.getPieceBy(Position(x: 6, y: 0))
+        let piece = board?.getPieceByPosition(Position(x: 6, y: 0))
         checkPiece(piece, type: .pawn, color: .white)
-        XCTAssertEqual(piece?.position.x, 6)
-        XCTAssertEqual(piece?.position.y, 0)
-        let pieceEmpty = board?.getPieceBy(Position(x: 5, y: 0))
-        XCTAssertEqual(pieceEmpty?.type, PieceType.empty)
+        let pieceEmpty = board?.getPieceByPosition(Position(x: 5, y: 0))
+        XCTAssertNil(pieceEmpty?.type)
     }
     
     func testMovePieceEmpty() {
@@ -86,11 +84,11 @@ final class BoardTests: XCTestCase {
         let from = Position(x: 6, y: 0)
         let to = Position(x: 5, y: 0)
         let isMoved = board?.movePiece(from: from, to: to)
-        let origin = board?.getPieceBy(from)
-        let destiny = board?.getPieceBy(to)
+        let origin = board?.getPieceByPosition(from)
+        let destiny = board?.getPieceByPosition(to)
         XCTAssertTrue(isMoved ?? false)
-        XCTAssertEqual(origin?.type, PieceType.empty)
-        XCTAssertEqual(origin?.color, PieceColor.empty)
+        XCTAssertEqual(origin?.type, nil)
+        XCTAssertEqual(origin?.color, nil)
         XCTAssertEqual(destiny?.type, PieceType.pawn)
         XCTAssertEqual(destiny?.color, PieceColor.white)
     }
@@ -100,11 +98,11 @@ final class BoardTests: XCTestCase {
         let from = Position(x: 6, y: 0)
         let to = Position(x: 4, y: 0)
         let isMoved = board?.movePiece(from: from, to: to)
-        let origin = board?.getPieceBy(from)
-        let destiny = board?.getPieceBy(to)
+        let origin = board?.getPieceByPosition(from)
+        let destiny = board?.getPieceByPosition(to)
         XCTAssertTrue(isMoved ?? false)
-        XCTAssertEqual(origin?.type, PieceType.empty)
-        XCTAssertEqual(origin?.color, PieceColor.empty)
+        XCTAssertEqual(origin?.type, nil)
+        XCTAssertEqual(origin?.color, nil)
         XCTAssertEqual(destiny?.type, PieceType.pawn)
         XCTAssertEqual(destiny?.color, PieceColor.white)
     }
