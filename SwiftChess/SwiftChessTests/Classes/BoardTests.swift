@@ -80,31 +80,41 @@ final class BoardTests: XCTestCase {
     }
     
     func testMoveWhitePawnOne() {
-        let board = makeSUT()
         let from = Position(x: 6, y: 0)
         let to = Position(x: 5, y: 0)
-        let isMoved = board?.movePiece(from: from, to: to)
-        let origin = board?.getPieceByPosition(from)
-        let destiny = board?.getPieceByPosition(to)
-        XCTAssertTrue(isMoved ?? false)
-        XCTAssertEqual(origin?.type, nil)
-        XCTAssertEqual(origin?.color, nil)
-        XCTAssertEqual(destiny?.type, PieceType.pawn)
-        XCTAssertEqual(destiny?.color, PieceColor.white)
+        checkPieceMove(from: from, to: to, type: .pawn, color: .white)
+
     }
     
     func testMoveWhitePawnTwo() {
-        let board = makeSUT()
         let from = Position(x: 6, y: 0)
         let to = Position(x: 4, y: 0)
-        let isMoved = board?.movePiece(from: from, to: to)
-        let origin = board?.getPieceByPosition(from)
-        let destiny = board?.getPieceByPosition(to)
-        XCTAssertTrue(isMoved ?? false)
-        XCTAssertEqual(origin?.type, nil)
-        XCTAssertEqual(origin?.color, nil)
-        XCTAssertEqual(destiny?.type, PieceType.pawn)
-        XCTAssertEqual(destiny?.color, PieceColor.white)
+        checkPieceMove(from: from, to: to, type: .pawn, color: .white)
+    }
+    
+    func testMoveBlackPawnOne() {
+        let from = Position(x: 1, y: 1)
+        let to = Position(x: 2, y: 1)
+        checkPieceMove(from: from, to: to, type: .pawn, color: .black)
+
+    }
+    
+    func testMoveBlackPawnTwo() {
+        let from = Position(x: 1, y: 1)
+        let to = Position(x: 3, y: 1)
+        checkPieceMove(from: from, to: to, type: .pawn, color: .black)
+    }
+    
+    func testMoveWhiteKnight() {
+        let from = Position(x: 7, y: 1)
+        let to = Position(x: 5, y: 2)
+        checkPieceMove(from: from, to: to, type: .knight, color: .white)
+    }
+    
+    func testMoveBlackKnight() {
+        let from = Position(x: 0, y: 1)
+        let to = Position(x: 2, y: 0)
+        checkPieceMove(from: from, to: to, type: .knight, color: .black)
     }
 
 
@@ -115,5 +125,17 @@ final class BoardTests: XCTestCase {
     private func checkPiece(_ piece: Piece?, type: PieceType, color: PieceColor) {
         XCTAssertEqual(piece?.type, type)
         XCTAssertEqual(piece?.color, color)
+    }
+    
+    private func checkPieceMove(from: Position, to: Position, type: PieceType, color: PieceColor) {
+        let board = makeSUT()
+        let isMoved = board?.movePiece(from: from, to: to)
+        let origin = board?.getPieceByPosition(from)
+        let destiny = board?.getPieceByPosition(to)
+        XCTAssertTrue(isMoved ?? false)
+        XCTAssertEqual(origin?.type, nil)
+        XCTAssertEqual(origin?.color, nil)
+        XCTAssertEqual(destiny?.type, type)
+        XCTAssertEqual(destiny?.color, color)
     }
 }

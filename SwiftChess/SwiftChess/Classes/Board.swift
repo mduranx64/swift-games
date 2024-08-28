@@ -38,31 +38,21 @@ public class Board {
         guard let piece = getPieceByPosition(from) else {
             return false
         }
+        let destiny = getPieceByPosition(to)
         var isMoved = false
         switch piece.type {
         case .pawn:
             switch piece.color {
-            case .white:
-                if getPieceByPosition(to) == nil && from.y == to.y {
+            case .white, .black:
+                let oneStep = piece.color == .white ? 1 : -1
+                let twoStep = piece.color == .white ? 2 : -2
+                if destiny == nil && from.y == to.y {
                     let xStep = from.x - to.x
-                    if xStep == 1 {
+                    if xStep == oneStep {
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
-                    } else if xStep == 2 && piece.isFirstMove == true {
-                        piece.isFirstMove = false
-                        move(piece, from: from, to: to)
-                        isMoved = true
-                    }
-                }
-            case .black:
-                if getPieceByPosition(to) == nil && from.y == to.y {
-                    let xStep = from.x - to.x
-                    if xStep == -1 {
-                        piece.isFirstMove = false
-                        move(piece, from: from, to: to)
-                        isMoved = true
-                    } else if xStep == -2 && piece.isFirstMove == true {
+                    } else if xStep == twoStep && piece.isFirstMove == true {
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
@@ -85,10 +75,15 @@ public class Board {
             }
         case .knight:
             switch piece.color {
-            case .white:
-                break
-            case .black:
-                break
+            case .white, .black:
+                if destiny == nil || destiny?.color != piece.color {
+                    let xStep = abs(from.x - to.x)
+                    let yStep = abs(from.y - to.y)
+                    if xStep == 1 && yStep == 2 || xStep == 2 && yStep == 1 {
+                        move(piece, from: from, to: to)
+                        isMoved = true
+                    }
+                }
             }
         case .rook:
             switch piece.color {
@@ -110,7 +105,7 @@ public class Board {
             for row in pieces {
                 var rowText = ""
                 for piece in row {
-                    rowText += "\(piece?.symbol ?? "ˣˣ") "
+                    rowText += "\(piece?.symbol ?? "ˣ") "
                 }
                 debugPrint(rowText)
             }

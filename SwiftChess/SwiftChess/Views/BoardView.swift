@@ -170,7 +170,6 @@ class BoardView: UIView {
                     imageView.widthAnchor.constraint(equalToConstant: squareSize),
                     imageView.heightAnchor.constraint(equalToConstant: squareSize)
                 ])
-                debugPrint("x:\(i) y:\(j))")
             }
         }
 
