@@ -87,10 +87,32 @@ public class Board {
             }
         case .rook:
             switch piece.color {
-            case .white:
-                break
-            case .black:
-                break
+            case .white, .black:
+                if destiny == nil || destiny?.color != piece.color {
+                    let xStep = abs(from.x - to.x)
+                    let yStep = abs(from.y - to.y)
+                    if xStep == 0 && yStep >= 1  {
+                        // right
+                        if from.y < to.y {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        // left
+                        } else if from.y > to.y {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    } else if yStep == 0 && xStep >= 1 {
+                        // down
+                        if from.x < to.x {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        // up
+                        } else if from.x > to.x {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    }
+                }
             }
         case .king:
             switch piece.color {
@@ -112,6 +134,11 @@ public class Board {
         }
         #endif
         return isMoved
+    }
+    
+    private func checkEmpty(from: Position, to: Position) -> Bool{
+        
+        return false
     }
     
     private func move(_ fromPiece: Piece, from: Position, to: Position) {
