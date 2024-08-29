@@ -158,10 +158,17 @@ public class Board {
             }
         case .king:
             switch piece.color {
-            case .white:
-                break
-            case .black:
-                break
+            case .white, .black:
+                if destiny == nil || destiny?.color != piece.color {
+                    let xStep = abs(from.x - to.x)
+                    let yStep = abs(from.y - to.y)
+                    if xStep == 1 && yStep == 1 ||
+                        xStep == 0 && yStep == 1 ||
+                        xStep == 1 && yStep == 0 {
+                        move(piece, from: from, to: to)
+                        isMoved = true
+                    }
+                }
             }
         }
         #if DEBUG

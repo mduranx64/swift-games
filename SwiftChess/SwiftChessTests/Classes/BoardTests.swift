@@ -154,6 +154,25 @@ final class BoardTests: XCTestCase {
     func testMoveRookUpCollision() {
         checkPieceMoveCollision(from: Position(x: 7, y: 7), to: Position(x: 5, y: 7))
     }
+    
+    func testMoveKing() {
+        let sut = makeSUT()
+        checkPieceMove(sut, from: Position(x: 6, y: 5), to: Position(x: 5, y: 5), type: .pawn, color: .white)
+        
+        checkPieceMove(sut, from: Position(x: 7, y: 4), to: Position(x: 6, y: 5), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 5), to: Position(x: 5, y: 4), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 4), to: Position(x: 4, y: 5), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 4, y: 5), to: Position(x: 5, y: 4), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 4), to: Position(x: 6, y: 5), type: .king, color: .white)
+        
+        checkPieceMove(sut, from: Position(x: 6, y: 5), to: Position(x: 5, y: 6), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 6), to: Position(x: 4, y: 6), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 4, y: 6), to: Position(x: 4, y: 7), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 4, y: 7), to: Position(x: 5, y: 7), type: .king, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 7), to: Position(x: 5, y: 6), type: .king, color: .white)
+        
+
+    }
 
     private func makeSUT() -> Board {
         return Board()
