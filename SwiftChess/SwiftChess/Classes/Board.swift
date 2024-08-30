@@ -68,10 +68,69 @@ public class Board {
             }
         case .bishop:
             switch piece.color {
-            case .white:
-                break
-            case .black:
-                break
+            case .white, .black:
+                if destiny == nil || destiny?.color != piece.color {
+                    var canMove = true
+                    let xStep = from.x - to.x
+                    let yStep = from.y - to.y
+                    if xStep > 0 && yStep > 0 { // left up
+                        var xCount = from.x - 1
+                        var yCount = from.y - 1
+                        while xCount > to.x && yCount > to.y {
+                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                                canMove = false
+                            }
+                            xCount -= 1
+                            yCount -= 1
+                        }
+                        if canMove {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    } else if xStep > 0 && yStep < 0 { // right up
+                        var xCount = from.x - 1
+                        var yCount = from.y + 1
+                        while xCount > to.x && yCount < to.y {
+                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                                canMove = false
+                            }
+                            xCount -= 1
+                            yCount += 1
+                        }
+                        if canMove {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    } else if xStep < 0 && yStep > 0 { // left down
+                        var xCount = from.x + 1
+                        var yCount = from.y - 1
+                        while xCount < to.x && yCount > to.y {
+                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                                canMove = false
+                            }
+                            xCount += 1
+                            yCount -= 1
+                        }
+                        if canMove {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    } else if xStep < 0 && yStep < 0 { // left up
+                        var xCount = from.x + 1
+                        var yCount = from.y + 1
+                        while xCount < to.x && yCount < to.y {
+                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                                canMove = false
+                            }
+                            xCount += 1
+                            yCount += 1
+                        }
+                        if canMove {
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    }
+                }
             }
         case .knight:
             switch piece.color {
@@ -94,9 +153,7 @@ public class Board {
                     let xStep = abs(from.x - to.x)
                     let yStep = abs(from.y - to.y)
                     if xStep == 0 && yStep >= 1  {
-                        // right
-                        if from.y < to.y {
-                            canMove = true
+                        if from.y < to.y { // right
                             count = from.y + 1
                             while count < to.y {
                                 if getPieceByPosition(Position(x: from.x, y: count)) != nil {
@@ -108,9 +165,7 @@ public class Board {
                                 move(piece, from: from, to: to)
                                 isMoved = true
                             }
-                        // left
-                        } else if from.y > to.y {
-                            canMove = true
+                        } else if from.y > to.y { // left
                             count = from.y - 1
                             while count > to.y {
                                 if getPieceByPosition(Position(x: from.x, y: count)) != nil {
@@ -124,9 +179,7 @@ public class Board {
                             }
                         }
                     } else if yStep == 0 && xStep >= 1 {
-                        // down
-                        if from.x < to.x {
-                            canMove = true
+                        if from.x < to.x { // down
                             count = from.x + 1
                             while count < to.x {
                                 if getPieceByPosition(Position(x: count, y: from.y)) != nil {
@@ -138,9 +191,7 @@ public class Board {
                                 move(piece, from: from, to: to)
                                 isMoved = true
                             }
-                        // up
-                        } else if from.x > to.x {
-                            canMove = true
+                        } else if from.x > to.x { // up
                             count = from.x - 1
                             while count > to.x {
                                 if getPieceByPosition(Position(x: count, y: from.y)) != nil {

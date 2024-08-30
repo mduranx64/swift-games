@@ -170,8 +170,24 @@ final class BoardTests: XCTestCase {
         checkPieceMove(sut, from: Position(x: 4, y: 6), to: Position(x: 4, y: 7), type: .king, color: .white)
         checkPieceMove(sut, from: Position(x: 4, y: 7), to: Position(x: 5, y: 7), type: .king, color: .white)
         checkPieceMove(sut, from: Position(x: 5, y: 7), to: Position(x: 5, y: 6), type: .king, color: .white)
+    }
+    
+    func testMoveBishop() {
+        let sut = makeSUT()
+        checkPieceMove(sut, from: Position(x: 6, y: 1), to: Position(x: 5, y: 1), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 3), to: Position(x: 5, y: 3), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 2), to: Position(x: 5, y: 0), type: .bishop, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 0), to: Position(x: 3, y: 2), type: .bishop, color: .white)
+        checkPieceMove(sut, from: Position(x: 3, y: 2), to: Position(x: 5, y: 4), type: .bishop, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 4), to: Position(x: 7, y: 2), type: .bishop, color: .white)
+    }
+    
+    func testMoveBishopCollision() {
+        checkPieceMoveCollision(from: Position(x: 7, y: 2), to: Position(x: 5, y: 0))
+        checkPieceMoveCollision(from: Position(x: 7, y: 2), to: Position(x: 5, y: 4))
         
-
+        checkPieceMoveCollision(from: Position(x: 0, y: 2), to: Position(x: 2, y: 0))
+        checkPieceMoveCollision(from: Position(x: 0, y: 2), to: Position(x: 2, y: 4))
     }
 
     private func makeSUT() -> Board {
