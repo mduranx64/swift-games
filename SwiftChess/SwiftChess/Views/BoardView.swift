@@ -81,7 +81,7 @@ class BoardView: UIView {
     
     var board: Board
     lazy var screenSize: CGRect = UIScreen.main.bounds
-    lazy var boardHeight = [screenSize.width, screenSize.height].min() ?? 0
+    lazy var boardHeight = min(screenSize.width, screenSize.height)
     lazy var squareSize = (boardHeight - 64) / 8
     var selectedPieceView: PieceView?
     var destinyPieceView: PieceView?
