@@ -221,10 +221,10 @@ class BoardView: UIView {
 
     @objc func selectPiece(_ sender: UITapGestureRecognizer) {
         let newPiece = sender.view as? PieceView
-        debugPrint("movePiece: \(newPiece?.type?.rawValue ?? "") color: \(newPiece?.color?.rawValue ?? "") x: \(newPiece?.position.x ?? 0) y: \(newPiece?.position.y ?? 0)")
+        debugPrint("selectPiece: \(newPiece?.type?.rawValue ?? "") color: \(newPiece?.color?.rawValue ?? "") x: \(newPiece?.position.x ?? 0) y: \(newPiece?.position.y ?? 0)")
         
         // select a piece
-        if selectedPieceView == nil, newPiece?.type != nil {
+        if selectedPieceView == nil && newPiece?.type != nil && newPiece?.color == board.currentTurn {
             selectedPieceView = newPiece
             newPiece?.addBorder()
             debugPrint("piece selected")
@@ -257,7 +257,7 @@ class BoardView: UIView {
         }
         
         // if space has a piece
-        if newPiece?.type != nil {
+        if newPiece?.type != nil && selectedPieceView != nil  {
             debugPrint("next space has a piece")
             // if the piece is same color
             if newPiece?.color == selectedPieceView?.color {

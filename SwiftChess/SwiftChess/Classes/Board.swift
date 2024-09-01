@@ -12,6 +12,7 @@ public class Board {
     private(set) var selectedPiece: Piece?
     private(set) var whiteCapture = [Piece]()
     private(set) var blackCapture = [Piece]()
+    var currentTurn: PieceColor = .white
     
     private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),
@@ -28,10 +29,15 @@ public class Board {
          Piece(.king, color: .white), Piece(.bishop, color: .white), Piece(.knight, color: .white), Piece(.rook, color: .white)]
     ]
     
-    init() {}
+    init() {
+    }
     
     init(pieces: [[Piece?]]) {
         self.pieces = pieces
+    }
+    
+    private func changeTurn(color: PieceColor) {
+        self.currentTurn = color == PieceColor.white ? PieceColor.black : PieceColor.white
     }
     
     func getPieceByPosition(_ position: Position) -> Piece? {
@@ -39,7 +45,7 @@ public class Board {
     }
     
     public func movePiece(from: Position, to: Position) -> Bool {
-        guard let piece = getPieceByPosition(from) else {
+        guard let piece = getPieceByPosition(from), piece.color == currentTurn else {
             return false
         }
         let destiny = getPieceByPosition(to)
@@ -368,6 +374,9 @@ public class Board {
             }
         }
         #endif
+        if isMoved {
+            changeTurn(color: piece.color)
+        }
         return isMoved
     }
     

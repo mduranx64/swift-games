@@ -10,6 +10,16 @@ import XCTest
 
 final class BoardTests: XCTestCase {
     
+    // positions of the pieces in the matrix
+    //[0,0][0,1][0,2][0,3][0,4][0,5][0,6][0,7]
+    //[1,0][1,1][1,2][1,3][1,4][1,5][1,6][1,7]
+    //[2,0][2,1][2,2][2,3][2,4][2,5][2,6][2,7]
+    //[3,0][3,1][3,2][3,3][3,4][3,5][3,6][3,7]
+    //[4,0][4,1][4,2][4,3][4,4][4,5][4,6][4,7]
+    //[5,0][5,1][5,2][5,3][5,4][5,5][5,6][5,7]
+    //[6,0][6,1][6,2][6,3][6,4][6,5][6,6][6,7]
+    //[7,0][7,1][7,2][7,3][7,4][7,5][7,6][7,7]
+    
     func testBoardPiecesCount() {
         XCTAssertEqual(makeSUT().pieces.count, 8)
         XCTAssertEqual(makeSUT().pieces[0].count, 8)
@@ -107,37 +117,39 @@ final class BoardTests: XCTestCase {
     
     func testMoveRookRight() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 0), to: Position(x: 4, y: 0)))
-        XCTAssertTrue(sut.movePiece(from: Position(x: 7, y: 0), to: Position(x: 5, y: 0)))
+        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 0), to: Position(x: 5, y: 0), type: .rook, color: .white)
         checkPieceMove(sut, from: Position(x: 5, y: 0), to: Position(x: 5, y: 2), type: .rook, color: .white)
     }
     
     func testMoveRookRightCollision() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 0), to: Position(x: 4, y: 0)))
-        XCTAssertTrue(sut.movePiece(from: Position(x: 7, y: 0), to: Position(x: 5, y: 0)))
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 1), to: Position(x: 5, y: 1)))
+        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 1), to: Position(x: 5, y: 1), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 0), to: Position(x: 5, y: 0), type: .rook, color: .white)
+        
         checkPieceMoveCollision(sut, from: Position(x: 5, y: 0), to: Position(x: 5, y: 2))
     }
     
     func testMoveRookLeft() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 7), to: Position(x: 4, y: 7)))
-        XCTAssertTrue(sut.movePiece(from: Position(x: 7, y: 7), to: Position(x: 5, y: 7)))
+        checkPieceMove(sut, from: Position(x: 6, y: 7), to: Position(x: 4, y: 7), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 7), to: Position(x: 5, y: 7), type: .rook, color: .white)
         checkPieceMove(sut, from: Position(x: 5, y: 7), to: Position(x: 5, y: 5), type: .rook, color: .white)
     }
     
     func testMoveRookLeftCollision() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 7), to: Position(x: 4, y: 7)))
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 6), to: Position(x: 5, y: 6)))
-        XCTAssertTrue(sut.movePiece(from: Position(x: 7, y: 7), to: Position(x: 5, y: 7)))
+        checkPieceMove(sut, from: Position(x: 6, y: 7), to: Position(x: 4, y: 7), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 6), to: Position(x: 5, y: 6), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 7), to: Position(x: 5, y: 7), type: .rook, color: .white)
+        
         checkPieceMoveCollision(sut, from: Position(x: 5, y: 7), to: Position(x: 5, y: 5))
     }
     
     func testMoveRookDown() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.movePiece(from: Position(x: 1, y: 0), to: Position(x: 3, y: 0)))
+        checkPieceMove(sut, from: Position(x: 1, y: 0), to: Position(x: 3, y: 0), type: .pawn, color: .black)
         checkPieceMove(sut, from: Position(x: 0, y: 0), to: Position(x: 2, y: 0), type: .rook, color: .black)
     }
     
@@ -250,16 +262,6 @@ final class BoardTests: XCTestCase {
         checkPieceMove(sut, from: Position(x: 1, y: 2), to: Position(x: 2, y: 3), type: .pawn, color: .black)
     }
     
-    // positions of the pieces in the matrix
-    //[0,0][0,1][0,2][0,3][0,4][0,5][0,6][0,7]
-    //[1,0][1,1][1,2][1,3][1,4][1,5][1,6][1,7]
-    //[2,0][2,1][2,2][2,3][2,4][2,5][2,6][2,7]
-    //[3,0][3,1][3,2][3,3][3,4][3,5][3,6][3,7]
-    //[4,0][4,1][4,2][4,3][4,4][4,5][4,6][4,7]
-    //[5,0][5,1][5,2][5,3][5,4][5,5][5,6][5,7]
-    //[6,0][6,1][6,2][6,3][6,4][6,5][6,6][6,7]
-    //[7,0][7,1][7,2][7,3][7,4][7,5][7,6][7,7]
-    
     func testMoveRookCapture() {
         let wr1 = Piece(.rook, color: .white)
         let br1 = Piece(.rook, color: .black)
@@ -370,6 +372,7 @@ final class BoardTests: XCTestCase {
     }
     
     private func checkPieceMove(_ board: Board = Board(), from: Position, to: Position, type: PieceType, color: PieceColor) {
+        board.currentTurn = color
         let isMoved = board.movePiece(from: from, to: to)
         let origin = board.getPieceByPosition(from)
         let destiny = board.getPieceByPosition(to)
