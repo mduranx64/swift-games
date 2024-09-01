@@ -224,6 +224,32 @@ final class BoardTests: XCTestCase {
         checkPieceMoveCollision(sut, from: Position(x: 5, y: 3), to: Position(x: 5, y: 5))
     }
     
+    func testMoveWhitePawnCaptureBlack() {
+        let sut = makeSUT()
+        checkPieceMove(sut, from: Position(x: 1, y: 0), to: Position(x: 3, y: 0), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 3, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 4, y: 0), to: Position(x: 5, y: 0), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 6, y: 1), to: Position(x: 5, y: 0), type: .pawn, color: .white)
+        
+        checkPieceMove(sut, from: Position(x: 1, y: 3), to: Position(x: 3, y: 3), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 3, y: 3), to: Position(x: 4, y: 3), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 4, y: 3), to: Position(x: 5, y: 3), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 6, y: 2), to: Position(x: 5, y: 3), type: .pawn, color: .white)
+    }
+    
+    func testMoveBlackPawnCaptureWhite() {
+        let sut = makeSUT()
+        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 4, y: 0), to: Position(x: 3, y: 0), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 3, y: 0), to: Position(x: 2, y: 0), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 1, y: 1), to: Position(x: 2, y: 0), type: .pawn, color: .black)
+        
+        checkPieceMove(sut, from: Position(x: 6, y: 3), to: Position(x: 4, y: 3), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 4, y: 3), to: Position(x: 3, y: 3), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 3, y: 3), to: Position(x: 2, y: 3), type: .pawn, color: .white)
+        checkPieceMove(sut, from: Position(x: 1, y: 2), to: Position(x: 2, y: 3), type: .pawn, color: .black)
+    }
+    
     private func makeSUT() -> Board {
         return Board()
     }

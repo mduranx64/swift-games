@@ -220,30 +220,30 @@ class BoardView: UIView {
     }
 
     @objc func selectPiece(_ sender: UITapGestureRecognizer) {
-        let view = sender.view as? PieceView
-        debugPrint("movePiece: \(view?.type?.rawValue ?? "") color: \(view?.color?.rawValue ?? "") x: \(view?.position.x ?? 0) y: \(view?.position.y ?? 0)")
+        let newPiece = sender.view as? PieceView
+        debugPrint("movePiece: \(newPiece?.type?.rawValue ?? "") color: \(newPiece?.color?.rawValue ?? "") x: \(newPiece?.position.x ?? 0) y: \(newPiece?.position.y ?? 0)")
         
         // select a piece
-        if selectedPieceView == nil, view?.type != nil {
-            selectedPieceView = view
-            view?.addBorder()
+        if selectedPieceView == nil, newPiece?.type != nil {
+            selectedPieceView = newPiece
+            newPiece?.addBorder()
             debugPrint("piece selected")
             return
         }
         
         // piece is already selected
-        if selectedPieceView === view {
-            view?.removeBorder()
+        if selectedPieceView === newPiece {
+            newPiece?.removeBorder()
             selectedPieceView = nil
             debugPrint("piece deselected")
             return
         }
         
         // if space is empty
-        if view?.type == nil && selectedPieceView != nil {
+        if newPiece?.type == nil && selectedPieceView != nil {
             debugPrint("next space empty")
             guard let selected = selectedPieceView,
-                  let destiny = view else {
+                  let destiny = newPiece else {
                 return
             }
             if board.movePiece(from: selected.position, to: destiny.position) {
@@ -257,15 +257,26 @@ class BoardView: UIView {
         }
         
         // if space has a piece
-        if view?.type != nil {
+        if newPiece?.type != nil {
             debugPrint("next space has a piece")
-            
             // if the piece is same color
-            if view?.color == selectedPieceView?.color {
+            if newPiece?.color == selectedPieceView?.color {
                 selectedPieceView?.removeBorder()
-                view?.addBorder()
-                selectedPieceView = view
+                newPiece?.addBorder()
+                selectedPieceView = newPiece
                 debugPrint("piece is same color")
+            } else {
+                guard let selected = selectedPieceView,
+                      let destiny = newPiece else {
+                    return
+                }
+                if board.movePiece(from: selected.position, to: destiny.position) {
+                    destiny.update(image: selected.image, type: selected.type, color: selected.color)
+                    selected.update(image: nil, type: nil, color: nil)
+                    selected.removeBorder()
+                    selectedPieceView = nil
+                    debugPrint("piece captured")
+                }
             }
             return
         }

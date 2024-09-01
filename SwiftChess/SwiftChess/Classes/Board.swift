@@ -10,6 +10,8 @@ import Foundation
 public class Board {
     
     private(set) var selectedPiece: Piece?
+    private(set) var whiteCapture = [Piece]()
+    private(set) var blackCapture = [Piece]()
     
     private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),
@@ -44,25 +46,51 @@ public class Board {
         case .pawn:
             switch piece.color {
             case .white, .black:
-                let oneStep = piece.color == .white ? 1 : -1
-                let twoStep = piece.color == .white ? 2 : -2
-                if destiny == nil && from.y == to.y {
+                if destiny == nil && from.y == to.y { // move
+                    let oneStep = piece.color == .white ? 1 : -1
+                    let twoStep = piece.color == .white ? 2 : -2
                     let xStep = from.x - to.x
-                    if xStep == oneStep {
+                    
+                    if xStep == oneStep { // one step
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
-                    } else if xStep == twoStep && piece.isFirstMove == true {
+                    } else if xStep == twoStep && piece.isFirstMove { // two steps
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
+                    }
+                } else if destiny != nil, destiny?.color != piece.color { // capture
+                    let xStep = from.x - to.x
+                    let yStep = from.y - to.y
+                    
+                    if piece.color == .white {
+                        if xStep == 1 && yStep == 1 { // left up
+                            piece.isFirstMove = false
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        } else if xStep == 1 && yStep == -1 { // right up
+                            piece.isFirstMove = false
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
+                    } else {
+                        if xStep == -1 && yStep == 1 { // let down
+                            piece.isFirstMove = false
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        } else if xStep == -1 && yStep == -1 { // right down
+                            piece.isFirstMove = false
+                            move(piece, from: from, to: to)
+                            isMoved = true
+                        }
                     }
                 }
             }
         case .queen:
             switch piece.color {
             case .white, .black:
-                if destiny == nil || destiny?.color != piece.color {
+                if destiny == nil || destiny?.color != piece.color { // move or capture
                     var canMove = true
                     var count = 0
                     let xStep = from.x - to.x
@@ -177,7 +205,7 @@ public class Board {
         case .bishop:
             switch piece.color {
             case .white, .black:
-                if destiny == nil || destiny?.color != piece.color {
+                if destiny == nil || destiny?.color != piece.color { // move or capture
                     var canMove = true
                     let xStep = from.x - to.x
                     let yStep = from.y - to.y
@@ -243,7 +271,7 @@ public class Board {
         case .knight:
             switch piece.color {
             case .white, .black:
-                if destiny == nil || destiny?.color != piece.color {
+                if destiny == nil || destiny?.color != piece.color { // move or capture
                     let xStep = abs(from.x - to.x)
                     let yStep = abs(from.y - to.y)
                     if xStep == 1 && yStep == 2 || xStep == 2 && yStep == 1 {
@@ -255,7 +283,7 @@ public class Board {
         case .rook:
             switch piece.color {
             case .white, .black:
-                if destiny == nil || destiny?.color != piece.color {
+                if destiny == nil || destiny?.color != piece.color { // move or capture
                     var canMove = true
                     var count = 0
                     let xStep = from.x - to.x
@@ -315,7 +343,7 @@ public class Board {
         case .king:
             switch piece.color {
             case .white, .black:
-                if destiny == nil || destiny?.color != piece.color {
+                if destiny == nil || destiny?.color != piece.color { // move or capture
                     let xStep = abs(from.x - to.x)
                     let yStep = abs(from.y - to.y)
                     if xStep == 1 && yStep == 1 ||
@@ -342,7 +370,18 @@ public class Board {
     }
     
     private func move(_ fromPiece: Piece, from: Position, to: Position) {
-        pieces[to.x][to.y] = fromPiece
-        pieces[from.x][from.y] = nil
+        let destiny = getPieceByPosition(to)
+        if destiny == nil {
+            pieces[to.x][to.y] = fromPiece
+            pieces[from.x][from.y] = nil
+        } else {
+            if destiny?.color == .white {
+                destiny.map({ whiteCapture.append($0) })
+            } else {
+                destiny.map({ blackCapture.append($0) })
+            }
+            pieces[to.x][to.y] = fromPiece
+            pieces[from.x][from.y] = nil
+        }
     }
 }
