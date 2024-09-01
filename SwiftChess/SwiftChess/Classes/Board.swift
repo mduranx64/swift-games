@@ -28,8 +28,10 @@ public class Board {
          Piece(.king, color: .white), Piece(.bishop, color: .white), Piece(.knight, color: .white), Piece(.rook, color: .white)]
     ]
     
-    init() {
-        
+    init() {}
+    
+    init(pieces: [[Piece?]]) {
+        self.pieces = pieces
     }
     
     func getPieceByPosition(_ position: Position) -> Piece? {

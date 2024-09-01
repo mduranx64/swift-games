@@ -16,6 +16,13 @@ final class PieceTests: XCTestCase {
         XCTAssertEqual(piece.color, PieceColor.white)
     }
     
+    func testPieceUpdate() {
+        let sut = makeSUT(.king, color: .white)
+        sut.update(type: .pawn, color: .black)
+        XCTAssertEqual(sut.type, PieceType.pawn)
+        XCTAssertEqual(sut.color, PieceColor.black)
+    }
+    
     private func makeSUT(_ type: PieceType, color: PieceColor) -> Piece {
         let piece = Piece(type, color: color)
         return piece
