@@ -114,57 +114,48 @@ final class BoardTests: XCTestCase {
         checkPieceMove(sut,from: Position(x: 7, y: 6), to: Position(x: 5, y: 5), type: .knight, color: .white)
         checkPieceMove(sut,from: Position(x: 5, y: 5), to: Position(x: 3, y: 6), type: .knight, color: .white)
     }
-    
-    func testMoveRookRight() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 0), to: Position(x: 5, y: 0), type: .rook, color: .white)
-        checkPieceMove(sut, from: Position(x: 5, y: 0), to: Position(x: 5, y: 2), type: .rook, color: .white)
+ 
+    func testRookMove() {
+        let wrk = Piece(.rook, color: .white)
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [wrk, nil, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMove(sut, from: Position(x: 7, y: 0), to: Position(x: 0, y: 0), type: .rook, color: .white)
+        checkPieceMove(sut, from: Position(x: 0, y: 0), to: Position(x: 0, y: 7), type: .rook, color: .white)
+        checkPieceMove(sut, from: Position(x: 0, y: 7), to: Position(x: 7, y: 7), type: .rook, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 7), to: Position(x: 7, y: 0), type: .rook, color: .white)
     }
     
-    func testMoveRookRightCollision() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 6, y: 1), to: Position(x: 5, y: 1), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 0), to: Position(x: 5, y: 0), type: .rook, color: .white)
+    func testMoveRookCollision() {
+        let wrk = Piece(.rook, color: .white)
+        let wp1 = Piece(.pawn, color: .white)
+        let wp2 = Piece(.pawn, color: .white)
+        let wp3 = Piece(.pawn, color: .white)
+        let wp4 = Piece(.pawn, color: .white)
         
-        checkPieceMoveCollision(sut, from: Position(x: 5, y: 0), to: Position(x: 5, y: 2))
-    }
-    
-    func testMoveRookLeft() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 7), to: Position(x: 4, y: 7), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 7), to: Position(x: 5, y: 7), type: .rook, color: .white)
-        checkPieceMove(sut, from: Position(x: 5, y: 7), to: Position(x: 5, y: 5), type: .rook, color: .white)
-    }
-    
-    func testMoveRookLeftCollision() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 7), to: Position(x: 4, y: 7), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 6, y: 6), to: Position(x: 5, y: 6), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 7), to: Position(x: 5, y: 7), type: .rook, color: .white)
-        
-        checkPieceMoveCollision(sut, from: Position(x: 5, y: 7), to: Position(x: 5, y: 5))
-    }
-    
-    func testMoveRookDown() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 1, y: 0), to: Position(x: 3, y: 0), type: .pawn, color: .black)
-        checkPieceMove(sut, from: Position(x: 0, y: 0), to: Position(x: 2, y: 0), type: .rook, color: .black)
-    }
-    
-    func testMoveRookDownCollision() {
-        checkPieceMoveCollision(from: Position(x: 0, y: 0), to: Position(x: 2, y: 0))
-    }
-    
-    func testMoveUpDown() {
-        let sut = makeSUT()
-        XCTAssertTrue(sut.movePiece(from: Position(x: 6, y: 7), to: Position(x: 4, y: 7)))
-        checkPieceMove(sut, from: Position(x: 7, y: 7), to: Position(x: 5, y: 7), type: .rook, color: .white)
-    }
-    
-    func testMoveRookUpCollision() {
-        checkPieceMoveCollision(from: Position(x: 7, y: 7), to: Position(x: 5, y: 7))
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, wp2, nil, nil, nil, nil],
+            [nil, nil, wp1, wrk, wp3, nil, nil, nil],
+            [nil, nil, nil, wp4, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 0, y: 3))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 7, y: 3))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 4, y: 0))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 4, y: 7))
     }
     
     func testMoveKing() {
@@ -185,55 +176,93 @@ final class BoardTests: XCTestCase {
     }
     
     func testMoveBishop() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 1), to: Position(x: 5, y: 1), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 6, y: 3), to: Position(x: 5, y: 3), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 2), to: Position(x: 5, y: 0), type: .bishop, color: .white)
-        checkPieceMove(sut, from: Position(x: 5, y: 0), to: Position(x: 3, y: 2), type: .bishop, color: .white)
-        checkPieceMove(sut, from: Position(x: 3, y: 2), to: Position(x: 5, y: 4), type: .bishop, color: .white)
-        checkPieceMove(sut, from: Position(x: 5, y: 4), to: Position(x: 7, y: 2), type: .bishop, color: .white)
+        let wbp = Piece(.bishop, color: .white)
+        
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, wbp, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMove(sut, from: Position(x: 7, y: 1), to: Position(x: 6, y: 0), type: .bishop, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 5, y: 1), type: .bishop, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 1), to: Position(x: 6, y: 2), type: .bishop, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 2), to: Position(x: 7, y: 1), type: .bishop, color: .white)
     }
     
     func testMoveBishopCollision() {
-        checkPieceMoveCollision(from: Position(x: 7, y: 2), to: Position(x: 5, y: 0))
-        checkPieceMoveCollision(from: Position(x: 7, y: 2), to: Position(x: 5, y: 4))
+        let wbp = Piece(.bishop, color: .white)
         
-        checkPieceMoveCollision(from: Position(x: 0, y: 2), to: Position(x: 2, y: 0))
-        checkPieceMoveCollision(from: Position(x: 0, y: 2), to: Position(x: 2, y: 4))
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, p(), nil, p(), nil, nil, nil],
+            [nil, nil, nil, wbp, nil, nil, nil, nil],
+            [nil, nil, p(), nil, p(), nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 2, y: 1))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 6, y: 1))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 2, y: 5))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 6, y: 5))
     }
     
     func testMoveQueen() {
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 2), to: Position(x: 5, y: 2), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 3), to: Position(x: 4, y: 0), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 4, y: 0), to: Position(x: 3, y: 0), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 3, y: 0), to: Position(x: 3, y: 1), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 3, y: 1), to: Position(x: 4, y: 1), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 4, y: 1), to: Position(x: 4, y: 0), type: .queen, color: .white)
+        let wqn = Piece(.queen, color: .white)
         
-        checkPieceMove(sut, from: Position(x: 4, y: 0), to: Position(x: 3, y: 1), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 3, y: 1), to: Position(x: 4, y: 2), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 4, y: 2), to: Position(x: 5, y: 1), type: .queen, color: .white)
-        checkPieceMove(sut, from: Position(x: 5, y: 1), to: Position(x: 4, y: 0), type: .queen, color: .white)
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, wqn, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMove(sut, from: Position(x: 7, y: 1), to: Position(x: 6, y: 0), type: .queen, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 5, y: 1), type: .queen, color: .white)
+        checkPieceMove(sut, from: Position(x: 5, y: 1), to: Position(x: 6, y: 2), type: .queen, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 2), to: Position(x: 7, y: 1), type: .queen, color: .white)
+        
+        checkPieceMove(sut, from: Position(x: 7, y: 1), to: Position(x: 6, y: 1), type: .queen, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 1), to: Position(x: 6, y: 2), type: .queen, color: .white)
+        checkPieceMove(sut, from: Position(x: 6, y: 2), to: Position(x: 7, y: 2), type: .queen, color: .white)
+        checkPieceMove(sut, from: Position(x: 7, y: 2), to: Position(x: 7, y: 1), type: .queen, color: .white)
     }
 
     func testMoveQueenCollision() {
-        checkPieceMoveCollision(from: Position(x: 7, y: 3), to: Position(x: 5, y: 1))
-        checkPieceMoveCollision(from: Position(x: 7, y: 3), to: Position(x: 5, y: 3))
-        checkPieceMoveCollision(from: Position(x: 7, y: 3), to: Position(x: 5, y: 5))
-    
-        checkPieceMoveCollision(from: Position(x: 0, y: 3), to: Position(x: 2, y: 1))
-        checkPieceMoveCollision(from: Position(x: 0, y: 3), to: Position(x: 2, y: 3))
-        checkPieceMoveCollision(from: Position(x: 0, y: 3), to: Position(x: 2, y: 5))
+        let wbp = Piece(.queen, color: .white)
         
-        let sut = makeSUT()
-        checkPieceMove(sut, from: Position(x: 6, y: 3), to: Position(x: 4, y: 3), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 6, y: 2), to: Position(x: 5, y: 2), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 6, y: 4), to: Position(x: 5, y: 4), type: .pawn, color: .white)
-        checkPieceMove(sut, from: Position(x: 7, y: 3), to: Position(x: 5, y: 3), type: .queen, color: .white)
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, p(), p(), p(), nil, nil, nil],
+            [nil, nil, p(), wbp, p(), nil, nil, nil],
+            [nil, nil, p(), p(), p(), nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 2, y: 1))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 4, y: 1))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 6, y: 1))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 6, y: 3))
         
-        checkPieceMoveCollision(sut, from: Position(x: 5, y: 3), to: Position(x: 5, y: 1))
-        checkPieceMoveCollision(sut, from: Position(x: 5, y: 3), to: Position(x: 5, y: 5))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 6, y: 5))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 4, y: 5))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 2, y: 5))
+        checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 2, y: 3))
     }
     
     func testMoveWhitePawnCaptureBlack() {
@@ -386,5 +415,9 @@ final class BoardTests: XCTestCase {
     private func checkPieceMoveCollision(_ board: Board = Board(), from: Position, to: Position) {
         let isMoved = board.movePiece(from: from, to: to)
         XCTAssertFalse(isMoved)
+    }
+    
+    private func p() -> Piece {
+        return Piece(.pawn, color: .white)
     }
 }
