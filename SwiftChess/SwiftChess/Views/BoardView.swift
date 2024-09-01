@@ -160,8 +160,8 @@ class BoardView: UIView {
             boardStackView.addArrangedSubview(stackView)
             for j in 0...7 {
                 var image: UIImage? {
-                    let imageFirstLight = j % 2 == 0 ? UIImage(named: "square_gray_light") : UIImage(named: "square_gray_dark")
-                    let imageFirstDark = j % 2 == 0 ? UIImage(named: "square_gray_dark") : UIImage(named: "square_gray_light")
+                    let imageFirstLight = j % 2 == 0 ? UIImage.squareGrayLight : UIImage.squareGrayDark
+                    let imageFirstDark = j % 2 == 0 ? UIImage.squareGrayDark : UIImage.squareGrayLight
                     return i % 2 == 0 ? imageFirstLight : imageFirstDark
                 }
                 let imageView = UIImageView(image: image)
@@ -203,7 +203,7 @@ class BoardView: UIView {
             let rowStackView = piecesStackView.arrangedSubviews[i] as? UIStackView
             for (j, piece) in row.enumerated() {
 
-                let pieceImage = piece?.imageName.map( { UIImage(named: $0) }) ?? UIImage()
+                let pieceImage = piece?.pieceImage
 
                 let imageView = PieceView(image: pieceImage, position: Position(x: i, y: j), type: piece?.type, color: piece?.color)
                 imageView.translatesAutoresizingMaskIntoConstraints = false

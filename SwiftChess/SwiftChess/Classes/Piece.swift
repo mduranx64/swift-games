@@ -42,18 +42,6 @@ public class Piece {
         self.color = color
     }
     
-    var imageName: String? {
-        var colorLetter: String {
-            switch color {
-            case .white:
-                return "w"
-            case .black:
-                return "b"
-            }
-        }
-        return "\(colorLetter)_\(type.rawValue)"
-    }
-    
     var symbol: String {
         switch color {
         case .white:

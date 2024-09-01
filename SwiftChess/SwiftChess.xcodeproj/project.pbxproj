@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49849B9D2C8416CD0011C3D2 /* PieceViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49849B9C2C8416CD0011C3D2 /* PieceViewTests.swift */; };
+		49849B9F2C8419710011C3D2 /* PieceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49849B9E2C8419710011C3D2 /* PieceExtension.swift */; };
 		49D357082C7AD2FC005DBDDC /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D357072C7AD2FC005DBDDC /* PieceView.swift */; };
 		F41016272BD1959300E55A2C /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016262BD1959300E55A2C /* Board.swift */; };
 		F41016292BD195B400E55A2C /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016282BD195B400E55A2C /* BoardTests.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49849B9C2C8416CD0011C3D2 /* PieceViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceViewTests.swift; sourceTree = "<group>"; };
+		49849B9E2C8419710011C3D2 /* PieceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceExtension.swift; sourceTree = "<group>"; };
 		49D357072C7AD2FC005DBDDC /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
 		F41016262BD1959300E55A2C /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		F41016282BD195B400E55A2C /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			children = (
 				F45F2F062BD70BB000C0BC02 /* BoardView.swift */,
 				49D357072C7AD2FC005DBDDC /* PieceView.swift */,
+				49849B9E2C8419710011C3D2 /* PieceExtension.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */,
+				49849B9C2C8416CD0011C3D2 /* PieceViewTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 			files = (
 				F45F2F072BD70BB000C0BC02 /* BoardView.swift in Sources */,
 				F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */,
+				49849B9F2C8419710011C3D2 /* PieceExtension.swift in Sources */,
 				49D357082C7AD2FC005DBDDC /* PieceView.swift in Sources */,
 				F423A6322BCC9B3B004DF427 /* ViewController.swift in Sources */,
 				F41016272BD1959300E55A2C /* Board.swift in Sources */,
@@ -324,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */,
+				49849B9D2C8416CD0011C3D2 /* PieceViewTests.swift in Sources */,
 				F45F2F0A2BD70C2600C0BC02 /* BoardViewTests.swift in Sources */,
 				F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */,
 				F41016292BD195B400E55A2C /* BoardTests.swift in Sources */,
