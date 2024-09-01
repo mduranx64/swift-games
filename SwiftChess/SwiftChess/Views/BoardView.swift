@@ -85,12 +85,17 @@ class BoardView: UIView {
     lazy var squareSize = (boardHeight - 64) / 8
     var selectedPieceView: PieceView?
     var destinyPieceView: PieceView?
+    var startPiece: PieceColor
     
-    init(board: Board) {
+    init(board: Board, startPiece: PieceColor = .white) {
         self.board = board
+        self.startPiece = startPiece
         super.init(frame: .zero)
         setUpView()
         setUpPieces(board.pieces)
+        if startPiece == .black {
+            rotateView(contentView)
+        }
     }
     
     private func setUpView() {
@@ -176,14 +181,14 @@ class BoardView: UIView {
         let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
         let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
         
-        addTextGuideToBoard(letterTopStackView, array: letters, width: squareSize, height: 32.0)
+        addTextGuideToBoard(letterTopStackView, array: letters, width: squareSize, height: 32.0, isRotated: true)
         addTextGuideToBoard(letterBottomStackView, array: letters, width: squareSize, height: 32.0)
         addTextGuideToBoard(letterLeftStackView, array: numbers.reversed(), width: 32.0, height: squareSize)
-        addTextGuideToBoard(letterRightStackView, array: numbers.reversed(), width: 32.0, height: squareSize)
+        addTextGuideToBoard(letterRightStackView, array: numbers.reversed(), width: 32.0, height: squareSize, isRotated: true)
         
     }
     
-    func addTextGuideToBoard(_ stackView: UIStackView, array: [String], width: CGFloat, height: CGFloat) {
+    func addTextGuideToBoard(_ stackView: UIStackView, array: [String], width: CGFloat, height: CGFloat, isRotated: Bool = false) {
         for char in array {
             let label = UILabel(frame: .zero)
             label.textAlignment = .center
@@ -194,6 +199,9 @@ class BoardView: UIView {
                 label.widthAnchor.constraint(equalToConstant: width),
                 label.heightAnchor.constraint(equalToConstant: height)
             ])
+            if isRotated {
+                rotateView(label)
+            }
         }
     }
     
@@ -215,8 +223,17 @@ class BoardView: UIView {
                     imageView.heightAnchor.constraint(equalToConstant: squareSize)
                 ])
                 rowStackView?.addArrangedSubview(imageView)
+                if startPiece == .black {
+                    self.rotateView(imageView)
+                }
             }
         }
+    }
+    
+    private func rotateView(_ view: UIView) {
+        let rotationDegrees =  180.0
+        let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
+        view.transform = CGAffineTransform(rotationAngle: rotationAngle)
     }
 
     @objc func selectPiece(_ sender: UITapGestureRecognizer) {
