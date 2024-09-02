@@ -230,6 +230,16 @@ class BoardView: UIView {
         }
     }
     
+    func updatePieces(_ pieces: [[Piece?]]) {
+        for (i, row) in pieces.enumerated() {
+            let rowStackView = piecesStackView.arrangedSubviews[i] as? UIStackView
+            for (j, piece) in row.enumerated() {
+                let view = rowStackView?.arrangedSubviews[j] as? PieceView
+                view?.update(image: piece?.pieceImage, type: piece?.type, color: piece?.color)
+            }
+        }
+    }
+    
     private func rotateView(_ view: UIView) {
         let rotationDegrees =  180.0
         let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
@@ -264,8 +274,7 @@ class BoardView: UIView {
                 return
             }
             if board.movePiece(from: selected.position, to: destiny.position) {
-                destiny.update(image: selected.image, type: selected.type, color: selected.color)
-                selected.update(image: nil, type: nil, color: nil)
+                updatePieces(board.pieces)
                 selected.removeBorder()
                 selectedPieceView = nil
                 debugPrint("piece moved")
@@ -288,8 +297,7 @@ class BoardView: UIView {
                     return
                 }
                 if board.movePiece(from: selected.position, to: destiny.position) {
-                    destiny.update(image: selected.image, type: selected.type, color: selected.color)
-                    selected.update(image: nil, type: nil, color: nil)
+                    updatePieces(board.pieces)
                     selected.removeBorder()
                     selectedPieceView = nil
                     debugPrint("piece captured")
