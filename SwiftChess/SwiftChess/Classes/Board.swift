@@ -9,10 +9,10 @@ import Foundation
 
 public class Board {
     
-    private(set) var selectedPiece: Piece?
     private(set) var whiteCapture = [Piece]()
     private(set) var blackCapture = [Piece]()
     var currentTurn: PieceColor = .white
+    var inPassingPiece: Piece?
     
     private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),
@@ -37,6 +37,9 @@ public class Board {
     }
     
     private func changeTurn(color: PieceColor) {
+        if inPassingPiece != nil, inPassingPiece?.color != color {
+            inPassingPiece = nil
+        }
         self.currentTurn = color == PieceColor.white ? PieceColor.black : PieceColor.white
     }
     
@@ -67,30 +70,83 @@ public class Board {
                         piece.isFirstMove = false
                         move(piece, from: from, to: to)
                         isMoved = true
+                        inPassingPiece = piece
                     }
-                } else if destiny != nil, destiny?.color != piece.color { // capture
+                } else if (destiny != nil && destiny?.color != piece.color) || inPassingPiece != nil { // capture
                     let xStep = from.x - to.x
                     let yStep = from.y - to.y
                     
                     if piece.color == .white {
                         if xStep == 1 && yStep == 1 { // left up
-                            piece.isFirstMove = false
-                            move(piece, from: from, to: to)
-                            isMoved = true
+                            if piece.color != inPassingPiece?.color { // in passing capture
+                                let xPass = from.x
+                                let yPass = from.y - 1
+                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                if tempPass === inPassingPiece {
+                                    move(piece, from: from, to: to)
+                                    isMoved = true
+                                    tempPass.map({ blackCapture.append($0) })
+                                    pieces[xPass][yPass] = nil
+                                    inPassingPiece = nil
+                                }
+                            } else {
+                                piece.isFirstMove = false
+                                move(piece, from: from, to: to)
+                                isMoved = true
+                            }
                         } else if xStep == 1 && yStep == -1 { // right up
-                            piece.isFirstMove = false
-                            move(piece, from: from, to: to)
-                            isMoved = true
+                            if piece.color != inPassingPiece?.color { // in passing capture
+                                let xPass = from.x
+                                let yPass = from.y + 1
+                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                if tempPass === inPassingPiece {
+                                    move(piece, from: from, to: to)
+                                    isMoved = true
+                                    tempPass.map({ blackCapture.append($0) })
+                                    pieces[xPass][yPass] = nil
+                                    inPassingPiece = nil
+                                }
+                            } else {
+                                piece.isFirstMove = false
+                                move(piece, from: from, to: to)
+                                isMoved = true
+                            }
                         }
                     } else {
-                        if xStep == -1 && yStep == 1 { // let down
-                            piece.isFirstMove = false
-                            move(piece, from: from, to: to)
-                            isMoved = true
+                        if xStep == -1 && yStep == 1 { // left down
+                            if piece.color != inPassingPiece?.color { // in passing capture
+                                let xPass = from.x
+                                let yPass = from.y - 1
+                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                if tempPass === inPassingPiece {
+                                    move(piece, from: from, to: to)
+                                    isMoved = true
+                                    tempPass.map({ whiteCapture.append($0) })
+                                    pieces[xPass][yPass] = nil
+                                    inPassingPiece = nil
+                                }
+                            } else {
+                                piece.isFirstMove = false
+                                move(piece, from: from, to: to)
+                                isMoved = true
+                            }
                         } else if xStep == -1 && yStep == -1 { // right down
-                            piece.isFirstMove = false
-                            move(piece, from: from, to: to)
-                            isMoved = true
+                            if piece.color != inPassingPiece?.color { // in passing capture
+                                let xPass = from.x
+                                let yPass = from.y + 1
+                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                if tempPass === inPassingPiece {
+                                    move(piece, from: from, to: to)
+                                    isMoved = true
+                                    tempPass.map({ whiteCapture.append($0) })
+                                    pieces[xPass][yPass] = nil
+                                    inPassingPiece = nil
+                                }
+                            } else {
+                                piece.isFirstMove = false
+                                move(piece, from: from, to: to)
+                                isMoved = true
+                            }
                         }
                     }
                 }
