@@ -202,9 +202,9 @@ final class BoardTests: XCTestCase {
             [nil, nil, nil, nil, nil, nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, p(), nil, p(), nil, nil, nil],
+            [nil, nil, b(), nil, b(), nil, nil, nil],
             [nil, nil, nil, wbp, nil, nil, nil, nil],
-            [nil, nil, p(), nil, p(), nil, nil, nil],
+            [nil, nil, b(), nil, b(), nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil]
         ]
@@ -247,9 +247,9 @@ final class BoardTests: XCTestCase {
             [nil, nil, nil, nil, nil, nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil],
-            [nil, nil, p(), p(), p(), nil, nil, nil],
-            [nil, nil, p(), wbp, p(), nil, nil, nil],
-            [nil, nil, p(), p(), p(), nil, nil, nil],
+            [nil, nil, b(), b(), b(), nil, nil, nil],
+            [nil, nil, b(), wbp, b(), nil, nil, nil],
+            [nil, nil, b(), b(), b(), nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil],
             [nil, nil, nil, nil, nil, nil, nil, nil]
         ]
@@ -386,6 +386,31 @@ final class BoardTests: XCTestCase {
         let sut = makeSUT(pieces: pieces)
         checkPieceMove(sut, from: Position(x: 7, y: 4), to: Position(x: 6, y: 3), type: .king, color: .white)
     }
+    
+    func testMovePawnCaptureInPassing() {
+        let pieces = [
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, b(), nil, nil, b()],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, w(), w(), nil],
+            [nil, b(), b(), nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [w(), nil, nil, w(), nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMove(sut, from: Position(x: 6, y: 0), to: Position(x: 4, y: 0), type: .pawn, color: .white, isTurnChanged: false)
+        checkPieceMove(sut, from: Position(x: 4, y: 1), to: Position(x: 5, y: 0), type: .pawn, color: .black, isTurnChanged: false)
+        
+        checkPieceMove(sut, from: Position(x: 6, y: 3), to: Position(x: 4, y: 3), type: .pawn, color: .white, isTurnChanged: false)
+        checkPieceMove(sut, from: Position(x: 4, y: 2), to: Position(x: 5, y: 3), type: .pawn, color: .black, isTurnChanged: false)
+        
+        checkPieceMove(sut, from: Position(x: 1, y: 7), to: Position(x: 3, y: 7), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 3, y: 6), to: Position(x: 2, y: 7), type: .pawn, color: .white, isTurnChanged: false)
+        
+        checkPieceMove(sut, from: Position(x: 1, y: 4), to: Position(x: 3, y: 4), type: .pawn, color: .black)
+        checkPieceMove(sut, from: Position(x: 3, y: 5), to: Position(x: 2, y: 4), type: .pawn, color: .white, isTurnChanged: false)
+    }
 
     private func makeSUT(pieces: [[Piece?]]) -> Board {
         return Board(pieces: pieces)
@@ -400,8 +425,10 @@ final class BoardTests: XCTestCase {
         XCTAssertEqual(piece?.color, color)
     }
     
-    private func checkPieceMove(_ board: Board = Board(), from: Position, to: Position, type: PieceType, color: PieceColor) {
-        board.currentTurn = color
+    private func checkPieceMove(_ board: Board = Board(), from: Position, to: Position, type: PieceType, color: PieceColor, isTurnChanged: Bool = true) {
+        if isTurnChanged {
+            board.currentTurn = color
+        }
         let isMoved = board.movePiece(from: from, to: to)
         let origin = board.getPieceByPosition(from)
         let destiny = board.getPieceByPosition(to)
@@ -417,7 +444,11 @@ final class BoardTests: XCTestCase {
         XCTAssertFalse(isMoved)
     }
     
-    private func p() -> Piece {
+    private func w() -> Piece {
         return Piece(.pawn, color: .white)
+    }
+    
+    private func b() -> Piece {
+        return Piece(.pawn, color: .black)
     }
 }
