@@ -286,7 +286,25 @@ class BoardView: UIView {
         if newPiece?.type != nil && selectedPieceView != nil  {
             debugPrint("next space has a piece")
             // if the piece is same color
-            if newPiece?.color == selectedPieceView?.color {
+            if newPiece?.color == selectedPieceView?.color,
+               selectedPieceView?.type == .king && newPiece?.type == .rook {
+                guard let selected = selectedPieceView,
+                      let destiny = newPiece else {
+                    return
+                }
+                if board.movePiece(from: selected.position, to: destiny.position) {
+                    updatePieces(board.pieces)
+                    selected.removeBorder()
+                    selectedPieceView = nil
+                    debugPrint("piece captured")
+                } else {
+                    selectedPieceView?.removeBorder()
+                    newPiece?.addBorder()
+                    selectedPieceView = newPiece
+                    debugPrint("piece is same color")
+                }
+                
+            } else if newPiece?.color == selectedPieceView?.color {
                 selectedPieceView?.removeBorder()
                 newPiece?.addBorder()
                 selectedPieceView = newPiece

@@ -215,6 +215,90 @@ final class BoardTests: XCTestCase {
         checkPieceMoveCollision(sut, from: Position(x: 4, y: 3), to: Position(x: 6, y: 5))
     }
     
+    func testMoveKingCastlingLeft() {
+        let wkg = Piece(.king, color: .white)
+        let wrk = Piece(.rook, color: .white)
+        let bkg = Piece(.king, color: .black)
+        let brk = Piece(.rook, color: .black)
+        
+        let pieces = [
+            [brk, nil, nil, nil, bkg, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [wrk, nil, nil, nil, wkg, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCastling(sut, from: Position(x: 7, y: 4), to: Position(x: 7, y: 0))
+        checkPieceMoveCastling(sut, from: Position(x: 0, y: 4), to: Position(x: 0, y: 0))
+    }
+    
+    func testMoveKingCastlingRight() {
+        let wkg = Piece(.king, color: .white)
+        let wrk = Piece(.rook, color: .white)
+        let bkg = Piece(.king, color: .black)
+        let brk = Piece(.rook, color: .black)
+        
+        let pieces = [
+            [nil, nil, nil, nil, bkg, nil, nil, brk],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, wkg, nil, nil, wrk]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCastling(sut, from: Position(x: 7, y: 4), to: Position(x: 7, y: 7))
+        checkPieceMoveCastling(sut, from: Position(x: 0, y: 4), to: Position(x: 0, y: 7))
+    }
+    
+    func testMoveKingCastlingLeftCollision() {
+        let wkg = Piece(.king, color: .white)
+        let wrk = Piece(.rook, color: .white)
+        let bkg = Piece(.king, color: .black)
+        let brk = Piece(.rook, color: .black)
+        
+        let pieces = [
+            [brk, nil, b(), nil, bkg, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [wrk, nil, w(), nil, wkg, nil, nil, nil]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCastlingCollision(sut, from: Position(x: 7, y: 4), to: Position(x: 7, y: 0))
+        checkPieceMoveCastlingCollision(sut, from: Position(x: 0, y: 4), to: Position(x: 0, y: 0))
+    }
+    
+    func testMoveKingCastlingRightCollision() {
+        let wkg = Piece(.king, color: .white)
+        let wrk = Piece(.rook, color: .white)
+        let bkg = Piece(.king, color: .black)
+        let brk = Piece(.rook, color: .black)
+        
+        let pieces = [
+            [nil, nil, nil, nil, bkg, nil, b(), brk],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, nil, nil, nil, nil],
+            [nil, nil, nil, nil, wkg, nil, w(), wrk]
+        ]
+        let sut = makeSUT(pieces: pieces)
+        checkPieceMoveCastlingCollision(sut, from: Position(x: 7, y: 4), to: Position(x: 7, y: 7))
+        checkPieceMoveCastlingCollision(sut, from: Position(x: 0, y: 4), to: Position(x: 0, y: 7))
+    }
+    
     func testMoveQueen() {
         let wqn = Piece(.queen, color: .white)
         
@@ -437,6 +521,16 @@ final class BoardTests: XCTestCase {
         XCTAssertEqual(origin?.color, nil)
         XCTAssertEqual(destiny?.type, type)
         XCTAssertEqual(destiny?.color, color)
+    }
+    
+    private func checkPieceMoveCastling(_ board: Board = Board(), from: Position, to: Position) {
+        let isMoved = board.movePiece(from: from, to: to)
+        XCTAssertTrue(isMoved)
+    }
+    
+    private func checkPieceMoveCastlingCollision(_ board: Board = Board(), from: Position, to: Position) {
+        let isMoved = board.movePiece(from: from, to: to)
+        XCTAssertFalse(isMoved)
     }
     
     private func checkPieceMoveCollision(_ board: Board = Board(), from: Position, to: Position) {

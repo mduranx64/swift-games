@@ -416,6 +416,59 @@ public class Board {
                         move(piece, from: from, to: to)
                         isMoved = true
                     }
+                } else if destiny?.type == .rook {
+                    let xStep = from.x - to.x
+                    let yStep = from.y - to.y
+                    var canMove = true
+                    var count = 0
+
+                    if xStep == 0 && yStep > 0 { // left
+                        count = from.y - 1
+                        while count > to.y {
+                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                                canMove = false
+                            }
+                            count -= 1
+                        }
+                        if canMove {
+                            if piece.color == .white {
+                                if let destiny = destiny {
+                                    move(piece, from: from, to: Position(x: from.x, y: from.y - 2))
+                                    move(destiny, from: to, to: Position(x: to.x, y: to.y + 3))
+                                    isMoved = true
+                                }
+                            } else {
+                                if let destiny = destiny {
+                                    move(piece, from: from, to: Position(x: from.x, y: from.y - 2))
+                                    move(destiny, from: to, to: Position(x: to.x, y: to.y + 3))
+                                    isMoved = true
+                                }
+                            }
+                        }
+                    } else if xStep == 0 && yStep < 0 { // right
+                        count = from.y + 1
+                        while count < to.y {
+                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                                canMove = false
+                            }
+                            count += 1
+                        }
+                        if canMove {
+                            if piece.color == .white {
+                                if let destiny = destiny {
+                                    move(piece, from: from, to: Position(x: from.x, y: from.y + 2))
+                                    move(destiny, from: to, to: Position(x: to.x, y: to.y - 2))
+                                    isMoved = true
+                                }
+                            } else {
+                                if let destiny = destiny {
+                                    move(piece, from: from, to: Position(x: from.x, y: from.y + 2))
+                                    move(destiny, from: to, to: Position(x: to.x, y: to.y - 2))
+                                    isMoved = true
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
