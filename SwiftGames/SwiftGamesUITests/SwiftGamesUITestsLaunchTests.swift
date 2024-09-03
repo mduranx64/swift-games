@@ -1,13 +1,13 @@
 //
-//  SwiftChessUITestsLaunchTests.swift
-//  SwiftChessUITests
+//  SwiftGamesUITestsLaunchTests.swift
+//  SwiftGamesUITests
 //
-//  Created by Miguel Duran on 14-04-24.
+//  Created by Miguel Duran on 03-09-24.
 //
 
 import XCTest
 
-final class SwiftChessUITestsLaunchTests: XCTestCase {
+final class SwiftGamesUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

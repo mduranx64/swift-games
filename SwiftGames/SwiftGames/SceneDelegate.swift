@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  SwiftChess
+//  SwiftGames
 //
 //  Created by Miguel Duran on 14-04-24.
 //

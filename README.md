@@ -1,2 +1,2 @@
-# swift-chess
-A Chess game made in Swift
+# swift-games
+A collection of classic board games made in Swift

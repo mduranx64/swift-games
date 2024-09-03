@@ -7,83 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49849B9D2C8416CD0011C3D2 /* PieceViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49849B9C2C8416CD0011C3D2 /* PieceViewTests.swift */; };
+		4914F78B2C87CA4500D955A5 /* SwiftGamesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4914F7892C87CA4500D955A5 /* SwiftGamesUITestsLaunchTests.swift */; };
+		4914F78C2C87CA4500D955A5 /* SwiftGamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4914F78A2C87CA4500D955A5 /* SwiftGamesUITests.swift */; };
+		4914F7902C87CA9500D955A5 /* SwiftGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4914F78F2C87CA9500D955A5 /* SwiftGamesTests.swift */; };
+		4914F7912C87CCB700D955A5 /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6612BCC9D02004DF427 /* PieceTests.swift */; };
+		4914F7922C87CCBA00D955A5 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016282BD195B400E55A2C /* BoardTests.swift */; };
+		4914F7932C87CCBD00D955A5 /* BoardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */; };
+		4914F7942C87CCC000D955A5 /* PieceViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49849B9C2C8416CD0011C3D2 /* PieceViewTests.swift */; };
 		49849B9F2C8419710011C3D2 /* PieceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49849B9E2C8419710011C3D2 /* PieceExtension.swift */; };
 		49D357082C7AD2FC005DBDDC /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D357072C7AD2FC005DBDDC /* PieceView.swift */; };
 		F41016272BD1959300E55A2C /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016262BD1959300E55A2C /* Board.swift */; };
-		F41016292BD195B400E55A2C /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41016282BD195B400E55A2C /* BoardTests.swift */; };
 		F423A62E2BCC9B3B004DF427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */; };
 		F423A6302BCC9B3B004DF427 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */; };
 		F423A6322BCC9B3B004DF427 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6312BCC9B3B004DF427 /* ViewController.swift */; };
 		F423A6372BCC9B3D004DF427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F423A6362BCC9B3D004DF427 /* Assets.xcassets */; };
 		F423A63A2BCC9B3D004DF427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F423A6382BCC9B3D004DF427 /* LaunchScreen.storyboard */; };
-		F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6442BCC9B3E004DF427 /* SwiftChessTests.swift */; };
-		F423A64F2BCC9B3E004DF427 /* SwiftChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A64E2BCC9B3E004DF427 /* SwiftChessUITests.swift */; };
-		F423A6512BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */; };
 		F423A65F2BCC9C77004DF427 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A65E2BCC9C77004DF427 /* Piece.swift */; };
-		F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423A6612BCC9D02004DF427 /* PieceTests.swift */; };
 		F45F2F072BD70BB000C0BC02 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F2F062BD70BB000C0BC02 /* BoardView.swift */; };
-		F45F2F0A2BD70C2600C0BC02 /* BoardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F423A6412BCC9B3E004DF427 /* PBXContainerItemProxy */ = {
+		4914F7722C87C7B700D955A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F423A6222BCC9B3B004DF427 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F423A6292BCC9B3B004DF427;
-			remoteInfo = SwiftChess;
+			remoteInfo = SwiftGames;
 		};
-		F423A64B2BCC9B3E004DF427 /* PBXContainerItemProxy */ = {
+		4914F7812C87C7DE00D955A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F423A6222BCC9B3B004DF427 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F423A6292BCC9B3B004DF427;
-			remoteInfo = SwiftChess;
+			remoteInfo = SwiftGames;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4914F76E2C87C7B700D955A5 /* SwiftGamesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4914F77B2C87C7DE00D955A5 /* SwiftGamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4914F7892C87CA4500D955A5 /* SwiftGamesUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGamesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4914F78A2C87CA4500D955A5 /* SwiftGamesUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGamesUITests.swift; sourceTree = "<group>"; };
+		4914F78F2C87CA9500D955A5 /* SwiftGamesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGamesTests.swift; sourceTree = "<group>"; };
 		49849B9C2C8416CD0011C3D2 /* PieceViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceViewTests.swift; sourceTree = "<group>"; };
 		49849B9E2C8419710011C3D2 /* PieceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceExtension.swift; sourceTree = "<group>"; };
+		49CB27F02C87C08C00DE87E6 /* SwiftGames.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftGames.xctestplan; sourceTree = "<group>"; };
 		49D357072C7AD2FC005DBDDC /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
 		F41016262BD1959300E55A2C /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		F41016282BD195B400E55A2C /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
-		F423A62A2BCC9B3B004DF427 /* SwiftChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F423A62A2BCC9B3B004DF427 /* SwiftGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F423A6312BCC9B3B004DF427 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F423A6362BCC9B3D004DF427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F423A6392BCC9B3D004DF427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F423A63B2BCC9B3D004DF427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F423A6402BCC9B3E004DF427 /* SwiftChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F423A6442BCC9B3E004DF427 /* SwiftChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessTests.swift; sourceTree = "<group>"; };
-		F423A64A2BCC9B3E004DF427 /* SwiftChessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F423A64E2BCC9B3E004DF427 /* SwiftChessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessUITests.swift; sourceTree = "<group>"; };
-		F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChessUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F423A65E2BCC9C77004DF427 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		F423A6612BCC9D02004DF427 /* PieceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTests.swift; sourceTree = "<group>"; };
 		F45F2F062BD70BB000C0BC02 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		F45F2F092BD70C2600C0BC02 /* BoardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewTests.swift; sourceTree = "<group>"; };
-		F49D34322BCD6B0800BC7B17 /* SwiftChess.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftChess.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4914F76B2C87C7B700D955A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4914F7782C87C7DE00D955A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F423A6272BCC9B3B004DF427 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F423A63D2BCC9B3E004DF427 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F423A6472BCC9B3E004DF427 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,13 +93,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4914F7882C87CA2F00D955A5 /* SwiftGamesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4914F78A2C87CA4500D955A5 /* SwiftGamesUITests.swift */,
+				4914F7892C87CA4500D955A5 /* SwiftGamesUITestsLaunchTests.swift */,
+			);
+			path = SwiftGamesUITests;
+			sourceTree = "<group>";
+		};
+		49CB27F12C87C4CB00DE87E6 /* Chess */ = {
+			isa = PBXGroup;
+			children = (
+				F423A65D2BCC9BE3004DF427 /* Classes */,
+				F45F2F052BD70B7000C0BC02 /* Views */,
+			);
+			path = Chess;
+			sourceTree = "<group>";
+		};
+		49CB27F22C87C4EA00DE87E6 /* Chess */ = {
+			isa = PBXGroup;
+			children = (
+				F423A6602BCC9CDC004DF427 /* Classes */,
+				F45F2F082BD70C0500C0BC02 /* Views */,
+			);
+			path = Chess;
+			sourceTree = "<group>";
+		};
 		F423A6212BCC9B3B004DF427 = {
 			isa = PBXGroup;
 			children = (
-				F49D34322BCD6B0800BC7B17 /* SwiftChess.xctestplan */,
-				F423A62C2BCC9B3B004DF427 /* SwiftChess */,
-				F423A6432BCC9B3E004DF427 /* SwiftChessTests */,
-				F423A64D2BCC9B3E004DF427 /* SwiftChessUITests */,
+				49CB27F02C87C08C00DE87E6 /* SwiftGames.xctestplan */,
+				F423A62C2BCC9B3B004DF427 /* SwiftGames */,
+				F423A6432BCC9B3E004DF427 /* SwiftGamesTests */,
+				4914F7882C87CA2F00D955A5 /* SwiftGamesUITests */,
 				F423A62B2BCC9B3B004DF427 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,18 +134,17 @@
 		F423A62B2BCC9B3B004DF427 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F423A62A2BCC9B3B004DF427 /* SwiftChess.app */,
-				F423A6402BCC9B3E004DF427 /* SwiftChessTests.xctest */,
-				F423A64A2BCC9B3E004DF427 /* SwiftChessUITests.xctest */,
+				F423A62A2BCC9B3B004DF427 /* SwiftGames.app */,
+				4914F76E2C87C7B700D955A5 /* SwiftGamesTests.xctest */,
+				4914F77B2C87C7DE00D955A5 /* SwiftGamesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F423A62C2BCC9B3B004DF427 /* SwiftChess */ = {
+		F423A62C2BCC9B3B004DF427 /* SwiftGames */ = {
 			isa = PBXGroup;
 			children = (
-				F45F2F052BD70B7000C0BC02 /* Views */,
-				F423A65D2BCC9BE3004DF427 /* Classes */,
+				49CB27F12C87C4CB00DE87E6 /* Chess */,
 				F423A62D2BCC9B3B004DF427 /* AppDelegate.swift */,
 				F423A62F2BCC9B3B004DF427 /* SceneDelegate.swift */,
 				F423A6312BCC9B3B004DF427 /* ViewController.swift */,
@@ -126,26 +152,16 @@
 				F423A6382BCC9B3D004DF427 /* LaunchScreen.storyboard */,
 				F423A63B2BCC9B3D004DF427 /* Info.plist */,
 			);
-			path = SwiftChess;
+			path = SwiftGames;
 			sourceTree = "<group>";
 		};
-		F423A6432BCC9B3E004DF427 /* SwiftChessTests */ = {
+		F423A6432BCC9B3E004DF427 /* SwiftGamesTests */ = {
 			isa = PBXGroup;
 			children = (
-				F45F2F082BD70C0500C0BC02 /* Views */,
-				F423A6602BCC9CDC004DF427 /* Classes */,
-				F423A6442BCC9B3E004DF427 /* SwiftChessTests.swift */,
+				49CB27F22C87C4EA00DE87E6 /* Chess */,
+				4914F78F2C87CA9500D955A5 /* SwiftGamesTests.swift */,
 			);
-			path = SwiftChessTests;
-			sourceTree = "<group>";
-		};
-		F423A64D2BCC9B3E004DF427 /* SwiftChessUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F423A64E2BCC9B3E004DF427 /* SwiftChessUITests.swift */,
-				F423A6502BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift */,
-			);
-			path = SwiftChessUITests;
+			path = SwiftGamesTests;
 			sourceTree = "<group>";
 		};
 		F423A65D2BCC9BE3004DF427 /* Classes */ = {
@@ -188,9 +204,45 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F423A6292BCC9B3B004DF427 /* SwiftChess */ = {
+		4914F76D2C87C7B700D955A5 /* SwiftGamesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F423A6542BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftChess" */;
+			buildConfigurationList = 4914F7742C87C7B700D955A5 /* Build configuration list for PBXNativeTarget "SwiftGamesTests" */;
+			buildPhases = (
+				4914F76A2C87C7B700D955A5 /* Sources */,
+				4914F76B2C87C7B700D955A5 /* Frameworks */,
+				4914F76C2C87C7B700D955A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4914F7732C87C7B700D955A5 /* PBXTargetDependency */,
+			);
+			name = SwiftGamesTests;
+			productName = SwiftGamesTests;
+			productReference = 4914F76E2C87C7B700D955A5 /* SwiftGamesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4914F77A2C87C7DE00D955A5 /* SwiftGamesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4914F7832C87C7DE00D955A5 /* Build configuration list for PBXNativeTarget "SwiftGamesUITests" */;
+			buildPhases = (
+				4914F7772C87C7DE00D955A5 /* Sources */,
+				4914F7782C87C7DE00D955A5 /* Frameworks */,
+				4914F7792C87C7DE00D955A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4914F7822C87C7DE00D955A5 /* PBXTargetDependency */,
+			);
+			name = SwiftGamesUITests;
+			productName = SwiftGamesUITests;
+			productReference = 4914F77B2C87C7DE00D955A5 /* SwiftGamesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F423A6292BCC9B3B004DF427 /* SwiftGames */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F423A6542BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftGames" */;
 			buildPhases = (
 				F423A6262BCC9B3B004DF427 /* Sources */,
 				F423A6272BCC9B3B004DF427 /* Frameworks */,
@@ -200,46 +252,10 @@
 			);
 			dependencies = (
 			);
-			name = SwiftChess;
+			name = SwiftGames;
 			productName = SwiftChess;
-			productReference = F423A62A2BCC9B3B004DF427 /* SwiftChess.app */;
+			productReference = F423A62A2BCC9B3B004DF427 /* SwiftGames.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F423A63F2BCC9B3E004DF427 /* SwiftChessTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F423A6572BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftChessTests" */;
-			buildPhases = (
-				F423A63C2BCC9B3E004DF427 /* Sources */,
-				F423A63D2BCC9B3E004DF427 /* Frameworks */,
-				F423A63E2BCC9B3E004DF427 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F423A6422BCC9B3E004DF427 /* PBXTargetDependency */,
-			);
-			name = SwiftChessTests;
-			productName = SwiftChessTests;
-			productReference = F423A6402BCC9B3E004DF427 /* SwiftChessTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F423A6492BCC9B3E004DF427 /* SwiftChessUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F423A65A2BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftChessUITests" */;
-			buildPhases = (
-				F423A6462BCC9B3E004DF427 /* Sources */,
-				F423A6472BCC9B3E004DF427 /* Frameworks */,
-				F423A6482BCC9B3E004DF427 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F423A64C2BCC9B3E004DF427 /* PBXTargetDependency */,
-			);
-			name = SwiftChessUITests;
-			productName = SwiftChessUITests;
-			productReference = F423A64A2BCC9B3E004DF427 /* SwiftChessUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -248,23 +264,25 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					4914F76D2C87C7B700D955A5 = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
+						TestTargetID = F423A6292BCC9B3B004DF427;
+					};
+					4914F77A2C87C7DE00D955A5 = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
+						TestTargetID = F423A6292BCC9B3B004DF427;
+					};
 					F423A6292BCC9B3B004DF427 = {
 						CreatedOnToolsVersion = 15.2;
 					};
-					F423A63F2BCC9B3E004DF427 = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = F423A6292BCC9B3B004DF427;
-					};
-					F423A6492BCC9B3E004DF427 = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = F423A6292BCC9B3B004DF427;
-					};
 				};
 			};
-			buildConfigurationList = F423A6252BCC9B3B004DF427 /* Build configuration list for PBXProject "SwiftChess" */;
+			buildConfigurationList = F423A6252BCC9B3B004DF427 /* Build configuration list for PBXProject "SwiftGames" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -277,14 +295,28 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F423A6292BCC9B3B004DF427 /* SwiftChess */,
-				F423A63F2BCC9B3E004DF427 /* SwiftChessTests */,
-				F423A6492BCC9B3E004DF427 /* SwiftChessUITests */,
+				F423A6292BCC9B3B004DF427 /* SwiftGames */,
+				4914F76D2C87C7B700D955A5 /* SwiftGamesTests */,
+				4914F77A2C87C7DE00D955A5 /* SwiftGamesUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4914F76C2C87C7B700D955A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4914F7792C87C7DE00D955A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F423A6282BCC9B3B004DF427 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,23 +326,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F423A63E2BCC9B3E004DF427 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F423A6482BCC9B3E004DF427 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4914F76A2C87C7B700D955A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4914F7912C87CCB700D955A5 /* PieceTests.swift in Sources */,
+				4914F7942C87CCC000D955A5 /* PieceViewTests.swift in Sources */,
+				4914F7932C87CCBD00D955A5 /* BoardViewTests.swift in Sources */,
+				4914F7902C87CA9500D955A5 /* SwiftGamesTests.swift in Sources */,
+				4914F7922C87CCBA00D955A5 /* BoardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4914F7772C87C7DE00D955A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4914F78B2C87CA4500D955A5 /* SwiftGamesUITestsLaunchTests.swift in Sources */,
+				4914F78C2C87CA4500D955A5 /* SwiftGamesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F423A6262BCC9B3B004DF427 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -326,39 +365,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F423A63C2BCC9B3E004DF427 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F423A6622BCC9D02004DF427 /* PieceTests.swift in Sources */,
-				49849B9D2C8416CD0011C3D2 /* PieceViewTests.swift in Sources */,
-				F45F2F0A2BD70C2600C0BC02 /* BoardViewTests.swift in Sources */,
-				F423A6452BCC9B3E004DF427 /* SwiftChessTests.swift in Sources */,
-				F41016292BD195B400E55A2C /* BoardTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F423A6462BCC9B3E004DF427 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F423A64F2BCC9B3E004DF427 /* SwiftChessUITests.swift in Sources */,
-				F423A6512BCC9B3E004DF427 /* SwiftChessUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F423A6422BCC9B3E004DF427 /* PBXTargetDependency */ = {
+		4914F7732C87C7B700D955A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F423A6292BCC9B3B004DF427 /* SwiftChess */;
-			targetProxy = F423A6412BCC9B3E004DF427 /* PBXContainerItemProxy */;
+			target = F423A6292BCC9B3B004DF427 /* SwiftGames */;
+			targetProxy = 4914F7722C87C7B700D955A5 /* PBXContainerItemProxy */;
 		};
-		F423A64C2BCC9B3E004DF427 /* PBXTargetDependency */ = {
+		4914F7822C87C7DE00D955A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F423A6292BCC9B3B004DF427 /* SwiftChess */;
-			targetProxy = F423A64B2BCC9B3E004DF427 /* PBXContainerItemProxy */;
+			target = F423A6292BCC9B3B004DF427 /* SwiftGames */;
+			targetProxy = 4914F7812C87C7DE00D955A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -374,6 +392,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4914F7752C87C7B700D955A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2FQBYA7PMR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mduranx64.SwiftGamesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGames.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftGames";
+			};
+			name = Debug;
+		};
+		4914F7762C87C7B700D955A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2FQBYA7PMR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mduranx64.SwiftGamesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGames.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftGames";
+			};
+			name = Release;
+		};
+		4914F7842C87C7DE00D955A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2FQBYA7PMR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mduranx64.SwiftGamesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SwiftGames;
+			};
+			name = Debug;
+		};
+		4914F7852C87C7DE00D955A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2FQBYA7PMR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mduranx64.SwiftGamesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SwiftGames;
+			};
+			name = Release;
+		};
 		F423A6522BCC9B3E004DF427 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -503,10 +603,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwiftChess/Info.plist;
+				INFOPLIST_FILE = SwiftGames/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swift Games";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -534,10 +635,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwiftChess/Info.plist;
+				INFOPLIST_FILE = SwiftGames/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swift Games";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -640,7 +742,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F423A6252BCC9B3B004DF427 /* Build configuration list for PBXProject "SwiftChess" */ = {
+		4914F7742C87C7B700D955A5 /* Build configuration list for PBXNativeTarget "SwiftGamesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4914F7752C87C7B700D955A5 /* Debug */,
+				4914F7762C87C7B700D955A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4914F7832C87C7DE00D955A5 /* Build configuration list for PBXNativeTarget "SwiftGamesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4914F7842C87C7DE00D955A5 /* Debug */,
+				4914F7852C87C7DE00D955A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F423A6252BCC9B3B004DF427 /* Build configuration list for PBXProject "SwiftGames" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F423A6522BCC9B3E004DF427 /* Debug */,
@@ -649,29 +769,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F423A6542BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftChess" */ = {
+		F423A6542BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftGames" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F423A6552BCC9B3E004DF427 /* Debug */,
 				F423A6562BCC9B3E004DF427 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F423A6572BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftChessTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F423A6582BCC9B3E004DF427 /* Debug */,
-				F423A6592BCC9B3E004DF427 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F423A65A2BCC9B3E004DF427 /* Build configuration list for PBXNativeTarget "SwiftChessUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F423A65B2BCC9B3E004DF427 /* Debug */,
-				F423A65C2BCC9B3E004DF427 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

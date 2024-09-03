@@ -1,6 +1,6 @@
 //
 //  BoardView.swift
-//  SwiftChess
+//  SwiftGames
 //
 //  Created by Miguel Duran on 22-04-24.
 //

@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "9F797C73-CE67-40D8-AFCE-0C3E6EF05032",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SwiftGames.xcodeproj",
+        "identifier" : "4914F76D2C87C7B700D955A5",
+        "name" : "SwiftGamesTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:SwiftGames.xcodeproj",
+        "identifier" : "4914F77A2C87C7DE00D955A5",
+        "name" : "SwiftGamesUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

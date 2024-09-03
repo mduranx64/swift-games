@@ -1,12 +1,12 @@
 //
 //  PieceViewTests.swift
-//  SwiftChessTests
+//  SwiftGamesTests
 //
 //  Created by Miguel Duran on 31-08-24.
 //
 
 import XCTest
-@testable import SwiftChess
+@testable import SwiftGames
 
 final class PieceViewTests: XCTestCase {
     

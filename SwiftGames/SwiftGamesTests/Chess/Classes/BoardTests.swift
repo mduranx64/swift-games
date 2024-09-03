@@ -1,12 +1,12 @@
 //
 //  BoardTests.swift
-//  SwiftChessTests
+//  SwiftGamesTests
 //
 //  Created by Miguel Duran on 18-04-24.
 //
 
 import XCTest
-@testable import SwiftChess
+@testable import SwiftGames
 
 final class BoardTests: XCTestCase {
     

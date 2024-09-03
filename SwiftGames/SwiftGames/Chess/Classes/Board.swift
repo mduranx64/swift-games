@@ -1,6 +1,6 @@
 //
 //  Board.swift
-//  SwiftChess
+//  SwiftGames
 //
 //  Created by Miguel Duran on 18-04-24.
 //

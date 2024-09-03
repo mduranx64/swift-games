@@ -1,6 +1,6 @@
 //
 //  PieceView.swift
-//  SwiftChess
+//  SwiftGames
 //
 //  Created by Miguel Duran on 24-08-24.
 //
