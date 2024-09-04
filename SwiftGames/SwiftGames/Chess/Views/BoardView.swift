@@ -99,6 +99,7 @@ class BoardView: UIView {
     }
     
     private func setUpView() {
+        self.backgroundColor = .background
         self.addSubview(self.contentView)
         self.contentView.addSubview(self.boardView)
         self.boardView.addSubview(self.boardStackView)

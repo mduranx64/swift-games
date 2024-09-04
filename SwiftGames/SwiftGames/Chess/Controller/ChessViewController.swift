@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  ChessViewController.swift
 //  SwiftGames
 //
-//  Created by Miguel Duran on 14-04-24.
+//  Created by Miguel Duran on 03-09-24.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    
+class ChessViewController: UIViewController {
+
     lazy var board = Board()
     lazy var boardView = BoardView(board: board)
 
@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemIndigo
+        self.view.backgroundColor = .background
     }
 }
-
