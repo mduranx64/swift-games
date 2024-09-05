@@ -14,7 +14,7 @@ class GameCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: "ChalkboardSE-Regular", size: 16.0)
+        view.font = Constants.Fonts.chalkboardSERegular.of(size: 16)
         view.textColor = .text
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textAlignment = .center

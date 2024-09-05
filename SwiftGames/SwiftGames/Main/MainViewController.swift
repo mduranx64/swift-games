@@ -4,7 +4,7 @@
 //
 //  Created by Miguel Duran on 14-04-24.
 //
-
+import Foundation
 import UIKit
 
 enum Game {
@@ -17,15 +17,15 @@ typealias GameItem = (title: String, image: UIImage?, game: Game)
 class MainViewController: UIViewController {
     
     let gameList: [GameItem] = [
-        ("Chess", UIImage.chessCover, .chess),
-        ("Coming Soon", nil, .comingSoon),
-        ("Coming Soon", nil, .comingSoon),
-        ("Coming Soon", nil, .comingSoon),
-        ("Coming Soon", nil, .comingSoon)
+        (NSLocalizedString("Chess", comment: ""), UIImage.chessCover, .chess),
+        (NSLocalizedString("Coming soon", comment: ""), nil, .comingSoon),
+        (NSLocalizedString("Coming soon", comment: ""), nil, .comingSoon),
+        (NSLocalizedString("Coming soon", comment: ""), nil, .comingSoon),
+        (NSLocalizedString("Coming soon", comment: ""), nil, .comingSoon)
     ]
     
     lazy var margin: CGFloat = 16.0
-
+    
     lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
@@ -41,10 +41,24 @@ class MainViewController: UIViewController {
     override func loadView() {
         self.view = self.collectionView
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Open board games"
-        collectionView.register(GameCell.self, forCellWithReuseIdentifier: "GameCell")
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        collectionView.registerCell(withClass:GameCell.self)
+
+        self.navigationItem.title = NSLocalizedString("Swift Games", comment: "")
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text, NSAttributedString.Key.font: Constants.Fonts.chalkboardSERegular.of(size: 18)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(showInfo))
+    }
+    
+    @objc func showInfo() {
+        
     }
 }
 
@@ -54,9 +68,9 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCell", for: indexPath) as! GameCell
+        let cell: GameCell = collectionView.dequeueReusableCell(at: indexPath)
         let item = gameList[indexPath.row]
-        cell.titleLabel.text = item.title
+        cell.titleLabel.text = NSLocalizedString(item.title, comment: "") 
         cell.imageView.image = item.image
         return cell
     }
@@ -86,7 +100,10 @@ extension MainViewController: UICollectionViewDelegate {
     func navigateToGame(_ game: Game) {
         switch game {
         case .chess:
-            navigationController?.pushViewController(ChessViewController(), animated: true)
+            let controller = ChessViewController()
+            let navigation = UINavigationController(rootViewController: controller)
+            navigation.modalPresentationStyle = .fullScreen
+            navigationController?.present(navigation, animated: true)
         case .comingSoon:
             break
         }

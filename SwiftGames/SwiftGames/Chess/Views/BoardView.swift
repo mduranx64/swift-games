@@ -192,6 +192,7 @@ class BoardView: UIView {
     func addTextGuideToBoard(_ stackView: UIStackView, array: [String], width: CGFloat, height: CGFloat, isRotated: Bool = false) {
         for char in array {
             let label = UILabel(frame: .zero)
+            label.font = Constants.Fonts.chalkboardSERegular.of(size: 16)
             label.textAlignment = .center
             label.text = char
             label.translatesAutoresizingMaskIntoConstraints = false
