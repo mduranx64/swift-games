@@ -12,14 +12,15 @@ struct ChessBoardView: View {
     let rows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
     let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
     let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
+    let rotation = 180.0
     let board = Board()
     
     var body: some View {
         GeometryReader { geometry in
-            let padding = 32.0
-            let squares = 8.0
-            let gridSize = geometry.size.width - 64 // Total padding: 32 on each side
-            let totalPadding = 64.0
+            let padding: CGFloat = 32.0
+            let squares: CGFloat = 8
+            let totalPadding: CGFloat = 64.0
+            let gridSize:CGFloat = geometry.size.width - totalPadding // Total padding: 32 on each side
             
             VStack {
                 Spacer()
@@ -29,10 +30,9 @@ struct ChessBoardView: View {
                     HStack(spacing: 0) {
                         ForEach(letters, id: \.self) { letter in
                             Text(letter)
-                                .rotationEffect(.degrees(180))
+                                .rotationEffect(.degrees(rotation))
                                 .frame(width: gridSize / squares, height: padding)
                         }
-                        
                     }
                     
                     HStack(spacing: 0) {
@@ -52,8 +52,8 @@ struct ChessBoardView: View {
                                 LazyHGrid(rows: rows, spacing: 0) {
                                     ForEach(0..<64, id: \.self) { index in
                                         // Determine row and column based on the index
-                                        let row = index % 8
-                                        let column = index / 8
+                                        let row = index % Int(squares)
+                                        let column = index / Int(squares)
                                         
                                         // Alternate color based on row and column
                                         let isLight = (row + column) % 2 == 0
@@ -76,32 +76,32 @@ struct ChessBoardView: View {
                                 // Embed LazyHGrid in a square with 32 points padding on each side
                                 // Total padding: 32 on each side
                                 LazyHGrid(rows: rows, spacing: 0) {
-                                    ForEach(0..<64, id: \.self) { index in
+                                    ForEach(0..<board.pieces.count, id: \.self) { x in
                                         
-                                        let pieces = board.pieces.flatMap({ $0 })
+                                        let row = board.pieces[x]
                                         
-                                        let pieceImage = pieces[index]?.pieceImage ?? .empty
-                                        let squareSize = gridSize / squares
-                                        Image(pieceImage) // Replace with custom image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: squareSize , height: squareSize)
-                                            .rotationEffect(.degrees(-90)).onTapGesture {
-                                                
+                                        HStack(spacing: 0) {
+                                            ForEach(0..<row.count, id: \.self) { y in
+                                                let pieceImage = row[y]?.pieceImage ?? .empty
+                                                let squareSize = gridSize / squares
+                                                Image(pieceImage) // Replace with custom image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: squareSize , height: squareSize).onTapGesture {
+                                                        
+                                                    }
                                             }
-                                        
+                                        }
                                     }
                                 }
                             }
                             .frame(width: gridSize, height: gridSize)
-                            .rotationEffect(.degrees(90))
                         }
                         
                         VStack(spacing:0) {
                             ForEach(numbers.reversed(), id: \.self) { number in
                                 Text(number)
-                                    .frame(width: padding, height: gridSize / squares).rotationEffect(.degrees(180)).Print(gridSize/8)
-                            }
+                                    .frame(width: padding, height: gridSize / squares).rotationEffect(.degrees(rotation))                            }
                         }
                     }
                     
