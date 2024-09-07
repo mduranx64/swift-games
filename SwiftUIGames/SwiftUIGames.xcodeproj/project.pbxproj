@@ -110,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				49A6E6A42C8CCCEF008DAE30 /* Info.plist */,
+				49E342AC2C8CEB46007D9CB6 /* Main */,
 				499F246E2C8A7FA200976C10 /* Chess */,
 				4902EF212C894BA8001E488D /* SwiftUIGamesApp.swift */,
 				4902EF272C894BA9001E488D /* Assets.xcassets */,
@@ -147,12 +148,9 @@
 		499F246E2C8A7FA200976C10 /* Chess */ = {
 			isa = PBXGroup;
 			children = (
-				499F24702C8A804C00976C10 /* PieceExtension.swift */,
+				49E342AA2C8CEB07007D9CB6 /* Class */,
+				49E342AB2C8CEB16007D9CB6 /* View */,
 				4902EF232C894BA8001E488D /* ChessBoardView.swift */,
-				499F24622C8A7DCC00976C10 /* Piece.swift */,
-				499F24642C8A7E4F00976C10 /* Board.swift */,
-				49A6E6A02C8C093B008DAE30 /* GameView.swift */,
-				49A6E6A22C8C098F008DAE30 /* MainView.swift */,
 			);
 			path = Chess;
 			sourceTree = "<group>";
@@ -164,6 +162,32 @@
 				499F246A2C8A7F7800976C10 /* PieceTests.swift */,
 			);
 			path = Chess;
+			sourceTree = "<group>";
+		};
+		49E342AA2C8CEB07007D9CB6 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				499F24622C8A7DCC00976C10 /* Piece.swift */,
+				499F24642C8A7E4F00976C10 /* Board.swift */,
+				499F24702C8A804C00976C10 /* PieceExtension.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		49E342AB2C8CEB16007D9CB6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		49E342AC2C8CEB46007D9CB6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				49A6E6A02C8C093B008DAE30 /* GameView.swift */,
+				49A6E6A22C8C098F008DAE30 /* MainView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

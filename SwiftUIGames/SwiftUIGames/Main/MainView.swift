@@ -59,20 +59,19 @@ struct MainView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
-    
+    @State private var selectedGame: Game? = nil
+    @State private var isModalPresented = false
     
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(gameList, id: \.id) { item in
-                        if let destinationView = navigateToGame(item.game) {
-                            NavigationLink(destination: destinationView) {
-                                GameView(title: item.title, image: item.image)
+                        GameView(title: item.title, image: item.image)
+                            .onTapGesture {
+                                selectedGame = item.game
+                                isModalPresented = true
                             }
-                        } else {
-                            GameView(title: item.title, image: item.image)
-                        }
                     }
                 }
                 .padding()
@@ -84,10 +83,13 @@ struct MainView: View {
             }) {
                 Image(systemName: "info.circle")
             })
+            .fullScreenCover(isPresented: $isModalPresented) {
+                ChessBoardView(board: Board())
+            }
         }
         .onAppear {
             // Ensure the navigation view is fully ready before making UI updates
-            print("MainView appeared")
+            debugPrint("MainView appeared")
         }
     }
     
@@ -102,7 +104,7 @@ struct MainView: View {
     }
     
     func showInfo() {
-        print("Showing info")
+        debugPrint("Showing info")
     }
 }
 
