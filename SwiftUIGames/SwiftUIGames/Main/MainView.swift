@@ -59,7 +59,7 @@ struct MainView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
-    @State private var selectedGame: Game? = nil
+    @State private var selectedGame: Game = .chess
     @State private var isModalPresented = false
     
     var body: some View {
@@ -70,7 +70,9 @@ struct MainView: View {
                         GameView(title: item.title, image: item.image)
                             .onTapGesture {
                                 selectedGame = item.game
-                                isModalPresented = true
+                                if selectedGame != .comingSoon {
+                                    isModalPresented = true
+                                }
                             }
                     }
                 }
@@ -84,7 +86,7 @@ struct MainView: View {
                 Image(systemName: "info.circle")
             })
             .fullScreenCover(isPresented: $isModalPresented) {
-                ChessBoardView(board: Board())
+                navigateToGame(selectedGame)
             }
         }
         .onAppear {
@@ -93,13 +95,13 @@ struct MainView: View {
         }
     }
     
-    func navigateToGame(_ game: Game) -> AnyView? {
+    func navigateToGame(_ game: Game) -> AnyView {
         // Handle navigation based on the selected game
         switch game {
         case .chess:
             return AnyView(ChessBoardView(board: Board()))
         case .comingSoon:
-            return nil
+            return AnyView(EmptyView())
         }
     }
     

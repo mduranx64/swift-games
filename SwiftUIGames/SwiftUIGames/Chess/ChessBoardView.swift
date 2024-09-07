@@ -189,6 +189,7 @@ struct ChessBoardView: View {
                 .cornerRadius(12)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .zIndex(1) // Ensure it appears above other views
             }
         }
