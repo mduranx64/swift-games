@@ -150,7 +150,6 @@
 		499F246E2C8A7FA200976C10 /* Chess */ = {
 			isa = PBXGroup;
 			children = (
-				4902EF232C894BA8001E488D /* ChessBoardView.swift */,
 				49E342AA2C8CEB07007D9CB6 /* Class */,
 				49E342AB2C8CEB16007D9CB6 /* View */,
 			);
@@ -180,6 +179,7 @@
 		49E342AB2C8CEB16007D9CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4902EF232C894BA8001E488D /* ChessBoardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

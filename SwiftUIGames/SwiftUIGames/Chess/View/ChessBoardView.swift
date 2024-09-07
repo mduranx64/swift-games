@@ -166,7 +166,6 @@ struct ChessBoardView: View {
                                 .padding()
                                 .font(Font.App.chalkboardSERegular.of(size: 16))
                                 .foregroundColor(.gameText)
-                                .cornerRadius(10)
                         }
                         
                         Button(action: {
@@ -177,16 +176,13 @@ struct ChessBoardView: View {
                                 .padding()
                                 .foregroundColor(.gameRed)
                                 .font(Font.App.chalkboardSERegular.of(size: 16))
-                                .cornerRadius(10)
                         }
-                        
-                        
                     }
                     .frame(maxWidth: .infinity)
                 }
                 .padding()
                 .background(.gameBackground)
-                .cornerRadius(12)
+                .cornerRadius(10)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

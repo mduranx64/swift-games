@@ -61,37 +61,88 @@ struct MainView: View {
     
     @State private var selectedGame: Game = .chess
     @State private var isModalPresented = false
+    @State private var showInfoAlert = false
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(gameList, id: \.id) { item in
-                        GameView(title: item.title, image: item.image)
-                            .onTapGesture {
-                                selectedGame = item.game
-                                if selectedGame != .comingSoon {
-                                    isModalPresented = true
+        GeometryReader { geometry in
+            
+            NavigationView {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(gameList, id: \.id) { item in
+                            GameView(title: item.title, image: item.image)
+                                .onTapGesture {
+                                    selectedGame = item.game
+                                    if selectedGame != .comingSoon {
+                                        isModalPresented = true
+                                    }
                                 }
-                            }
+                        }
                     }
+                    .padding()
+                }
+                .background(.gameBackground)
+                .navigationTitle("Swift Games")
+                .navigationBarItems(trailing: Button(action: {
+                    showInfoAlert = true
+                }) {
+                    Image(systemName: "info.circle")
+                })
+                .fullScreenCover(isPresented: $isModalPresented) {
+                    navigateToGame(selectedGame)
+                }
+            }
+            .onAppear {
+                // Ensure the navigation view is fully ready before making UI updates
+                debugPrint("MainView appeared")
+            }
+            
+            if showInfoAlert {
+                Color.black.opacity(0.4) // Dim background
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 16) {
+                    Image(.dev)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150)
+                    
+                    Text("Swift Games")
+                        .font(Font.App.chalkboardSERegular.of(size: 24))
+                        .foregroundColor(.gameText)
+                    
+                    Text("An open source collection of game made in swift to learn programming and how to play the games")
+                        .font(Font.App.chalkboardSERegular.of(size: 18))
+                        .foregroundColor(.gameText)
+                        .multilineTextAlignment(.center)
+                    URL(string: "https://github.com/mduranx64/swift-games").map({
+                        Link("Visit the repository on Github to contribute", destination: $0)
+                            .font(Font.App.chalkboardSERegular.of(size: 18))
+                            .foregroundStyle(.blue)
+                    })
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            showInfoAlert = false // Cancel action
+                        }) {
+                            Text("Accept")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .font(Font.App.chalkboardSERegular.of(size: 16))
+                                .foregroundColor(.gameText)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
                 }
                 .padding()
+                .background(.gameBackground)
+                .cornerRadius(10)
+                .frame(maxWidth: geometry.size.width * 0.8)
+                .transition(.scale) // Add a transition effect
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .zIndex(1) // Ensure it appears above other views
             }
-            .background(.gameBackground)
-            .navigationTitle("Swift Games")
-            .navigationBarItems(trailing: Button(action: {
-                showInfo()
-            }) {
-                Image(systemName: "info.circle")
-            })
-            .fullScreenCover(isPresented: $isModalPresented) {
-                navigateToGame(selectedGame)
-            }
-        }
-        .onAppear {
-            // Ensure the navigation view is fully ready before making UI updates
-            debugPrint("MainView appeared")
         }
     }
     
@@ -103,10 +154,6 @@ struct MainView: View {
         case .comingSoon:
             return AnyView(EmptyView())
         }
-    }
-    
-    func showInfo() {
-        debugPrint("Showing info")
     }
 }
 
