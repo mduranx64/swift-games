@@ -7,9 +7,13 @@
 
 import Foundation
 
-public struct Position {
+public struct Position: Equatable {
     let x: Int
     let y: Int
+    
+    public static func == (lhs: Position, rhs: Position) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y
+    }
 }
 
 public enum PieceType: String {

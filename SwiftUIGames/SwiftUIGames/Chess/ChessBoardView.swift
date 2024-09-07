@@ -13,7 +13,7 @@ struct ChessBoardView: View {
     let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
     let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
     let rotation = 180.0
-    let board = Board()
+    @ObservedObject var board: Board
     
     var body: some View {
         GeometryReader { geometry in
@@ -74,7 +74,6 @@ struct ChessBoardView: View {
                             VStack(spacing: 0) {
                                 
                                 // Embed LazyHGrid in a square with 32 points padding on each side
-                                // Total padding: 32 on each side
                                 LazyHGrid(rows: rows, spacing: 0) {
                                     ForEach(0..<board.pieces.count, id: \.self) { x in
                                         
@@ -84,10 +83,15 @@ struct ChessBoardView: View {
                                             ForEach(0..<row.count, id: \.self) { y in
                                                 let pieceImage = row[y]?.pieceImage ?? .empty
                                                 let squareSize = gridSize / squares
+                                                let position = Position(x: x, y: y)
                                                 Image(pieceImage) // Replace with custom image
                                                     .resizable()
                                                     .scaledToFit()
-                                                    .frame(width: squareSize , height: squareSize).onTapGesture {
+                                                    .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
+                                                    .frame(width: squareSize , height: squareSize)
+                                                    .onTapGesture {
+                                                        board.selectPiece(at: position)
+                                                        
                                                         
                                                     }
                                             }
@@ -124,7 +128,7 @@ struct ChessBoardView: View {
 
 struct ContentView: View {
     var body: some View {
-        ChessBoardView()
+        ChessBoardView(board: Board())
             .edgesIgnoringSafeArea(.all) // Optional: to take up the full screen
     }
 }

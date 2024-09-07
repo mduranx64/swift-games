@@ -73,9 +73,9 @@ final class BoardTests: XCTestCase {
     
     func testSelectPiece() {
         let board = makeSUT()
-        let piece = board.getPieceByPosition(Position(x: 6, y: 0))
+        let piece = board.getPieceAt(Position(x: 6, y: 0))
         checkPiece(piece, type: .pawn, color: .white)
-        let pieceEmpty = board.getPieceByPosition(Position(x: 5, y: 0))
+        let pieceEmpty = board.getPieceAt(Position(x: 5, y: 0))
         XCTAssertNil(pieceEmpty?.type)
     }
     
@@ -514,8 +514,8 @@ final class BoardTests: XCTestCase {
             board.currentTurn = color
         }
         let isMoved = board.movePiece(from: from, to: to)
-        let origin = board.getPieceByPosition(from)
-        let destiny = board.getPieceByPosition(to)
+        let origin = board.getPieceAt(from)
+        let destiny = board.getPieceAt(to)
         XCTAssertTrue(isMoved)
         XCTAssertEqual(origin?.type, nil)
         XCTAssertEqual(origin?.color, nil)

@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import Combine
 
-public class Board {
+public class Board: ObservableObject {
     
     private(set) var whiteCapture = [Piece]()
     private(set) var blackCapture = [Piece]()
     var currentTurn: PieceColor = .white
     var inPassingPiece: Piece?
     
-    private(set) var pieces: [[Piece?]] = [
+    @Published var selectedPosition: Position? = nil
+    @Published var secondPosition: Position? = nil
+    
+    @Published private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),
          Piece(.king, color: .black), Piece(.bishop, color: .black), Piece(.knight, color: .black), Piece(.rook, color: .black)],
         [Piece(.pawn, color: .black), Piece(.pawn, color: .black), Piece(.pawn, color: .black), Piece(.pawn, color: .black),
@@ -36,6 +40,30 @@ public class Board {
         self.pieces = pieces
     }
     
+    func isSelected(at position: Position) -> Bool {
+        return selectedPosition == position
+    }
+    
+    func selectPiece(at: Position) {
+        if selectedPosition == nil && getPieceAt(at)?.color == currentTurn {
+            selectedPosition = at
+        } else if selectedPosition == at {
+            selectedPosition = nil
+        } else if selectedPosition != nil && selectedPosition != at {
+            secondPosition = at
+            guard let from = selectedPosition, let to = secondPosition else {
+                return
+            }
+            if getPieceAt(from) != nil && getPieceAt(to) == nil {
+                if movePiece(from: from, to: to) {
+                    selectedPosition = nil
+                    secondPosition = nil
+                }
+            }
+        }
+    }
+
+    
     private func changeTurn(color: PieceColor) {
         if inPassingPiece != nil, inPassingPiece?.color != color {
             inPassingPiece = nil
@@ -43,15 +71,15 @@ public class Board {
         self.currentTurn = color == PieceColor.white ? PieceColor.black : PieceColor.white
     }
     
-    func getPieceByPosition(_ position: Position) -> Piece? {
+    func getPieceAt(_ position: Position) -> Piece? {
         return pieces[position.x][position.y]
     }
     
     public func movePiece(from: Position, to: Position) -> Bool {
-        guard let piece = getPieceByPosition(from), piece.color == currentTurn else {
+        guard let piece = getPieceAt(from), piece.color == currentTurn else {
             return false
         }
-        let destiny = getPieceByPosition(to)
+        let destiny = getPieceAt(to)
         var isMoved = false
         switch piece.type {
         case .pawn:
@@ -85,7 +113,7 @@ public class Board {
                             } else if inPassingPiece != nil { // in passing capture
                                 let xPass = from.x
                                 let yPass = from.y - 1
-                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                let tempPass = getPieceAt(Position(x: xPass, y: yPass))
                                 if tempPass === inPassingPiece {
                                     move(piece, from: from, to: to)
                                     isMoved = true
@@ -102,7 +130,7 @@ public class Board {
                             } else if inPassingPiece != nil { // in passing capture
                                 let xPass = from.x
                                 let yPass = from.y + 1
-                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                let tempPass = getPieceAt(Position(x: xPass, y: yPass))
                                 if tempPass === inPassingPiece {
                                     move(piece, from: from, to: to)
                                     isMoved = true
@@ -121,7 +149,7 @@ public class Board {
                             } else if inPassingPiece != nil { // in passing capture
                                 let xPass = from.x
                                 let yPass = from.y - 1
-                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                let tempPass = getPieceAt(Position(x: xPass, y: yPass))
                                 if tempPass === inPassingPiece {
                                     move(piece, from: from, to: to)
                                     isMoved = true
@@ -138,7 +166,7 @@ public class Board {
                             } else if inPassingPiece != nil { // in passing capture
                                 let xPass = from.x
                                 let yPass = from.y + 1
-                                let tempPass = getPieceByPosition(Position(x: xPass, y: yPass))
+                                let tempPass = getPieceAt(Position(x: xPass, y: yPass))
                                 if tempPass === inPassingPiece {
                                     move(piece, from: from, to: to)
                                     isMoved = true
@@ -162,7 +190,7 @@ public class Board {
                     if xStep == 0 && yStep > 0 { // left
                         count = from.y - 1
                         while count > to.y {
-                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                            if getPieceAt(Position(x: from.x, y: count)) != nil {
                                 canMove = false
                             }
                             count -= 1
@@ -174,7 +202,7 @@ public class Board {
                     } else if xStep == 0 && yStep < 0 { // right
                         count = from.y + 1
                         while count < to.y {
-                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                            if getPieceAt(Position(x: from.x, y: count)) != nil {
                                 canMove = false
                             }
                             count += 1
@@ -186,7 +214,7 @@ public class Board {
                     } else if xStep > 0 && yStep == 0 { // up
                         count = from.x - 1
                         while count > to.x {
-                            if getPieceByPosition(Position(x: count, y: from.y)) != nil {
+                            if getPieceAt(Position(x: count, y: from.y)) != nil {
                                 canMove = false
                             }
                             count -= 1
@@ -198,7 +226,7 @@ public class Board {
                     } else if xStep < 0 && yStep == 0 { // down
                         count = from.x + 1
                         while count < to.x {
-                            if getPieceByPosition(Position(x: count, y: from.y)) != nil {
+                            if getPieceAt(Position(x: count, y: from.y)) != nil {
                                 canMove = false
                             }
                             count += 1
@@ -211,7 +239,7 @@ public class Board {
                         var xCount = from.x - 1
                         var yCount = from.y - 1
                         while xCount > to.x && yCount > to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount -= 1
@@ -225,7 +253,7 @@ public class Board {
                         var xCount = from.x - 1
                         var yCount = from.y + 1
                         while xCount > to.x && yCount < to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount -= 1
@@ -239,7 +267,7 @@ public class Board {
                         var xCount = from.x + 1
                         var yCount = from.y - 1
                         while xCount < to.x && yCount > to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount += 1
@@ -253,7 +281,7 @@ public class Board {
                         var xCount = from.x + 1
                         var yCount = from.y + 1
                         while xCount < to.x && yCount < to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount += 1
@@ -277,7 +305,7 @@ public class Board {
                         var xCount = from.x - 1
                         var yCount = from.y - 1
                         while xCount > to.x && yCount > to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount -= 1
@@ -291,7 +319,7 @@ public class Board {
                         var xCount = from.x - 1
                         var yCount = from.y + 1
                         while xCount > to.x && yCount < to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount -= 1
@@ -305,7 +333,7 @@ public class Board {
                         var xCount = from.x + 1
                         var yCount = from.y - 1
                         while xCount < to.x && yCount > to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount += 1
@@ -319,7 +347,7 @@ public class Board {
                         var xCount = from.x + 1
                         var yCount = from.y + 1
                         while xCount < to.x && yCount < to.y {
-                            if getPieceByPosition(Position(x: xCount, y: yCount)) != nil {
+                            if getPieceAt(Position(x: xCount, y: yCount)) != nil {
                                 canMove = false
                             }
                             xCount += 1
@@ -356,7 +384,7 @@ public class Board {
                     if xStep == 0 && yStep > 0 { // left
                         count = from.y - 1
                         while count > to.y {
-                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                            if getPieceAt(Position(x: from.x, y: count)) != nil {
                                 canMove = false
                             }
                             count -= 1
@@ -368,7 +396,7 @@ public class Board {
                     } else if xStep == 0 && yStep < 0 { // right
                         count = from.y + 1
                         while count < to.y {
-                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                            if getPieceAt(Position(x: from.x, y: count)) != nil {
                                 canMove = false
                             }
                             count += 1
@@ -380,7 +408,7 @@ public class Board {
                     } else if xStep > 0 && yStep == 0 { // up
                         count = from.x - 1
                         while count > to.x {
-                            if getPieceByPosition(Position(x: count, y: from.y)) != nil {
+                            if getPieceAt(Position(x: count, y: from.y)) != nil {
                                 canMove = false
                             }
                             count -= 1
@@ -392,7 +420,7 @@ public class Board {
                     } else if xStep < 0 && yStep == 0 { // down
                         count = from.x + 1
                         while count < to.x {
-                            if getPieceByPosition(Position(x: count, y: from.y)) != nil {
+                            if getPieceAt(Position(x: count, y: from.y)) != nil {
                                 canMove = false
                             }
                             count += 1
@@ -425,7 +453,7 @@ public class Board {
                     if xStep == 0 && yStep > 0 { // left
                         count = from.y - 1
                         while count > to.y {
-                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                            if getPieceAt(Position(x: from.x, y: count)) != nil {
                                 canMove = false
                             }
                             count -= 1
@@ -448,7 +476,7 @@ public class Board {
                     } else if xStep == 0 && yStep < 0 { // right
                         count = from.y + 1
                         while count < to.y {
-                            if getPieceByPosition(Position(x: from.x, y: count)) != nil {
+                            if getPieceAt(Position(x: from.x, y: count)) != nil {
                                 canMove = false
                             }
                             count += 1
@@ -475,22 +503,24 @@ public class Board {
         #if DEBUG
         if isMoved {
             for row in pieces {
-                var rowText = ""
+                var rowText = " "
                 for piece in row {
                     rowText += "\(piece?.symbol ?? "ˣ") "
                 }
                 debugPrint(rowText)
             }
+            debugPrint("-----------------")
         }
         #endif
         if isMoved {
             changeTurn(color: piece.color)
+            objectWillChange.send()
         }
         return isMoved
     }
     
     private func move(_ fromPiece: Piece, from: Position, to: Position) {
-        let destiny = getPieceByPosition(to)
+        let destiny = getPieceAt(to)
         if destiny == nil {
             pieces[to.x][to.y] = fromPiece
             pieces[from.x][from.y] = nil
@@ -503,15 +533,5 @@ public class Board {
             pieces[to.x][to.y] = fromPiece
             pieces[from.x][from.y] = nil
         }
-    }
-}
-
-extension Board {
-    func flatPieces() -> [Piece?]{
-        var items = [Piece?]()
-        pieces.forEach({
-            items.append(contentsOf: $0)
-        })
-        return items
     }
 }
