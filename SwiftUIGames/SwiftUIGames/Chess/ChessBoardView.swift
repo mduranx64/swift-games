@@ -19,8 +19,8 @@ struct ChessBoardView: View {
         GeometryReader { geometry in
             let padding: CGFloat = 32.0
             let squares: CGFloat = 8
-            let totalPadding: CGFloat = 64.0
-            let gridSize:CGFloat = geometry.size.width - totalPadding // Total padding: 32 on each side
+            let totalPadding: CGFloat = 2.0 * padding
+            let gridSize: CGFloat = geometry.size.width - totalPadding
             
             VStack {
                 Spacer()
@@ -121,7 +121,11 @@ struct ChessBoardView: View {
                 
                 Spacer() // Pushes the grid to the vertical center
                 
-            }.background(.cyan)
+            }.background(.gameBackground)
+            .onAppear{
+                print("ChessBoardView appeared")
+
+            }
         }
     }
 }

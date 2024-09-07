@@ -12,7 +12,7 @@ struct SwiftUIGamesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ChessBoardView(board: Board())
+            MainView()
         }
     }
 }

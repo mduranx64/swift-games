@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "chess-cover.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "launchScreen.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
