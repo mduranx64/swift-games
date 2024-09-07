@@ -16,8 +16,8 @@ struct ChessBoardView: View {
     
     @ObservedObject var board: Board
     @Environment(\.dismiss) private var dismiss
-    @State private var showAlert = false
-
+    @State private var showCustomAlert = false
+    
     
     var body: some View {
         GeometryReader { geometry in
@@ -127,29 +127,69 @@ struct ChessBoardView: View {
                     Spacer() // Pushes the grid to the vertical center
                     
                 }.background(.gameBackground)
-                .navigationBarTitle("Chess", displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    // show game menu
-                }) {
-                    Image(systemName: "gamecontroller")
-                })
-                .navigationBarItems(leading: Button(action: {
-                    showAlert = true
-                }) {
-                    Image(systemName: "xmark.circle")
-                }).onAppear{
-                    debugPrint("ChessBoardView appeared")
+                    .navigationBarTitle("Chess", displayMode: .inline)
+                    .navigationBarItems(trailing: Button(action: {
+                        // show game menu
+                    }) {
+                        Image(systemName: "gamecontroller")
+                    })
+                    .navigationBarItems(leading: Button(action: {
+                        showCustomAlert = true
+                    }) {
+                        Image(systemName: "xmark.circle")
+                    }).onAppear{
+                        debugPrint("ChessBoardView appeared")
+                    }
+            }
+            
+            if showCustomAlert {
+                Color.black.opacity(0.4) // Dim background
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 16) {
+                    Text("Confirm Exit")
+                        .font(Font.App.chalkboardSERegular.of(size: 24))
+                        .foregroundColor(.gameText)
+                    
+                    Text("Are you sure you want to exit the game?")
+                        .font(Font.App.chalkboardSERegular.of(size: 18))
+                        .foregroundColor(.gameText)
+                        .multilineTextAlignment(.center)
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            showCustomAlert = false // Cancel action
+                        }) {
+                            Text("Cancel")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .font(Font.App.chalkboardSERegular.of(size: 16))
+                                .foregroundColor(.gameText)
+                                .cornerRadius(10)
+                        }
+                        
+                        Button(action: {
+                            dismiss() // Dismiss ChessBoardView
+                        }) {
+                            Text("Accept")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.gameRed)
+                                .font(Font.App.chalkboardSERegular.of(size: 16))
+                                .cornerRadius(10)
+                        }
+                        
+                        
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Confirm Exit"),
-                        message: Text("Are you sure you want to exit the game?"),
-                        primaryButton: .destructive(Text("Accept")) {
-                            dismiss() // Dismiss the ChessBoardView when "Accept" is pressed
-                        },
-                        secondaryButton: .cancel(Text("Cancel"))
-                    )
-                }
+                .padding()
+                .background(.gameBackground)
+                .cornerRadius(12)
+                .frame(maxWidth: geometry.size.width * 0.8)
+                .transition(.scale) // Add a transition effect
+                .zIndex(1) // Ensure it appears above other views
             }
         }
     }
@@ -159,16 +199,9 @@ struct ChessBoardView: View {
     }
 }
 
-struct ContentView: View {
-    var body: some View {
-        ChessBoardView(board: Board())
-            .edgesIgnoringSafeArea(.all) // Optional: to take up the full screen
-    }
-}
-
 struct ChessBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ChessBoardView(board: Board())
     }
 }
 

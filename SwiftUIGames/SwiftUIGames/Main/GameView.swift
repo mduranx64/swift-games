@@ -21,7 +21,7 @@ struct GameView: View {
                 .aspectRatio(619/493, contentMode: .fit)
             
             Text(title)
-                .font(Font.custom("ChalkboardSE-Regular", size: 16))
+                .font(Font.App.chalkboardSERegular.of(size: 16))
                 .foregroundColor(Color.gameText)
                 .multilineTextAlignment(.center)
         }
