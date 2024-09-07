@@ -43,39 +43,39 @@ public class Board: ObservableObject {
         return selectedPosition == position
     }
     
-    func selectPiece(at to: Position) {
-        if selectedPosition == nil && getPieceAt(to)?.type != nil && getPieceAt(to)?.color == currentTurn {
-            selectedPosition = to
+    func selectPiece(at newPosition: Position) {
+        if selectedPosition == nil && getPieceAt(newPosition)?.type != nil && getPieceAt(newPosition)?.color == currentTurn {
+            selectedPosition = newPosition
             return
         }
         
-        if selectedPosition == to {
+        if selectedPosition == newPosition {
             selectedPosition = nil
             return
         }
         
-        if getPieceAt(to)?.type == nil, let from = selectedPosition, getPieceAt(from) != nil {
-            if movePiece(from: from, to: to) {
+        if getPieceAt(newPosition)?.type == nil, let from = selectedPosition, getPieceAt(from) != nil {
+            if movePiece(from: from, to: newPosition) {
                 selectedPosition = nil
             }
             return
         }
 
-        if let from = selectedPosition, getPieceAt(to)?.type != nil && getPieceAt(from) != nil {
-            if getPieceAt(from)?.color == getPieceAt(to)?.color,
+        if let from = selectedPosition, getPieceAt(newPosition)?.type != nil && getPieceAt(from) != nil {
+            if getPieceAt(from)?.color == getPieceAt(newPosition)?.color,
                getPieceAt(from)?.type == .rook,
-               getPieceAt(to)?.type == .rook {
+               getPieceAt(newPosition)?.type == .rook {
                 
-                if movePiece(from: from, to: to) {
+                if movePiece(from: from, to: newPosition) {
                     selectedPosition = nil
                 } else {
-                    selectedPosition = to
+                    selectedPosition = newPosition
                 }
                 
-            } else if getPieceAt(from)?.color == getPieceAt(to)?.color {
-                selectedPosition = to
+            } else if getPieceAt(from)?.color == getPieceAt(newPosition)?.color {
+                selectedPosition = newPosition
             } else {
-                if movePiece(from: from, to: to) {
+                if movePiece(from: from, to: newPosition) {
                     selectedPosition = nil
                 }
             }

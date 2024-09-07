@@ -4,15 +4,17 @@
 <dict>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UILaunchScreen</key>
+		<key>UINavigationBar</key>
 		<dict>
-			<key>UIColorName</key>
-			<string>gameBackground</string>
 			<key>UIImageName</key>
-			<string>launchScreen</string>
-			<key>UIImageRespectsSafeAreaInsets</key>
-			<string>NO</string>
+			<string></string>
 		</dict>
+		<key>UIImageName</key>
+		<string>launchScreen</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<false/>
+		<key>UIColorName</key>
+		<string>AccentColor</string>
 	</dict>
 </dict>
 </plist>
