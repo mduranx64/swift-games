@@ -14,6 +14,7 @@
 		4902EF352C894BA9001E488D /* SwiftUIGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF342C894BA9001E488D /* SwiftUIGamesTests.swift */; };
 		4902EF3F2C894BA9001E488D /* SwiftUIGamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF3E2C894BA9001E488D /* SwiftUIGamesUITests.swift */; };
 		4902EF412C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF402C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift */; };
+		49973E652C8DFAD700CDF24F /* DynamicStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49973E642C8DFAD700CDF24F /* DynamicStack.swift */; };
 		499F24632C8A7DCC00976C10 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24622C8A7DCC00976C10 /* Piece.swift */; };
 		499F24652C8A7E4F00976C10 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24642C8A7E4F00976C10 /* Board.swift */; };
 		499F246C2C8A7F7800976C10 /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F246A2C8A7F7800976C10 /* PieceTests.swift */; };
@@ -53,6 +54,7 @@
 		4902EF3A2C894BA9001E488D /* SwiftUIGamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4902EF3E2C894BA9001E488D /* SwiftUIGamesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGamesUITests.swift; sourceTree = "<group>"; };
 		4902EF402C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGamesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		49973E642C8DFAD700CDF24F /* DynamicStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStack.swift; sourceTree = "<group>"; };
 		499F24622C8A7DCC00976C10 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		499F24642C8A7E4F00976C10 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		499F246A2C8A7F7800976C10 /* PieceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceTests.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				49A6E6A02C8C093B008DAE30 /* GameView.swift */,
 				49A6E6A22C8C098F008DAE30 /* MainView.swift */,
 				49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */,
+				49973E642C8DFAD700CDF24F /* DynamicStack.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			files = (
 				499F24712C8A804C00976C10 /* PieceExtension.swift in Sources */,
 				49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */,
+				49973E652C8DFAD700CDF24F /* DynamicStack.swift in Sources */,
 				49E342B02C8D77B9007D9CB6 /* DetectOrientation.swift in Sources */,
 				49E342AE2C8CF90A007D9CB6 /* FontExtension.swift in Sources */,
 				4902EF242C894BA8001E488D /* ChessBoardView.swift in Sources */,
@@ -425,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -482,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

@@ -33,19 +33,34 @@ struct ChessBoardView: View {
             NavigationView {
                 Color.gameBackground.ignoresSafeArea(.all).overlay {
                     
-                    VStack(spacing: 8) {
+                    DynamicStack(spacing: 8) {
                         Spacer()
-                        let whiteCaptureSize = board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
-                        LazyVGrid(columns: captureRows, spacing: 0) {
-                            ForEach(0..<board.whiteCapture.count, id: \.self) { index in
-                                let pieceImage = board.whiteCapture[index].pieceImage
-                                Image(pieceImage) // Replace with custom image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: squareSize , height: squareSize)
-                                
-                            }
-                        }.frame(width: gridSize, height: whiteCaptureSize)
+
+                        let captureSize = board.blackCapture.count > 8 || board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
+
+                        if orientation == .portrait {
+                            LazyVGrid(columns: captureRows, spacing: 0) {
+                                ForEach(0..<board.whiteCapture.count, id: \.self) { index in
+                                    let pieceImage = board.whiteCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize, height: squareSize)
+                                }
+                            }.frame(width: gridSize, height: captureSize)
+                        } else {
+                            LazyHGrid(rows: captureRows, spacing: 0) {
+                                ForEach(0..<board.whiteCapture.count, id: \.self) { index in
+                                    let pieceImage = board.whiteCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize, height: squareSize)
+                                }
+                            }.frame(width: captureSize, height: gridSize)
+                        }
+                        
+                        
                         // Pushes the grid to the vertical center
                         VStack(spacing: 0) {
                             
@@ -147,17 +162,29 @@ struct ChessBoardView: View {
                             .background(.gray)
                             .edgesIgnoringSafeArea(.all)
                         
-                        let blackCaptureSize = board.blackCapture.count > 8 ? squareSize * 2 : squareSize
-                        LazyVGrid(columns: captureRows, spacing: 0) {
-                            ForEach(0..<board.blackCapture.count, id: \.self) { index in
-                                let pieceImage = board.blackCapture[index].pieceImage
-                                Image(pieceImage) // Replace with custom image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: squareSize ,height: squareSize)
-                                
-                            }
-                        }.frame(width: gridSize, height: blackCaptureSize)
+                        if orientation == .portrait {
+                            LazyVGrid(columns: captureRows, spacing: 0) {
+                                ForEach(0..<board.blackCapture.count, id: \.self) { index in
+                                    let pieceImage = board.blackCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize ,height: squareSize)
+                                    
+                                }
+                            }.frame(width: gridSize, height: captureSize)
+                        } else {
+                            LazyHGrid(rows: captureRows, spacing: 0) {
+                                ForEach(0..<board.blackCapture.count, id: \.self) { index in
+                                    let pieceImage = board.blackCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize ,height: squareSize)
+                                    
+                                }
+                            }.frame(width: captureSize, height: gridSize)
+                        }
                         
                         Spacer() // Pushes the grid to the vertical center
                         
@@ -176,7 +203,7 @@ struct ChessBoardView: View {
                         debugPrint("ChessBoardView appeared")
                     }
                     .detectOrientation($orientation)
-                    .navigationBarHidden(orientation == .landscapeLeft || orientation == .landscapeRight || orientation == .portraitUpsideDown)
+                    .navigationBarHidden(orientation != .portrait)
                 }
             }
             
