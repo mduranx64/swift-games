@@ -17,7 +17,6 @@ struct GameView: View {
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(5)
-                .shadow(radius: 5)
                 .aspectRatio(619/493, contentMode: .fit)
             
             Text(title)
@@ -28,7 +27,11 @@ struct GameView: View {
         .padding()
         .background(Color.viewBackground)
         .cornerRadius(5)
-        .shadow(radius: 5)
+        .overlay(
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(Color.gameText, lineWidth: 1) // Rounded border
+        )
+
     }
 }
 

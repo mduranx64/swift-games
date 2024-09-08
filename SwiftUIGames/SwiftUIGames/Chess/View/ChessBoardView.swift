@@ -10,6 +10,7 @@ import SwiftUI
 struct ChessBoardView: View {
     // Define rows for the 8x8 grid (8 rows)
     let rows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
+    let captureRows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
     let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
     let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
     let rotation = 180.0
@@ -18,125 +19,149 @@ struct ChessBoardView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showCustomAlert = false
     @State private var showMenuAlert = false
+    @State private var orientation = UIDevice.current.orientation
     
     var body: some View {
+        
         GeometryReader { geometry in
             let padding: CGFloat = 32.0
             let squares: CGFloat = 8.0
             let totalPadding: CGFloat = 2.0 * padding
-            let gridSize: CGFloat = geometry.size.width - totalPadding
-            
+            let boardSize = min(geometry.size.width, geometry.size.height)
+            let gridSize: CGFloat = boardSize - totalPadding
+            let squareSize = gridSize / squares
             NavigationView {
-                VStack {
-                    Spacer()
-                    // Pushes the grid to the vertical center
-                    VStack(spacing: 0) {
-                        
-                        HStack(spacing: 0) {
-                            ForEach(letters, id: \.self) { letter in
-                                Text(letter)
-                                    .font(Font.App.chalkboardSERegular.of(size: 18))
-                                    .foregroundColor(.gameText)
-                                    .rotationEffect(.degrees(rotation))
-                                    .frame(width: gridSize / squares, height: padding)
+                Color.gameBackground.ignoresSafeArea(.all).overlay {
+                    
+                    VStack(spacing: 8) {
+                        Spacer()
+                        let whiteCaptureSize = board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
+                        LazyVGrid(columns: captureRows, spacing: 0) {
+                            ForEach(0..<board.whiteCapture.count, id: \.self) { index in
+                                let pieceImage = board.whiteCapture[index].pieceImage
+                                Image(pieceImage) // Replace with custom image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: squareSize , height: squareSize)
+                                
                             }
-                        }
-                        
-                        HStack(spacing: 0) {
+                        }.frame(width: gridSize, height: whiteCaptureSize)
+                        // Pushes the grid to the vertical center
+                        VStack(spacing: 0) {
                             
-                            VStack(spacing: 0) {
-                                ForEach(numbers.reversed(), id: \.self) { number in
-                                    Text(number)
+                            HStack(spacing: 0) {
+                                ForEach(letters, id: \.self) { letter in
+                                    Text(letter)
                                         .font(Font.App.chalkboardSERegular.of(size: 18))
                                         .foregroundColor(.gameText)
-                                        .frame(width: padding, height: gridSize / squares)
+                                        .rotationEffect(.degrees(rotation))
+                                        .frame(width: squareSize, height: padding)
                                 }
                             }
                             
-                            ZStack {
+                            HStack(spacing: 0) {
                                 
-                                //Board
                                 VStack(spacing: 0) {
-                                    
-                                    // Embed LazyHGrid in a square with 32 points padding on each side
-                                    LazyHGrid(rows: rows, spacing: 0) {
-                                        ForEach(0..<64, id: \.self) { index in
-                                            // Determine row and column based on the index
-                                            let row = index % Int(squares)
-                                            let column = index / Int(squares)
-                                            
-                                            // Alternate color based on row and column
-                                            let isLight = (row + column) % 2 == 0
-                                            
-                                            let image: ImageResource = isLight ? .squareGrayLight : .squareGrayDark
-                                            let squareSize = gridSize / squares
-                                            Image(image) // Replace with custom image
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: squareSize, height: squareSize)
-                                        }
+                                    ForEach(numbers.reversed(), id: \.self) { number in
+                                        Text(number)
+                                            .font(Font.App.chalkboardSERegular.of(size: 18))
+                                            .foregroundColor(.gameText)
+                                            .frame(width: padding, height: squareSize)
                                     }
-                                    
                                 }
-                                .frame(width: gridSize, height: gridSize)
                                 
-                                // Pieces
-                                VStack(spacing: 0) {
+                                ZStack {
                                     
-                                    // Embed LazyHGrid in a square with 32 points padding on each side
-                                    LazyHGrid(rows: rows, spacing: 0) {
-                                        ForEach(0..<board.pieces.count, id: \.self) { x in
-                                            
-                                            let row = board.pieces[x]
-                                            
-                                            HStack(spacing: 0) {
-                                                ForEach(0..<row.count, id: \.self) { y in
-                                                    let pieceImage = row[y]?.pieceImage ?? .empty
-                                                    let squareSize = gridSize / squares
-                                                    let position = Position(x: x, y: y)
-                                                    Image(pieceImage) // Replace with custom image
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
-                                                        .frame(width: squareSize , height: squareSize)
-                                                        .onTapGesture {
-                                                            board.selectPiece(at: position)
-                                                            
-                                                            
-                                                        }
+                                    //Board
+                                    VStack(spacing: 0) {
+                                        
+                                        // Embed LazyHGrid in a square with 32 points padding on each side
+                                        LazyHGrid(rows: rows, spacing: 0) {
+                                            ForEach(0..<64, id: \.self) { index in
+                                                // Determine row and column based on the index
+                                                let row = index % Int(squares)
+                                                let column = index / Int(squares)
+                                                
+                                                // Alternate color based on row and column
+                                                let isLight = (row + column) % 2 == 0
+                                                
+                                                let image: ImageResource = isLight ? .squareGrayLight : .squareGrayDark
+                                                Image(image) // Replace with custom image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: squareSize, height: squareSize)
+                                            }
+                                        }
+                                        
+                                    }
+                                    .frame(width: gridSize, height: gridSize)
+                                    
+                                    // Pieces
+                                    VStack(spacing: 0) {
+                                        
+                                        // Embed LazyHGrid in a square with 32 points padding on each side
+                                        LazyHGrid(rows: rows, spacing: 0) {
+                                            ForEach(0..<board.pieces.count, id: \.self) { x in
+                                                
+                                                let row = board.pieces[x]
+                                                
+                                                HStack(spacing: 0) {
+                                                    ForEach(0..<row.count, id: \.self) { y in
+                                                        let pieceImage = row[y]?.pieceImage ?? .empty
+                                                        let position = Position(x: x, y: y)
+                                                        Image(pieceImage) // Replace with custom image
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
+                                                            .frame(width: squareSize , height: squareSize)
+                                                            .onTapGesture {
+                                                                board.selectPiece(at: position)
+                                                            }
+                                                    }
                                                 }
                                             }
                                         }
                                     }
+                                    .frame(width: gridSize, height: gridSize)
                                 }
-                                .frame(width: gridSize, height: gridSize)
+                                
+                                VStack(spacing:0) {
+                                    ForEach(numbers.reversed(), id: \.self) { number in
+                                        Text(number)
+                                            .font(Font.App.chalkboardSERegular.of(size: 18))
+                                            .foregroundColor(.gameText)
+                                        .frame(width: padding, height: squareSize).rotationEffect(.degrees(rotation))                            }
+                                }
                             }
                             
-                            VStack(spacing:0) {
-                                ForEach(numbers.reversed(), id: \.self) { number in
-                                    Text(number)
-                                    .font(Font.App.chalkboardSERegular.of(size: 18))
-                                    .foregroundColor(.gameText)
-                                    .frame(width: padding, height: gridSize / squares).rotationEffect(.degrees(rotation))                            }
+                            HStack(spacing: 0) {
+                                ForEach(letters, id: \.self) { letter in
+                                    Text(letter)
+                                        .font(Font.App.chalkboardSERegular.of(size: 18))
+                                        .foregroundColor(.gameText)
+                                        .frame(width: squareSize, height: padding)
+                                }
                             }
-                        }
+                            
+                        }.frame(width: boardSize, height: boardSize)
+                            .background(.gray)
+                            .edgesIgnoringSafeArea(.all)
                         
-                        HStack(spacing: 0) {
-                            ForEach(letters, id: \.self) { letter in
-                                Text(letter)
-                                    .font(Font.App.chalkboardSERegular.of(size: 18))
-                                    .foregroundColor(.gameText)
-                                    .frame(width: gridSize / squares, height: padding)
+                        let blackCaptureSize = board.blackCapture.count > 8 ? squareSize * 2 : squareSize
+                        LazyVGrid(columns: captureRows, spacing: 0) {
+                            ForEach(0..<board.blackCapture.count, id: \.self) { index in
+                                let pieceImage = board.blackCapture[index].pieceImage
+                                Image(pieceImage) // Replace with custom image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: squareSize ,height: squareSize)
+                                
                             }
-                        }
+                        }.frame(width: gridSize, height: blackCaptureSize)
                         
-                    }.frame(width: geometry.size.width, height: geometry.size.width)
-                        .background(.gray)
-                        .edgesIgnoringSafeArea(.all)
-                    
-                    Spacer() // Pushes the grid to the vertical center
-                    
-                }.background(.gameBackground)
+                        Spacer() // Pushes the grid to the vertical center
+                        
+                    }
                     .navigationBarTitle("Chess", displayMode: .inline)
                     .navigationBarItems(trailing: Button(action: {
                         showMenuAlert = true
@@ -150,6 +175,9 @@ struct ChessBoardView: View {
                     }).onAppear{
                         debugPrint("ChessBoardView appeared")
                     }
+                    .detectOrientation($orientation)
+                    .navigationBarHidden(orientation == .landscapeLeft || orientation == .landscapeRight || orientation == .portraitUpsideDown)
+                }
             }
             
             if showCustomAlert {
@@ -209,7 +237,6 @@ struct ChessBoardView: View {
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundColor(.gameText)
                     
-                    
                     HStack {
                         
                         Button(action: {
@@ -233,10 +260,6 @@ struct ChessBoardView: View {
                 .zIndex(1) // Ensure it appears above other views
             }
         }
-    }
-    
-    func showMenu() {
-        
     }
 }
 

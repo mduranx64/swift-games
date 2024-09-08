@@ -10,12 +10,12 @@ import Combine
 
 public class Board: ObservableObject {
     
-    private(set) var whiteCapture = [Piece]()
-    private(set) var blackCapture = [Piece]()
-    var currentTurn: PieceColor = .white
+    @Published private(set) var whiteCapture = [Piece]()
+    @Published private(set) var blackCapture = [Piece]()
+    @Published var currentTurn: PieceColor = .white
     var inPassingPiece: Piece?
     
-    @Published var selectedPosition: Position? = nil
+    @Published private(set) var selectedPosition: Position? = nil
     
     @Published private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),

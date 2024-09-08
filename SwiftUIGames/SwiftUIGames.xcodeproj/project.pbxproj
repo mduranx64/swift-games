@@ -22,6 +22,7 @@
 		49A6E6A12C8C093B008DAE30 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A02C8C093B008DAE30 /* GameView.swift */; };
 		49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A22C8C098F008DAE30 /* MainView.swift */; };
 		49E342AE2C8CF90A007D9CB6 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E342AD2C8CF90A007D9CB6 /* FontExtension.swift */; };
+		49E342B02C8D77B9007D9CB6 /* DetectOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		49A6E6A22C8C098F008DAE30 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49A6E6A42C8CCCEF008DAE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		49E342AD2C8CF90A007D9CB6 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectOrientation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			children = (
 				49A6E6A02C8C093B008DAE30 /* GameView.swift */,
 				49A6E6A22C8C098F008DAE30 /* MainView.swift */,
+				49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			files = (
 				499F24712C8A804C00976C10 /* PieceExtension.swift in Sources */,
 				49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */,
+				49E342B02C8D77B9007D9CB6 /* DetectOrientation.swift in Sources */,
 				49E342AE2C8CF90A007D9CB6 /* FontExtension.swift in Sources */,
 				4902EF242C894BA8001E488D /* ChessBoardView.swift in Sources */,
 				4902EF222C894BA8001E488D /* SwiftUIGamesApp.swift in Sources */,
