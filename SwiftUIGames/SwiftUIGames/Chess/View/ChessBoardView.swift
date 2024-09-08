@@ -17,7 +17,7 @@ struct ChessBoardView: View {
     @ObservedObject var board: Board
     @Environment(\.dismiss) private var dismiss
     @State private var showCustomAlert = false
-    
+    @State private var showMenuAlert = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,6 +35,8 @@ struct ChessBoardView: View {
                         HStack(spacing: 0) {
                             ForEach(letters, id: \.self) { letter in
                                 Text(letter)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundColor(.gameText)
                                     .rotationEffect(.degrees(rotation))
                                     .frame(width: gridSize / squares, height: padding)
                             }
@@ -44,7 +46,10 @@ struct ChessBoardView: View {
                             
                             VStack(spacing: 0) {
                                 ForEach(numbers.reversed(), id: \.self) { number in
-                                    Text(number).frame(width: padding, height: gridSize / squares)
+                                    Text(number)
+                                        .font(Font.App.chalkboardSERegular.of(size: 18))
+                                        .foregroundColor(.gameText)
+                                        .frame(width: padding, height: gridSize / squares)
                                 }
                             }
                             
@@ -110,6 +115,8 @@ struct ChessBoardView: View {
                             VStack(spacing:0) {
                                 ForEach(numbers.reversed(), id: \.self) { number in
                                     Text(number)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundColor(.gameText)
                                     .frame(width: padding, height: gridSize / squares).rotationEffect(.degrees(rotation))                            }
                             }
                         }
@@ -117,11 +124,14 @@ struct ChessBoardView: View {
                         HStack(spacing: 0) {
                             ForEach(letters, id: \.self) { letter in
                                 Text(letter)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundColor(.gameText)
                                     .frame(width: gridSize / squares, height: padding)
                             }
                         }
                         
-                    }.frame(width: geometry.size.width, height: geometry.size.width).background(.gray)
+                    }.frame(width: geometry.size.width, height: geometry.size.width)
+                        .background(.gray)
                         .edgesIgnoringSafeArea(.all)
                     
                     Spacer() // Pushes the grid to the vertical center
@@ -129,7 +139,7 @@ struct ChessBoardView: View {
                 }.background(.gameBackground)
                     .navigationBarTitle("Chess", displayMode: .inline)
                     .navigationBarItems(trailing: Button(action: {
-                        // show game menu
+                        showMenuAlert = true
                     }) {
                         Image(systemName: "gamecontroller")
                     })
@@ -176,6 +186,40 @@ struct ChessBoardView: View {
                                 .padding()
                                 .foregroundColor(.gameRed)
                                 .font(Font.App.chalkboardSERegular.of(size: 16))
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .padding()
+                .background(.gameBackground)
+                .cornerRadius(10)
+                .frame(maxWidth: geometry.size.width * 0.8)
+                .transition(.scale) // Add a transition effect
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .zIndex(1) // Ensure it appears above other views
+            }
+            
+            if showMenuAlert {
+                Color.black.opacity(0.4) // Dim background
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 16) {
+                    
+                    Text("Game settings")
+                        .font(Font.App.chalkboardSERegular.of(size: 24))
+                        .foregroundColor(.gameText)
+                    
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            showMenuAlert = false // Cancel action
+                        }) {
+                            Text("Accept")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .font(Font.App.chalkboardSERegular.of(size: 16))
+                                .foregroundColor(.gameText)
                         }
                     }
                     .frame(maxWidth: .infinity)

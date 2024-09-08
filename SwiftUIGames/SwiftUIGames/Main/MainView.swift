@@ -111,7 +111,7 @@ struct MainView: View {
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundColor(.gameText)
                     
-                    Text("An open source collection of game made in swift to learn programming and how to play the games")
+                    Text("An open source collection of games made in Swift to learn programming and how to play the games")
                         .font(Font.App.chalkboardSERegular.of(size: 18))
                         .foregroundColor(.gameText)
                         .multilineTextAlignment(.center)
