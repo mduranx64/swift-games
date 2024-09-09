@@ -109,11 +109,11 @@ struct MainView: View {
                     
                     Text("Swift Games")
                         .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundColor(.gameText)
+                        .foregroundStyle(.gameText)
                     
                     Text("An open source collection of games made in Swift to learn programming and how to play the games")
                         .font(Font.App.chalkboardSERegular.of(size: 18))
-                        .foregroundColor(.gameText)
+                        .foregroundStyle(.gameText)
                         .multilineTextAlignment(.center)
                     URL(string: "https://github.com/mduranx64/swift-games").map({
                         Link("Visit the repository on Github to contribute", destination: $0)
@@ -121,17 +121,15 @@ struct MainView: View {
                             .foregroundStyle(.blue)
                     })
                     
+                    Text("Version: \(Bundle.main.appVersionShort) (\(Bundle.main.appVersionLong))")
+                                        .font(Font.App.chalkboardSERegular.of(size: 14))
+                                        .foregroundStyle(.gameText)
                     HStack {
-                        
-                        Button(action: {
+    
+                        SGButton(title: "Accept", action: {
                             showInfoAlert = false // Cancel action
-                        }) {
-                            Text("Accept")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .font(Font.App.chalkboardSERegular.of(size: 16))
-                                .foregroundColor(.gameText)
-                        }
+                        })
+                        .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }

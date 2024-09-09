@@ -21,7 +21,7 @@ struct GameView: View {
             
             Text(title)
                 .font(Font.App.chalkboardSERegular.of(size: 16))
-                .foregroundColor(Color.gameText)
+                .foregroundStyle(Color.gameText)
                 .multilineTextAlignment(.center)
         }
         .padding()

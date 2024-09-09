@@ -68,7 +68,7 @@ struct ChessBoardView: View {
                                 ForEach(letters, id: \.self) { letter in
                                     Text(letter)
                                         .font(Font.App.chalkboardSERegular.of(size: 18))
-                                        .foregroundColor(.gameText)
+                                        .foregroundStyle(.gameText)
                                         .rotationEffect(.degrees(rotation))
                                         .frame(width: squareSize, height: padding)
                                 }
@@ -80,7 +80,7 @@ struct ChessBoardView: View {
                                     ForEach(numbers.reversed(), id: \.self) { number in
                                         Text(number)
                                             .font(Font.App.chalkboardSERegular.of(size: 18))
-                                            .foregroundColor(.gameText)
+                                            .foregroundStyle(.gameText)
                                             .frame(width: padding, height: squareSize)
                                     }
                                 }
@@ -144,7 +144,7 @@ struct ChessBoardView: View {
                                     ForEach(numbers.reversed(), id: \.self) { number in
                                         Text(number)
                                             .font(Font.App.chalkboardSERegular.of(size: 18))
-                                            .foregroundColor(.gameText)
+                                            .foregroundStyle(.gameText)
                                         .frame(width: padding, height: squareSize).rotationEffect(.degrees(rotation))                            }
                                 }
                             }
@@ -153,7 +153,7 @@ struct ChessBoardView: View {
                                 ForEach(letters, id: \.self) { letter in
                                     Text(letter)
                                         .font(Font.App.chalkboardSERegular.of(size: 18))
-                                        .foregroundColor(.gameText)
+                                        .foregroundStyle(.gameText)
                                         .frame(width: squareSize, height: padding)
                                 }
                             }
@@ -214,34 +214,24 @@ struct ChessBoardView: View {
                 VStack(spacing: 16) {
                     Text("Confirm Exit")
                         .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundColor(.gameText)
+                        .foregroundStyle(.gameText)
                     
                     Text("Are you sure you want to exit the game?")
                         .font(Font.App.chalkboardSERegular.of(size: 18))
-                        .foregroundColor(.gameText)
+                        .foregroundStyle(.gameText)
                         .multilineTextAlignment(.center)
                     
                     HStack {
+                                                
+                        SGButton(title: "Cancel", action: {
+                            showCustomAlert = false
+                        })
+                        .padding()
                         
-                        Button(action: {
-                            showCustomAlert = false // Cancel action
-                        }) {
-                            Text("Cancel")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .font(Font.App.chalkboardSERegular.of(size: 16))
-                                .foregroundColor(.gameText)
-                        }
-                        
-                        Button(action: {
-                            dismiss() // Dismiss ChessBoardView
-                        }) {
-                            Text("Accept")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .foregroundColor(.gameRed)
-                                .font(Font.App.chalkboardSERegular.of(size: 16))
-                        }
+                        SGButton(title: "Accept", action: {
+                            dismiss()
+                        })
+                        .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -262,19 +252,15 @@ struct ChessBoardView: View {
                     
                     Text("Game settings")
                         .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundColor(.gameText)
+                        .foregroundStyle(.gameText)
                     
                     HStack {
+                    
+                        SGButton(title: "Accept", action: {
+                            showMenuAlert = false
+                        })
+                        .padding()
                         
-                        Button(action: {
-                            showMenuAlert = false // Cancel action
-                        }) {
-                            Text("Accept")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .font(Font.App.chalkboardSERegular.of(size: 16))
-                                .foregroundColor(.gameText)
-                        }
                     }
                     .frame(maxWidth: .infinity)
                 }
