@@ -12,7 +12,8 @@ struct ChessBoardView: View {
     let rows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
     let captureRows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
     let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    let numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
+    let numbers = ["8", "7", "6", "5", "4", "3", "2", "1"]
+
     let rotation = 180.0
     
     @ObservedObject var board: Board
@@ -78,10 +79,26 @@ struct ChessBoardView: View {
                                             let isLight = (row + column) % 2 == 0
                                             
                                             let image: ImageResource = isLight ? .squareGrayLight : .squareGrayDark
-                                            Image(image) // Replace with custom image
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: squareSize, height: squareSize)
+                                            let color = isLight ? Color.black : Color.white
+                                            var numberGuide: String = index < numbers.count ? numbers[index] : ""
+                                            var letterGuide: String = row == 7 ? letters[column] : ""
+                                            
+                                            ZStack(alignment: .bottomTrailing) {
+                                                ZStack(alignment: .topLeading) {
+                                                    Image(image) // Replace with custom image
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: squareSize, height: squareSize)
+                                                    Text("\(numberGuide)")
+                                                        .font(Font.App.chalkboardSERegular.of(size: 14))
+                                                        .foregroundStyle(color)
+                                                        .padding(EdgeInsets(top: -4, leading: 0, bottom: 0, trailing: 0))
+                                                }
+                                                Text("\(letterGuide)")
+                                                    .font(Font.App.chalkboardSERegular.of(size: 14))
+                                                    .foregroundStyle(color)
+                                                    .padding(EdgeInsets(top: -4, leading: 0, bottom: 0, trailing: 0))
+                                            }
                                         }
                                     }
                                     
@@ -103,7 +120,7 @@ struct ChessBoardView: View {
                                                     let position = Position(x: x, y: y)
                                                     Image(pieceImage) // Replace with custom image
                                                         .resizable()
-                                                        .scaledToFit()
+                                                        .padding(2)
                                                         .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
                                                         .frame(width: squareSize , height: squareSize)
                                                         .onTapGesture {
@@ -115,7 +132,7 @@ struct ChessBoardView: View {
                                     }
                                 }
                                 .frame(width: gridSize, height: gridSize)
-                            }                            
+                            }
                             
                         }.frame(width: gridSize, height: gridSize)
                             .background(.gray)
