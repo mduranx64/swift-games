@@ -20,6 +20,7 @@ struct ChessBoardView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showCustomAlert = false
     @State private var showMenuAlert = false
+    @State private var showWinAlert = false
     @State private var orientation = UIDevice.current.orientation
     
     var body: some View {
@@ -125,6 +126,9 @@ struct ChessBoardView: View {
                                                         .frame(width: squareSize , height: squareSize)
                                                         .onTapGesture {
                                                             board.selectPiece(at: position)
+                                                            if board.isBlackKingCaptured || board.isWhiteKingCaptured {
+                                                                showWinAlert = true
+                                                            }
                                                         }
                                                 }
                                             }
@@ -181,6 +185,39 @@ struct ChessBoardView: View {
                     .detectOrientation($orientation)
                     .navigationBarHidden(orientation != .portrait)
                 }
+            }
+            
+            if showWinAlert {
+                Color.black.opacity(0.4) // Dim background
+                    .edgesIgnoringSafeArea(.all)
+                let title = board.isWhiteKingCaptured ? "Black pieces win!" : "White pieces win!"
+                VStack(spacing: 16) {
+                    Text(title)
+                        .font(Font.App.chalkboardSERegular.of(size: 24))
+                        .foregroundStyle(.gameText)
+                    
+                    let imageName: ImageResource = board.isWhiteKingCaptured ? .bKing : .wKing
+                    Image(imageName) // Replace with custom image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: squareSize ,height: squareSize)
+                    
+                    HStack {
+                        
+                        SGButton(title: "Accept", action: {
+                            dismiss()
+                        })
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .padding()
+                .background(.gameBackground)
+                .cornerRadius(10)
+                .frame(maxWidth: geometry.size.width * 0.8)
+                .transition(.scale) // Add a transition effect
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .zIndex(1) // Ensure it appears above other views
             }
             
             if showCustomAlert {

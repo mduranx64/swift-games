@@ -12,10 +12,13 @@ public class Board: ObservableObject {
     
     @Published private(set) var whiteCapture = [Piece]()
     @Published private(set) var blackCapture = [Piece]()
-    @Published var currentTurn: PieceColor = .white
-    var inPassingPiece: Piece?
+    @Published private(set) var currentTurn: PieceColor = .white
+    private var inPassingPiece: Piece?
     
     @Published private(set) var selectedPosition: Position? = nil
+    @Published private(set) var isBlackKingCaptured: Bool = false
+    @Published private(set) var isWhiteKingCaptured: Bool = false
+
     
     @Published private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),
@@ -547,8 +550,14 @@ public class Board: ObservableObject {
         } else {
             if destiny?.color == .white {
                 destiny.map({ whiteCapture.append($0) })
+                if destiny?.type == .king {
+                    isWhiteKingCaptured = true
+                }
             } else {
                 destiny.map({ blackCapture.append($0) })
+                if destiny?.type == .king {
+                    isBlackKingCaptured = true
+                }
             }
             pieces[to.x][to.y] = fromPiece
             pieces[from.x][from.y] = nil
