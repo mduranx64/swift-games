@@ -80,8 +80,8 @@ struct ChessBoardView: View {
                                             
                                             let image: ImageResource = isLight ? .squareGrayLight : .squareGrayDark
                                             let color = isLight ? Color.black : Color.white
-                                            var numberGuide: String = index < numbers.count ? numbers[index] : ""
-                                            var letterGuide: String = row == 7 ? letters[column] : ""
+                                            let numberGuide: String = index < numbers.count ? numbers[index] : ""
+                                            let letterGuide: String = row == 7 ? letters[column] : ""
                                             
                                             ZStack(alignment: .bottomTrailing) {
                                                 ZStack(alignment: .topLeading) {
