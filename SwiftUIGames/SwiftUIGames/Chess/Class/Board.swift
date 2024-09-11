@@ -16,9 +16,10 @@ public class Board: ObservableObject {
     private var inPassingPiece: Piece?
     
     @Published private(set) var selectedPosition: Position? = nil
+    @Published private(set) var promotedPosition: Position? = nil
     @Published private(set) var isBlackKingCaptured: Bool = false
     @Published private(set) var isWhiteKingCaptured: Bool = false
-
+    @Published private(set) var isPiecePromoted: Bool = false
     
     @Published private(set) var pieces: [[Piece?]] = [
         [Piece(.rook, color: .black), Piece(.knight, color: .black), Piece(.bishop, color: .black), Piece(.queen, color: .black),
@@ -84,6 +85,14 @@ public class Board: ObservableObject {
             return
         }
         
+    }
+    
+    func promotePiece(type: PieceType) {
+        if let position = promotedPosition, let piece = getPieceAt(position) {
+            piece.update(type: type, color: piece.color)
+            promotedPosition = nil
+            isPiecePromoted = false
+        }
     }
 
     
@@ -547,6 +556,16 @@ public class Board: ObservableObject {
         if destiny == nil {
             pieces[to.x][to.y] = fromPiece
             pieces[from.x][from.y] = nil
+            
+            if fromPiece.type == .pawn {
+                if fromPiece.color == .white && to.x == 0 {
+                    promotedPosition = to
+                    isPiecePromoted = true
+                } else if fromPiece.color == .black && to.x == 7 {
+                    promotedPosition = to
+                    isPiecePromoted = true
+                }
+            }
         } else {
             if destiny?.color == .white {
                 destiny.map({ whiteCapture.append($0) })
