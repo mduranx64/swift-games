@@ -12,7 +12,7 @@ public class Board: ObservableObject {
     
     @Published private(set) var whiteCapture = [Piece]()
     @Published private(set) var blackCapture = [Piece]()
-    @Published private(set) var currentTurn: PieceColor = .white
+    @Published var currentTurn: PieceColor = .white
     private var inPassingPiece: Piece?
     
     @Published private(set) var selectedPosition: Position? = nil

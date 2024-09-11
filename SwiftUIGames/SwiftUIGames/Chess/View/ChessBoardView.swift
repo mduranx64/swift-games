@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum BoardTheme {
+    case black
+    case brown
+}
+
 struct ChessBoardView: View {
     // Define rows for the 8x8 grid (8 rows)
     let rows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
@@ -22,6 +27,7 @@ struct ChessBoardView: View {
     @State private var showMenuAlert = false
     @State private var showWinAlert = false
     @State private var orientation = UIDevice.current.orientation
+    @State private var theme: BoardTheme = .black
     
     var body: some View {
         
@@ -79,7 +85,8 @@ struct ChessBoardView: View {
                                             // Alternate color based on row and column
                                             let isLight = (row + column) % 2 == 0
                                             
-                                            let image: ImageResource = isLight ? .squareGrayLight : .squareGrayDark
+                                            let image: ImageResource = getBoardImage(isLight: isLight)
+                                            
                                             let color = isLight ? Color.black : Color.white
                                             let numberGuide: String = index < numbers.count ? numbers[index] : ""
                                             let letterGuide: String = row == 7 ? letters[column] : ""
@@ -183,9 +190,9 @@ struct ChessBoardView: View {
                         debugPrint("ChessBoardView appeared")
                     }
                     .detectOrientation($orientation)
-                    .navigationBarHidden(orientation != .portrait)
+                    .navigationBarHidden(orientation == .landscapeLeft || orientation == .landscapeRight).Print(orientation)
                 }
-            }
+            }.edgesIgnoringSafeArea(.all)
             
             if showWinAlert {
                 Color.black.opacity(0.4) // Dim background
@@ -267,6 +274,13 @@ struct ChessBoardView: View {
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundStyle(.gameText)
                     
+                    
+                    Picker("Board theme", selection: $theme) {
+                        Text("Black").tag(BoardTheme.black)
+                        Text("Brown").tag(BoardTheme.brown)
+                    }.font(Font.App.chalkboardSERegular.of(size: 24))
+                    .foregroundStyle(.gameText)
+
                     HStack {
                         
                         SGButton(title: "Accept", action: {
@@ -285,6 +299,15 @@ struct ChessBoardView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .zIndex(1) // Ensure it appears above other views
             }
+        }
+    }
+    
+    private func getBoardImage(isLight: Bool) -> ImageResource {
+        switch theme {
+        case .black:
+            return isLight ? .squareGrayLight : .squareGrayDark
+        case .brown:
+            return isLight ? .squareBrownLight : .squareBrownDark
         }
     }
 }
