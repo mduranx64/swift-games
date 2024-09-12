@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "24C49DE1-E2B7-4AA4-A383-27DE2EEF080E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:SwiftUIGames.xcodeproj",
+      "identifier" : "4902EF1D2C894BA8001E488D",
+      "name" : "SwiftUIGames"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SwiftUIGames.xcodeproj",
+        "identifier" : "4902EF2F2C894BA9001E488D",
+        "name" : "SwiftUIGamesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:SwiftUIGames.xcodeproj",
+        "identifier" : "4902EF392C894BA9001E488D",
+        "name" : "SwiftUIGamesUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

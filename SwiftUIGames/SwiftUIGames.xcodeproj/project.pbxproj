@@ -11,16 +11,16 @@
 		4902EF242C894BA8001E488D /* ChessBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF232C894BA8001E488D /* ChessBoardView.swift */; };
 		4902EF282C894BA9001E488D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4902EF272C894BA9001E488D /* Assets.xcassets */; };
 		4902EF2B2C894BA9001E488D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4902EF2A2C894BA9001E488D /* Preview Assets.xcassets */; };
-		4902EF352C894BA9001E488D /* SwiftUIGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF342C894BA9001E488D /* SwiftUIGamesTests.swift */; };
-		4902EF3F2C894BA9001E488D /* SwiftUIGamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF3E2C894BA9001E488D /* SwiftUIGamesUITests.swift */; };
-		4902EF412C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF402C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift */; };
+		494AAD6F2C9370200097AF9D /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F246B2C8A7F7800976C10 /* BoardTests.swift */; };
+		494AAD702C9370230097AF9D /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F246A2C8A7F7800976C10 /* PieceTests.swift */; };
+		494AAD712C93702A0097AF9D /* SwiftUIGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF342C894BA9001E488D /* SwiftUIGamesTests.swift */; };
+		494AAD722C93702E0097AF9D /* SwiftUIGamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF3E2C894BA9001E488D /* SwiftUIGamesUITests.swift */; };
+		494AAD732C9370310097AF9D /* SwiftUIGamesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902EF402C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift */; };
 		49973E652C8DFAD700CDF24F /* DynamicStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49973E642C8DFAD700CDF24F /* DynamicStack.swift */; };
 		49973E672C8E15ED00CDF24F /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49973E662C8E15ED00CDF24F /* BundleExtension.swift */; };
 		49973E692C8E1A5F00CDF24F /* SGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49973E682C8E1A5F00CDF24F /* SGButton.swift */; };
 		499F24632C8A7DCC00976C10 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24622C8A7DCC00976C10 /* Piece.swift */; };
 		499F24652C8A7E4F00976C10 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24642C8A7E4F00976C10 /* Board.swift */; };
-		499F246C2C8A7F7800976C10 /* PieceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F246A2C8A7F7800976C10 /* PieceTests.swift */; };
-		499F246D2C8A7F7800976C10 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F246B2C8A7F7800976C10 /* BoardTests.swift */; };
 		499F24712C8A804C00976C10 /* PieceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24702C8A804C00976C10 /* PieceExtension.swift */; };
 		49A6E6A12C8C093B008DAE30 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A02C8C093B008DAE30 /* GameView.swift */; };
 		49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A22C8C098F008DAE30 /* MainView.swift */; };
@@ -56,6 +56,7 @@
 		4902EF3A2C894BA9001E488D /* SwiftUIGamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4902EF3E2C894BA9001E488D /* SwiftUIGamesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGamesUITests.swift; sourceTree = "<group>"; };
 		4902EF402C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGamesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		494AAD6E2C936E7E0097AF9D /* SwiftUIGames.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SwiftUIGames.xctestplan; path = ../SwiftUIGames.xctestplan; sourceTree = "<group>"; };
 		49973E642C8DFAD700CDF24F /* DynamicStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStack.swift; sourceTree = "<group>"; };
 		49973E662C8E15ED00CDF24F /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		49973E682C8E1A5F00CDF24F /* SGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGButton.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		49A6E6A02C8C093B008DAE30 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		49A6E6A22C8C098F008DAE30 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49A6E6A42C8CCCEF008DAE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		49D6D1202C934F0A00808D0F /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
 		49E342AD2C8CF90A007D9CB6 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectOrientation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +101,8 @@
 		4902EF152C894BA8001E488D = {
 			isa = PBXGroup;
 			children = (
+				494AAD6E2C936E7E0097AF9D /* SwiftUIGames.xctestplan */,
+				49D6D1202C934F0A00808D0F /* project.xcconfig */,
 				4902EF202C894BA8001E488D /* SwiftUIGames */,
 				4902EF332C894BA9001E488D /* SwiftUIGamesTests */,
 				4902EF3D2C894BA9001E488D /* SwiftUIGamesUITests */,
@@ -354,9 +358,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499F246C2C8A7F7800976C10 /* PieceTests.swift in Sources */,
-				4902EF352C894BA9001E488D /* SwiftUIGamesTests.swift in Sources */,
-				499F246D2C8A7F7800976C10 /* BoardTests.swift in Sources */,
+				494AAD702C9370230097AF9D /* PieceTests.swift in Sources */,
+				494AAD712C93702A0097AF9D /* SwiftUIGamesTests.swift in Sources */,
+				494AAD6F2C9370200097AF9D /* BoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,8 +368,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4902EF412C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift in Sources */,
-				4902EF3F2C894BA9001E488D /* SwiftUIGamesUITests.swift in Sources */,
+				494AAD732C9370310097AF9D /* SwiftUIGamesUITestsLaunchTests.swift in Sources */,
+				494AAD722C93702E0097AF9D /* SwiftUIGamesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +391,7 @@
 /* Begin XCBuildConfiguration section */
 		4902EF422C894BA9001E488D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -420,6 +425,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -442,6 +448,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -450,6 +457,7 @@
 		};
 		4902EF432C894BA9001E488D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -483,6 +491,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -498,6 +507,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -506,13 +516,15 @@
 		};
 		4902EF452C894BA9001E488D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIGames/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftUIGames/Info.plist;
@@ -526,7 +538,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftUIGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -537,13 +548,15 @@
 		};
 		4902EF462C894BA9001E488D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIGames/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftUIGames/Info.plist;
@@ -557,7 +570,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftUIGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -568,16 +580,18 @@
 		};
 		4902EF482C894BA9001E488D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftUIGamesTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER_TESTS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -589,16 +603,18 @@
 		};
 		4902EF492C894BA9001E488D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftUIGamesTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER_TESTS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -610,14 +626,16 @@
 		};
 		4902EF4B2C894BA9001E488D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftUIGamesUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER_UI_TESTS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -629,14 +647,16 @@
 		};
 		4902EF4C2C894BA9001E488D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftUIGamesUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER_UI_TESTS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
