@@ -45,7 +45,7 @@ struct ChessBoardView: View {
                         
                         let captureSize = board.blackCapture.count > 8 || board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
                         
-                        if orientation == .portrait {
+                        if orientation == .portrait || orientation == .unknown {
                             LazyVGrid(columns: captureRows, spacing: 0) {
                                 ForEach(0..<board.whiteCapture.count, id: \.self) { index in
                                     let pieceImage = board.whiteCapture[index].pieceImage
@@ -67,6 +67,12 @@ struct ChessBoardView: View {
                             }.frame(width: captureSize, height: gridSize)
                         }
                         
+                            VStack {
+                                Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
+                                Text("Black move")
+                                    .font(Font.App.chalkboardSERegular.of(size: 14))
+                                    .foregroundStyle(.black)
+                            }.opacity(board.currentTurn == .black ? 1 : 0)
                         
                         // Pushes the grid to the vertical center
                         VStack(spacing: 0) {
@@ -154,7 +160,14 @@ struct ChessBoardView: View {
                             .background(.gray)
                             .edgesIgnoringSafeArea(.all)
                         
-                        if orientation == .portrait {
+                            VStack {
+                                Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
+                                Text("White move")
+                                    .font(Font.App.chalkboardSERegular.of(size: 14))
+                                    .foregroundStyle(.white)
+                            }.opacity(board.currentTurn == .white ? 1 : 0)
+                        
+                        if orientation == .portrait || orientation == .unknown {
                             LazyVGrid(columns: captureRows, spacing: 0) {
                                 ForEach(0..<board.blackCapture.count, id: \.self) { index in
                                     let pieceImage = board.blackCapture[index].pieceImage

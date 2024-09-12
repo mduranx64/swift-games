@@ -580,6 +580,15 @@ public class Board: ObservableObject {
             }
             pieces[to.x][to.y] = fromPiece
             pieces[from.x][from.y] = nil
+            if fromPiece.type == .pawn {
+                if fromPiece.color == .white && to.x == 0 {
+                    promotedPosition = to
+                    isPiecePromoted = true
+                } else if fromPiece.color == .black && to.x == 7 {
+                    promotedPosition = to
+                    isPiecePromoted = true
+                }
+            }
         }
     }
 }
