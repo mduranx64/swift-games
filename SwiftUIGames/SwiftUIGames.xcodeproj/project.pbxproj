@@ -56,7 +56,7 @@
 		4902EF3A2C894BA9001E488D /* SwiftUIGamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4902EF3E2C894BA9001E488D /* SwiftUIGamesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGamesUITests.swift; sourceTree = "<group>"; };
 		4902EF402C894BA9001E488D /* SwiftUIGamesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIGamesUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		494AAD6E2C936E7E0097AF9D /* SwiftUIGames.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SwiftUIGames.xctestplan; path = ../SwiftUIGames.xctestplan; sourceTree = "<group>"; };
+		4908D1CF2C9375DB0020AF7B /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		49973E642C8DFAD700CDF24F /* DynamicStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStack.swift; sourceTree = "<group>"; };
 		49973E662C8E15ED00CDF24F /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		49973E682C8E1A5F00CDF24F /* SGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGButton.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		4902EF152C894BA8001E488D = {
 			isa = PBXGroup;
 			children = (
-				494AAD6E2C936E7E0097AF9D /* SwiftUIGames.xctestplan */,
+				4908D1CF2C9375DB0020AF7B /* TestPlan.xctestplan */,
 				49D6D1202C934F0A00808D0F /* project.xcconfig */,
 				4902EF202C894BA8001E488D /* SwiftUIGames */,
 				4902EF332C894BA9001E488D /* SwiftUIGamesTests */,

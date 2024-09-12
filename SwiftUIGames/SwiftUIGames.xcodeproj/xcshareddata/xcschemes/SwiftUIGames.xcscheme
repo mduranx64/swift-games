@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:../SwiftUIGames.xctestplan"
+            reference = "container:TestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

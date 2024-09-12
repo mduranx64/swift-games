@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "24C49DE1-E2B7-4AA4-A383-27DE2EEF080E",
+      "id" : "F4B3D6F8-EA88-419A-AB3A-47D4335C10C5",
       "name" : "Configuration 1",
       "options" : {
 
@@ -13,7 +13,8 @@
       "containerPath" : "container:SwiftUIGames.xcodeproj",
       "identifier" : "4902EF1D2C894BA8001E488D",
       "name" : "SwiftUIGames"
-    }
+    },
+    "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {
