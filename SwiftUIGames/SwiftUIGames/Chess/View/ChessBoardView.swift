@@ -18,8 +18,6 @@ struct ChessBoardView: View {
     let captureRows = Array(repeating: GridItem(.flexible(), spacing: 0), count: 8)
     let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
     let numbers = ["8", "7", "6", "5", "4", "3", "2", "1"]
-
-    let rotation = 180.0
     
     @ObservedObject var board: Board
     @Environment(\.dismiss) private var dismiss
@@ -124,7 +122,6 @@ struct ChessBoardView: View {
                                 // Pieces
                                 VStack(spacing: 0) {
                                     
-                                    // Embed LazyHGrid in a square with 32 points padding on each side
                                     LazyHGrid(rows: rows, spacing: 0) {
                                         ForEach(0..<board.pieces.count, id: \.self) { x in
                                             
