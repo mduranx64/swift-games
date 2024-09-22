@@ -213,7 +213,7 @@ struct ChessBoardView: View {
                 Color.black.opacity(0.4) // Dim background
                     .edgesIgnoringSafeArea(.all)
                 let title = board.isWhiteKingCaptured ? "Black pawn promotion!" : "White pawn promotion!"
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     Text(title)
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundStyle(.gameText)
@@ -252,7 +252,7 @@ struct ChessBoardView: View {
                 }
                 .padding()
                 .background(.gameBackground)
-                .cornerRadius(10)
+                .cornerRadius(5)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -263,7 +263,7 @@ struct ChessBoardView: View {
                 Color.black.opacity(0.4) // Dim background
                     .edgesIgnoringSafeArea(.all)
                 let title = board.isWhiteKingCaptured ? "Black pieces win!" : "White pieces win!"
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     Text(title)
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundStyle(.gameText)
@@ -285,7 +285,7 @@ struct ChessBoardView: View {
                 }
                 .padding()
                 .background(.gameBackground)
-                .cornerRadius(10)
+                .cornerRadius(5)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -296,7 +296,7 @@ struct ChessBoardView: View {
                 Color.black.opacity(0.4) // Dim background
                     .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     Text("Confirm Exit")
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundStyle(.gameText)
@@ -322,7 +322,7 @@ struct ChessBoardView: View {
                 }
                 .padding()
                 .background(.gameBackground)
-                .cornerRadius(10)
+                .cornerRadius(5)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -333,7 +333,7 @@ struct ChessBoardView: View {
                 Color.black.opacity(0.4) // Dim background
                     .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     
                     Text("Game settings")
                         .font(Font.App.chalkboardSERegular.of(size: 24))
@@ -363,7 +363,7 @@ struct ChessBoardView: View {
                 }
                 .padding()
                 .background(.gameBackground)
-                .cornerRadius(10)
+                .cornerRadius(5)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

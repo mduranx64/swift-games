@@ -21,9 +21,9 @@ struct SGButton: View {
                 .font(Font.App.chalkboardSERegular.of(size: 16)) // Custom font
                 .foregroundColor(Color.gameText) // Custom text color
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10)) // Rounded corners
+        .clipShape(RoundedRectangle(cornerRadius: 5)) // Rounded corners
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 5)
                 .stroke(Color.gameText, lineWidth: 1) // Rounded border
         )
     }

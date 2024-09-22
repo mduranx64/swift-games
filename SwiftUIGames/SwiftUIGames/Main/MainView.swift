@@ -23,18 +23,24 @@ struct MainView: View {
     
     // Sample game list
     let gameList: [GameItem] = [
-        GameItem(title: "Chess", image: Image(.chessCover), game: .chess),
-        GameItem(title: "Coming Soon", image: Image(systemName: "questionmark"), game: .comingSoon),
-        GameItem(title: "Coming Soon", image: Image(systemName: "questionmark"), game: .comingSoon),
-        GameItem(title: "Coming Soon", image: Image(systemName: "questionmark"), game: .comingSoon),
-        GameItem(title: "Coming Soon", image: Image(systemName: "questionmark"), game: .comingSoon),
-        GameItem(title: "Coming Soon", image: Image(systemName: "questionmark"), game: .comingSoon)
+        GameItem(title: "Chess", image: Image(.chessCover), game: .chess)
     ]
     
-    let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    var columns: [GridItem]{
+        if orientation == .portrait || orientation == .unknown {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     init() {
         let appearance = UINavigationBarAppearance()
@@ -62,6 +68,7 @@ struct MainView: View {
     @State private var selectedGame: Game = .chess
     @State private var isModalPresented = false
     @State private var showInfoAlert = false
+    @State private var orientation = UIDevice.current.orientation
     
     var body: some View {
         GeometryReader { geometry in
@@ -90,7 +97,9 @@ struct MainView: View {
                 })
                 .fullScreenCover(isPresented: $isModalPresented) {
                     navigateToGame(selectedGame)
-                }
+                }.detectOrientation($orientation)
+                    
+                
             }
             .onAppear {
                 // Ensure the navigation view is fully ready before making UI updates
@@ -101,7 +110,7 @@ struct MainView: View {
                 Color.black.opacity(0.4) // Dim background
                     .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     Image(.dev)
                         .resizable()
                         .scaledToFit()
@@ -115,6 +124,7 @@ struct MainView: View {
                         .font(Font.App.chalkboardSERegular.of(size: 18))
                         .foregroundStyle(.gameText)
                         .multilineTextAlignment(.center)
+                        .lineLimit(nil)
                     URL(string: "https://github.com/mduranx64/swift-games").map({
                         Link("Visit the repository on Github to contribute", destination: $0)
                             .font(Font.App.chalkboardSERegular.of(size: 18))
@@ -133,9 +143,8 @@ struct MainView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .padding()
                 .background(.gameBackground)
-                .cornerRadius(10)
+                .cornerRadius(5)
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
