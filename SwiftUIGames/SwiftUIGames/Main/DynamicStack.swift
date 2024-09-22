@@ -13,15 +13,18 @@ struct DynamicStack<Content: View>: View {
     var spacing: CGFloat?
     @ViewBuilder var content: () -> Content
     
-    @Environment(\.verticalSizeClass) private var sizeClass
+    @Environment(\.verticalSizeClass) private var vSizeClass
+    @Environment(\.horizontalSizeClass) private var hSizeClass
 
     var body: some View {
-        switch sizeClass {
-        case .regular:
+        switch (vSizeClass, hSizeClass) {
+        case (.regular, .compact):
             vStack
-        case .compact, .none:
+        case (.compact, .regular):
             hStack
-        @unknown default:
+        case (.regular, .regular):
+            hStack
+        default:
             vStack
         }
     }
