@@ -139,10 +139,10 @@ struct MainView: View {
                         SGButton(title: "Accept", action: {
                             showInfoAlert = false // Cancel action
                         })
-                        .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }
+                .padding()
                 .background(.gameBackground)
                 .cornerRadius(5)
                 .frame(maxWidth: geometry.size.width * 0.8)

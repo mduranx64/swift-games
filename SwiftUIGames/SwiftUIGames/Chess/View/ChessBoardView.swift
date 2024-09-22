@@ -53,6 +53,7 @@ struct ChessBoardView: View {
                                         .frame(width: squareSize, height: squareSize)
                                 }
                             }.frame(width: gridSize, height: captureSize)
+                            
                         } else {
                             LazyHGrid(rows: captureRows, spacing: 0) {
                                 ForEach(0..<board.whiteCapture.count, id: \.self) { index in
@@ -65,12 +66,12 @@ struct ChessBoardView: View {
                             }.frame(width: captureSize, height: gridSize)
                         }
                         
-                            VStack {
-                                Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
-                                Text("Black move")
-                                    .font(Font.App.chalkboardSERegular.of(size: 14))
-                                    .foregroundStyle(.black)
-                            }.opacity(board.currentTurn == .black ? 1 : 0)
+                        VStack {
+                            Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
+                            Text("Black move")
+                                .font(Font.App.chalkboardSERegular.of(size: 14))
+                                .foregroundStyle(.black)
+                        }.opacity(board.currentTurn == .black ? 1 : 0)
                         
                         // Pushes the grid to the vertical center
                         VStack(spacing: 0) {
@@ -157,12 +158,12 @@ struct ChessBoardView: View {
                             .background(.gray)
                             .edgesIgnoringSafeArea(.all)
                         
-                            VStack {
-                                Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
-                                Text("White move")
-                                    .font(Font.App.chalkboardSERegular.of(size: 14))
-                                    .foregroundStyle(.white)
-                            }.opacity(board.currentTurn == .white ? 1 : 0)
+                        VStack {
+                            Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
+                            Text("White move")
+                                .font(Font.App.chalkboardSERegular.of(size: 14))
+                                .foregroundStyle(.white)
+                        }.opacity(board.currentTurn == .white ? 1 : 0)
                         
                         if orientation == .portrait || orientation == .unknown {
                             LazyVGrid(columns: captureRows, spacing: 0) {
@@ -205,9 +206,9 @@ struct ChessBoardView: View {
                         debugPrint("ChessBoardView appeared")
                     }
                     .detectOrientation($orientation)
-                    .navigationBarHidden(orientation == .landscapeLeft || orientation == .landscapeRight)
+                    
                 }
-            }.edgesIgnoringSafeArea(.all)
+            }
             
             if showPawnAlert {
                 Color.black.opacity(0.4) // Dim background
@@ -246,7 +247,6 @@ struct ChessBoardView: View {
                             showPawnAlert = false
                             board.promotePiece(type: promotedPieceType)
                         })
-                        .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -279,7 +279,6 @@ struct ChessBoardView: View {
                         SGButton(title: "Accept", action: {
                             dismiss()
                         })
-                        .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -311,12 +310,10 @@ struct ChessBoardView: View {
                         SGButton(title: "Cancel", action: {
                             showCustomAlert = false
                         })
-                        .padding()
-                        
+                        Spacer(minLength: 16)
                         SGButton(title: "Accept", action: {
                             dismiss()
                         })
-                        .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -339,24 +336,25 @@ struct ChessBoardView: View {
                         .font(Font.App.chalkboardSERegular.of(size: 24))
                         .foregroundStyle(.gameText)
                     
-                        Picker("Board theme", selection: $theme) {
-                            Text("Black").tag(BoardTheme.black)
-                                .font(Font.App.chalkboardSERegular.of(size: 18))
-                                .foregroundStyle(.gameText)
-                            Text("Brown").tag(BoardTheme.brown)
-                                .font(Font.App.chalkboardSERegular.of(size: 18))
-                                .foregroundStyle(.gameText)
-                        }
-                        .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundStyle(.gameText)
-                        .pickerStyle(.segmented)
+                    Picker("Board theme", selection: $theme) {
+                        Text("Black").tag(BoardTheme.black)
+                            .font(Font.App.chalkboardSERegular.of(size: 18))
+                            .foregroundStyle(.gameText)
+                        Text("Brown").tag(BoardTheme.brown)
+                            .font(Font.App.chalkboardSERegular.of(size: 18))
+                            .foregroundStyle(.gameText)
+                    }
+                    .font(Font.App.chalkboardSERegular.of(size: 24))
+                    .foregroundStyle(.gameText)
+                    .pickerStyle(.segmented)
+                    .padding(.bottom, 8)
+                
                     
                     HStack {
                         
                         SGButton(title: "Accept", action: {
                             showMenuAlert = false
                         })
-                        .padding()
                         
                     }
                     .frame(maxWidth: .infinity)
