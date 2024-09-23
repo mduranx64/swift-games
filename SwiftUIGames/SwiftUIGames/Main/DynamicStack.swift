@@ -24,6 +24,8 @@ struct DynamicStack<Content: View>: View {
             hStack
         case (.regular, .regular):
             hStack
+        case (.compact, .compact):
+            hStack
         default:
             vStack
         }
