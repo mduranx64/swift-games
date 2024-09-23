@@ -31,346 +31,343 @@ struct ChessBoardView: View {
     
     var body: some View {
         
-        GeometryReader { geometry in
-            let squares1: CGFloat = 8.0
-            let gridSize1 = min(geometry.size.width, geometry.size.height)
-            let squareSize1 = gridSize1 / squares1
-            NavigationView {
+        NavigationView {
+            
+            Color.gameBackground.ignoresSafeArea(.all).overlay {
                 
-                Color.gameBackground.ignoresSafeArea(.all).overlay {
+                GeometryReader { geometry in
+                    let squares: CGFloat = 8.0
+                    let gridSize = min(geometry.size.width, geometry.size.height)
+                    let squareSize = gridSize / squares
                     
-                    GeometryReader { geometry2 in
-                        let squares: CGFloat = 8.0
-                        let gridSize = min(geometry2.size.width, geometry2.size.height)
-                        let squareSize = gridSize / squares
+                    DynamicStack(spacing: 8) {
+                        Spacer()
                         
-                        DynamicStack(spacing: 8) {
-                            Spacer().Print(geometry.size).Print(geometry2.size)
+                        let captureSize = board.blackCapture.count > 8 || board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
+                        
+                        if orientation == .portrait || orientation == .unknown {
+                            LazyVGrid(columns: captureRows, spacing: 0) {
+                                ForEach(0..<board.whiteCapture.count, id: \.self) { index in
+                                    let pieceImage = board.whiteCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize, height: squareSize)
+                                }
+                            }.frame(width: gridSize, height: captureSize)
                             
-                            let captureSize = board.blackCapture.count > 8 || board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
+                        } else {
+                            LazyHGrid(rows: captureRows, spacing: 0) {
+                                ForEach(0..<board.whiteCapture.count, id: \.self) { index in
+                                    let pieceImage = board.whiteCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize, height: squareSize)
+                                }
+                            }.frame(width: captureSize, height: gridSize)
+                        }
+                        
+                        VStack {
+                            Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
+                            Text("Black move")
+                                .font(Font.App.chalkboardSERegular.of(size: 14))
+                                .foregroundStyle(.black)
+                        }.opacity(board.currentTurn == .black ? 1 : 0)
+                        
+                        // Pushes the grid to the vertical center
+                        VStack(spacing: 0) {
                             
-                            if orientation == .portrait || orientation == .unknown {
-                                LazyVGrid(columns: captureRows, spacing: 0) {
-                                    ForEach(0..<board.whiteCapture.count, id: \.self) { index in
-                                        let pieceImage = board.whiteCapture[index].pieceImage
-                                        Image(pieceImage) // Replace with custom image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: squareSize, height: squareSize)
-                                    }
-                                }.frame(width: gridSize, height: captureSize)
-                                
-                            } else {
-                                LazyHGrid(rows: captureRows, spacing: 0) {
-                                    ForEach(0..<board.whiteCapture.count, id: \.self) { index in
-                                        let pieceImage = board.whiteCapture[index].pieceImage
-                                        Image(pieceImage) // Replace with custom image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: squareSize, height: squareSize)
-                                    }
-                                }.frame(width: captureSize, height: gridSize)
-                            }
-                            
-                            VStack {
-                                Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
-                                Text("Black move")
-                                    .font(Font.App.chalkboardSERegular.of(size: 14))
-                                    .foregroundStyle(.black)
-                            }.opacity(board.currentTurn == .black ? 1 : 0)
-                            
-                            // Pushes the grid to the vertical center
-                            VStack(spacing: 0) {
-                                
-                                ZStack {
-                                    //Board
-                                    VStack(spacing: 0) {
-                                        
-                                        // Embed LazyHGrid in a square with 32 points padding on each side
-                                        LazyHGrid(rows: rows, spacing: 0) {
-                                            ForEach(0..<64, id: \.self) { index in
-                                                // Determine row and column based on the index
-                                                let row = index % Int(squares)
-                                                let column = index / Int(squares)
-                                                
-                                                // Alternate color based on row and column
-                                                let isLight = (row + column) % 2 == 0
-                                                
-                                                let image: ImageResource = getBoardImage(isLight: isLight)
-                                                
-                                                let color = isLight ? Color.black : Color.white
-                                                let numberGuide: String = index < numbers.count ? numbers[index] : ""
-                                                let letterGuide: String = row == 7 ? letters[column] : ""
-                                                
-                                                ZStack(alignment: .bottomTrailing) {
-                                                    ZStack(alignment: .topLeading) {
-                                                        Image(image) // Replace with custom image
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: squareSize, height: squareSize)
-                                                        Text("\(numberGuide)")
-                                                            .font(Font.App.chalkboardSERegular.of(size: 14))
-                                                            .foregroundStyle(color)
-                                                            .padding(EdgeInsets(top: -4, leading: 0, bottom: 0, trailing: 0))
-                                                    }
-                                                    Text("\(letterGuide)")
+                            ZStack {
+                                //Board
+                                VStack(spacing: 0) {
+                                    
+                                    // Embed LazyHGrid in a square with 32 points padding on each side
+                                    LazyHGrid(rows: rows, spacing: 0) {
+                                        ForEach(0..<64, id: \.self) { index in
+                                            // Determine row and column based on the index
+                                            let row = index % Int(squares)
+                                            let column = index / Int(squares)
+                                            
+                                            // Alternate color based on row and column
+                                            let isLight = (row + column) % 2 == 0
+                                            
+                                            let image: ImageResource = getBoardImage(isLight: isLight)
+                                            
+                                            let color = isLight ? Color.black : Color.white
+                                            let numberGuide: String = index < numbers.count ? numbers[index] : ""
+                                            let letterGuide: String = row == 7 ? letters[column] : ""
+                                            
+                                            ZStack(alignment: .bottomTrailing) {
+                                                ZStack(alignment: .topLeading) {
+                                                    Image(image) // Replace with custom image
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: squareSize, height: squareSize)
+                                                    Text("\(numberGuide)")
                                                         .font(Font.App.chalkboardSERegular.of(size: 14))
                                                         .foregroundStyle(color)
                                                         .padding(EdgeInsets(top: -4, leading: 0, bottom: 0, trailing: 0))
                                                 }
+                                                Text("\(letterGuide)")
+                                                    .font(Font.App.chalkboardSERegular.of(size: 14))
+                                                    .foregroundStyle(color)
+                                                    .padding(EdgeInsets(top: -4, leading: 0, bottom: 0, trailing: 0))
                                             }
                                         }
-                                        
                                     }
-                                    .frame(width: gridSize, height: gridSize)
                                     
-                                    // Pieces
-                                    VStack(spacing: 0) {
-                                        
-                                        LazyHGrid(rows: rows, spacing: 0) {
-                                            ForEach(0..<board.pieces.count, id: \.self) { x in
-                                                
-                                                let row = board.pieces[x]
-                                                
-                                                HStack(spacing: 0) {
-                                                    ForEach(0..<row.count, id: \.self) { y in
-                                                        let pieceImage = row[y]?.pieceImage ?? .empty
-                                                        let position = Position(x: x, y: y)
-                                                        Image(pieceImage) // Replace with custom image
-                                                            .resizable()
-                                                            .padding(2)
-                                                            .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
-                                                            .frame(width: squareSize , height: squareSize)
-                                                            .onTapGesture {
-                                                                board.selectPiece(at: position)
-                                                                if board.isBlackKingCaptured || board.isWhiteKingCaptured {
-                                                                    showWinAlert = true
-                                                                }
-                                                                if board.isPiecePromoted {
-                                                                    showPawnAlert = true
-                                                                }
+                                }
+                                .frame(width: gridSize, height: gridSize)
+                                
+                                // Pieces
+                                VStack(spacing: 0) {
+                                    
+                                    LazyHGrid(rows: rows, spacing: 0) {
+                                        ForEach(0..<board.pieces.count, id: \.self) { x in
+                                            
+                                            let row = board.pieces[x]
+                                            
+                                            HStack(spacing: 0) {
+                                                ForEach(0..<row.count, id: \.self) { y in
+                                                    let pieceImage = row[y]?.pieceImage ?? .empty
+                                                    let position = Position(x: x, y: y)
+                                                    Image(pieceImage) // Replace with custom image
+                                                        .resizable()
+                                                        .padding(2)
+                                                        .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
+                                                        .frame(width: squareSize , height: squareSize)
+                                                        .onTapGesture {
+                                                            board.selectPiece(at: position)
+                                                            if board.isBlackKingCaptured || board.isWhiteKingCaptured {
+                                                                showWinAlert = true
                                                             }
-                                                    }
+                                                            if board.isPiecePromoted {
+                                                                showPawnAlert = true
+                                                            }
+                                                        }
                                                 }
                                             }
                                         }
                                     }
-                                    .frame(width: gridSize, height: gridSize)
                                 }
-                                
-                            }.frame(width: gridSize, height: gridSize)
-                            
-                            
-                            VStack {
-                                Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
-                                Text("White move")
-                                    .font(Font.App.chalkboardSERegular.of(size: 14))
-                                    .foregroundStyle(.white)
-                            }.opacity(board.currentTurn == .white ? 1 : 0)
-                            
-                            if orientation == .portrait || orientation == .unknown {
-                                LazyVGrid(columns: captureRows, spacing: 0) {
-                                    ForEach(0..<board.blackCapture.count, id: \.self) { index in
-                                        let pieceImage = board.blackCapture[index].pieceImage
-                                        Image(pieceImage) // Replace with custom image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: squareSize ,height: squareSize)
-                                        
-                                    }
-                                }.frame(width: gridSize, height: captureSize)
-                            } else {
-                                LazyHGrid(rows: captureRows, spacing: 0) {
-                                    ForEach(0..<board.blackCapture.count, id: \.self) { index in
-                                        let pieceImage = board.blackCapture[index].pieceImage
-                                        Image(pieceImage) // Replace with custom image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: squareSize ,height: squareSize)
-                                        
-                                    }
-                                }.frame(width: captureSize, height: gridSize)
+                                .frame(width: gridSize, height: gridSize)
                             }
                             
-                            Spacer() // Pushes the grid to the vertical center
+                        }.frame(width: gridSize, height: gridSize)
+                        
+                        
+                        VStack {
+                            Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
+                            Text("White move")
+                                .font(Font.App.chalkboardSERegular.of(size: 14))
+                                .foregroundStyle(.white)
+                        }.opacity(board.currentTurn == .white ? 1 : 0)
+                        
+                        if orientation == .portrait || orientation == .unknown {
+                            LazyVGrid(columns: captureRows, spacing: 0) {
+                                ForEach(0..<board.blackCapture.count, id: \.self) { index in
+                                    let pieceImage = board.blackCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize ,height: squareSize)
+                                    
+                                }
+                            }.frame(width: gridSize, height: captureSize)
+                        } else {
+                            LazyHGrid(rows: captureRows, spacing: 0) {
+                                ForEach(0..<board.blackCapture.count, id: \.self) { index in
+                                    let pieceImage = board.blackCapture[index].pieceImage
+                                    Image(pieceImage) // Replace with custom image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: squareSize ,height: squareSize)
+                                    
+                                }
+                            }.frame(width: captureSize, height: gridSize)
+                        }
+                        
+                        Spacer() // Pushes the grid to the vertical center
+                        
+                    }
+                    .navigationBarTitle("Chess", displayMode: .inline)
+                    .navigationBarItems(trailing: Button(action: {
+                        showMenuAlert = true
+                    }) {
+                        Image(systemName: "gamecontroller")
+                    })
+                    .navigationBarItems(leading: Button(action: {
+                        showCustomAlert = true
+                    }) {
+                        Image(systemName: "xmark.circle")
+                    }).onAppear{
+                        debugPrint("ChessBoardView appeared")
+                    }
+                    .detectOrientation($orientation)
+                    
+                    if showPawnAlert {
+                        Color.black.opacity(0.4) // Dim background
+                            .edgesIgnoringSafeArea(.all)
+                        let title = board.isWhiteKingCaptured ? "Black pawn promotion!" : "White pawn promotion!"
+                        VStack(spacing: 8) {
+                            Text(title)
+                                .font(Font.App.chalkboardSERegular.of(size: 24))
+                                .foregroundStyle(.gameText)
                             
+                            Text("Game settings")
+                                .font(Font.App.chalkboardSERegular.of(size: 18))
+                                .foregroundStyle(.gameText)
+                            
+                            Picker("Select a piece type", selection: $promotedPieceType) {
+                                Text("Queen").tag(PieceType.queen)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundStyle(.gameText)
+                                Text("Knight").tag(PieceType.knight)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundStyle(.gameText)
+                                Text("Bishop").tag(PieceType.bishop)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundStyle(.gameText)
+                                Text("Rook").tag(PieceType.rook)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundStyle(.gameText)
+                            }
+                            .pickerStyle(.menu)
+                            .font(Font.App.chalkboardSERegular.of(size: 18))
+                            .foregroundStyle(.gameText)
+                            .tint(.gameText)
+                            
+                            HStack {
+                                SGButton(title: "Accept", action: {
+                                    showPawnAlert = false
+                                    board.promotePiece(type: promotedPieceType)
+                                })
+                            }
+                            .frame(maxWidth: .infinity)
                         }
-                        .navigationBarTitle("Chess", displayMode: .inline)
-                        .navigationBarItems(trailing: Button(action: {
-                            showMenuAlert = true
-                        }) {
-                            Image(systemName: "gamecontroller")
-                        })
-                        .navigationBarItems(leading: Button(action: {
-                            showCustomAlert = true
-                        }) {
-                            Image(systemName: "xmark.circle")
-                        }).onAppear{
-                            debugPrint("ChessBoardView appeared")
+                        .padding()
+                        .background(.gameBackground)
+                        .cornerRadius(5)
+                        .frame(maxWidth: geometry.size.width * 0.8)
+                        .transition(.scale) // Add a transition effect
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .zIndex(1) // Ensure it appears above other views
+                    }
+                    
+                    if showWinAlert {
+                        Color.black.opacity(0.4) // Dim background
+                            .edgesIgnoringSafeArea(.all)
+                        let title = board.isWhiteKingCaptured ? "Black pieces win!" : "White pieces win!"
+                        VStack(spacing: 8) {
+                            Text(title)
+                                .font(Font.App.chalkboardSERegular.of(size: 24))
+                                .foregroundStyle(.gameText)
+                            
+                            let imageName: ImageResource = board.isWhiteKingCaptured ? .bKing : .wKing
+                            Image(imageName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: squareSize ,height: squareSize)
+                            
+                            HStack {
+                                
+                                SGButton(title: "Accept", action: {
+                                    dismiss()
+                                })
+                            }
+                            .frame(maxWidth: .infinity)
                         }
-                        .detectOrientation($orientation)
+                        .padding()
+                        .background(.gameBackground)
+                        .cornerRadius(5)
+                        .frame(maxWidth: geometry.size.width * 0.8)
+                        .transition(.scale) // Add a transition effect
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .zIndex(1) // Ensure it appears above other views
                     }
                     
-                }
-            }
-            
-            if showPawnAlert {
-                Color.black.opacity(0.4) // Dim background
-                    .edgesIgnoringSafeArea(.all)
-                let title = board.isWhiteKingCaptured ? "Black pawn promotion!" : "White pawn promotion!"
-                VStack(spacing: 8) {
-                    Text(title)
-                        .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundStyle(.gameText)
-                    
-                    Text("Game settings")
-                        .font(Font.App.chalkboardSERegular.of(size: 18))
-                        .foregroundStyle(.gameText)
-                    
-                    Picker("Select a piece type", selection: $promotedPieceType) {
-                        Text("Queen").tag(PieceType.queen)
-                            .font(Font.App.chalkboardSERegular.of(size: 18))
-                            .foregroundStyle(.gameText)
-                        Text("Knight").tag(PieceType.knight)
-                            .font(Font.App.chalkboardSERegular.of(size: 18))
-                            .foregroundStyle(.gameText)
-                        Text("Bishop").tag(PieceType.bishop)
-                            .font(Font.App.chalkboardSERegular.of(size: 18))
-                            .foregroundStyle(.gameText)
-                        Text("Rook").tag(PieceType.rook)
-                            .font(Font.App.chalkboardSERegular.of(size: 18))
-                            .foregroundStyle(.gameText)
-                    }
-                    .pickerStyle(.menu)
-                    .font(Font.App.chalkboardSERegular.of(size: 18))
-                    .foregroundStyle(.gameText)
-                    .tint(.gameText)
-                    
-                    HStack {
-                        SGButton(title: "Accept", action: {
-                            showPawnAlert = false
-                            board.promotePiece(type: promotedPieceType)
-                        })
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .padding()
-                .background(.gameBackground)
-                .cornerRadius(5)
-                .frame(maxWidth: geometry.size.width * 0.8)
-                .transition(.scale) // Add a transition effect
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .zIndex(1) // Ensure it appears above other views
-            }
-            
-            if showWinAlert {
-                Color.black.opacity(0.4) // Dim background
-                    .edgesIgnoringSafeArea(.all)
-                let title = board.isWhiteKingCaptured ? "Black pieces win!" : "White pieces win!"
-                VStack(spacing: 8) {
-                    Text(title)
-                        .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundStyle(.gameText)
-                    
-                    let imageName: ImageResource = board.isWhiteKingCaptured ? .bKing : .wKing
-                    Image(imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: squareSize1 ,height: squareSize1)
-                    
-                    HStack {
+                    if showCustomAlert {
+                        Color.black.opacity(0.4) // Dim background
+                            .edgesIgnoringSafeArea(.all)
                         
-                        SGButton(title: "Accept", action: {
-                            dismiss()
-                        })
+                        VStack(spacing: 8) {
+                            Text("Confirm Exit")
+                                .font(Font.App.chalkboardSERegular.of(size: 24))
+                                .foregroundStyle(.gameText)
+                            
+                            Text("Are you sure you want to exit the game?")
+                                .font(Font.App.chalkboardSERegular.of(size: 18))
+                                .foregroundStyle(.gameText)
+                                .multilineTextAlignment(.center)
+                            
+                            HStack {
+                                
+                                SGButton(title: "Cancel", action: {
+                                    showCustomAlert = false
+                                })
+                                Spacer(minLength: 16)
+                                SGButton(title: "Accept", action: {
+                                    dismiss()
+                                })
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding()
+                        .background(.gameBackground)
+                        .cornerRadius(5)
+                        .frame(maxWidth: geometry.size.width * 0.8)
+                        .transition(.scale) // Add a transition effect
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .zIndex(1) // Ensure it appears above other views
                     }
-                    .frame(maxWidth: .infinity)
+                    
+                    if showMenuAlert {
+                        Color.black.opacity(0.4) // Dim background
+                            .edgesIgnoringSafeArea(.all)
+                        
+                        VStack(spacing: 8) {
+                            
+                            Text("Game settings")
+                                .font(Font.App.chalkboardSERegular.of(size: 24))
+                                .foregroundStyle(.gameText)
+                            
+                            Picker("Board theme", selection: $theme) {
+                                Text("Black").tag(BoardTheme.black)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundStyle(.gameText)
+                                Text("Brown").tag(BoardTheme.brown)
+                                    .font(Font.App.chalkboardSERegular.of(size: 18))
+                                    .foregroundStyle(.gameText)
+                            }
+                            .font(Font.App.chalkboardSERegular.of(size: 24))
+                            .foregroundStyle(.gameText)
+                            .pickerStyle(.segmented)
+                            .padding(.bottom, 8)
+                            
+                            HStack {
+                                
+                                SGButton(title: "Accept", action: {
+                                    showMenuAlert = false
+                                })
+                                
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding()
+                        .background(.gameBackground)
+                        .cornerRadius(5)
+                        .frame(maxWidth: geometry.size.width * 0.8)
+                        .transition(.scale) // Add a transition effect
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .zIndex(1) // Ensure it appears above other views
+                    }
+                    
                 }
-                .padding()
-                .background(.gameBackground)
-                .cornerRadius(5)
-                .frame(maxWidth: geometry.size.width * 0.8)
-                .transition(.scale) // Add a transition effect
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .zIndex(1) // Ensure it appears above other views
-            }
-            
-            if showCustomAlert {
-                Color.black.opacity(0.4) // Dim background
-                    .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 8) {
-                    Text("Confirm Exit")
-                        .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundStyle(.gameText)
-                    
-                    Text("Are you sure you want to exit the game?")
-                        .font(Font.App.chalkboardSERegular.of(size: 18))
-                        .foregroundStyle(.gameText)
-                        .multilineTextAlignment(.center)
-                    
-                    HStack {
-                        
-                        SGButton(title: "Cancel", action: {
-                            showCustomAlert = false
-                        })
-                        Spacer(minLength: 16)
-                        SGButton(title: "Accept", action: {
-                            dismiss()
-                        })
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .padding()
-                .background(.gameBackground)
-                .cornerRadius(5)
-                .frame(maxWidth: geometry.size.width * 0.8)
-                .transition(.scale) // Add a transition effect
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .zIndex(1) // Ensure it appears above other views
-            }
-            
-            if showMenuAlert {
-                Color.black.opacity(0.4) // Dim background
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack(spacing: 8) {
-                    
-                    Text("Game settings")
-                        .font(Font.App.chalkboardSERegular.of(size: 24))
-                        .foregroundStyle(.gameText)
-                    
-                    Picker("Board theme", selection: $theme) {
-                        Text("Black").tag(BoardTheme.black)
-                            .font(Font.App.chalkboardSERegular.of(size: 18))
-                            .foregroundStyle(.gameText)
-                        Text("Brown").tag(BoardTheme.brown)
-                            .font(Font.App.chalkboardSERegular.of(size: 18))
-                            .foregroundStyle(.gameText)
-                    }
-                    .font(Font.App.chalkboardSERegular.of(size: 24))
-                    .foregroundStyle(.gameText)
-                    .pickerStyle(.segmented)
-                    .padding(.bottom, 8)
-                    
-                    HStack {
-                        
-                        SGButton(title: "Accept", action: {
-                            showMenuAlert = false
-                        })
-                        
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .padding()
-                .background(.gameBackground)
-                .cornerRadius(5)
-                .frame(maxWidth: geometry.size.width * 0.8)
-                .transition(.scale) // Add a transition effect
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .zIndex(1) // Ensure it appears above other views
             }
         }
+        
     }
     
     private func getBoardImage(isLight: Bool) -> ImageResource {
