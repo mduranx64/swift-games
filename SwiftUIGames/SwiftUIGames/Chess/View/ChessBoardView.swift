@@ -40,33 +40,26 @@ struct ChessBoardView: View {
                     let gridSize = min(geometry.size.width, geometry.size.height)
                     let squareSize = gridSize / squares
                     
-                    DynamicStack(spacing: 8) {
+                    DynamicStackOrientation(spacing: 8, orientation: $orientation) {
                         Spacer()
                         
                         let captureSize = squareSize / 2
+                        let captureWidth = orientation.isVertical ? gridSize : captureSize
+                        let captureHeight = orientation.isVertical ? captureSize : gridSize
                         
-                        if orientation == .portrait || orientation == .unknown {
-                            LazyVGrid(columns: captureRows, spacing: 0) {
-                                ForEach(0..<board.whiteCapture.count, id: \.self) { index in
-                                    let pieceImage = board.whiteCapture[index].pieceImage
-                                    Image(pieceImage) // Replace with custom image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: captureSize, height: captureSize)
-                                }
-                            }.frame(width: gridSize, height: captureSize)
-                            
-                        } else {
-                            LazyHGrid(rows: captureRows, spacing: 0) {
-                                ForEach(0..<board.whiteCapture.count, id: \.self) { index in
-                                    let pieceImage = board.whiteCapture[index].pieceImage
-                                    Image(pieceImage) // Replace with custom image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: captureSize, height: captureSize)
-                                }
-                            }.frame(width: captureSize, height: gridSize)
-                        }
+                        DynamicLazyGrid(
+                            gridItems: captureRows,
+                            orientation: $orientation
+                        ) {
+                            ForEach(0..<board.whiteCapture.count, id: \.self) { index in
+                                let pieceImage = board.whiteCapture[index].pieceImage
+                                Image(pieceImage) // Replace with custom image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: captureSize, height: captureSize)
+                            }
+                        }.frame(width: captureWidth, height: captureHeight)
+                        
                         
                         VStack {
                             Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
@@ -156,7 +149,6 @@ struct ChessBoardView: View {
                             
                         }.frame(width: gridSize, height: gridSize)
                         
-                        
                         VStack {
                             Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
                             Text("White move")
@@ -164,30 +156,19 @@ struct ChessBoardView: View {
                                 .foregroundStyle(.white)
                         }.opacity(board.currentTurn == .white ? 1 : 0)
                         
-                        if orientation == .portrait || orientation == .unknown {
-                            LazyVGrid(columns: captureRows, spacing: 0) {
-                                ForEach(0..<board.blackCapture.count, id: \.self) { index in
-                                    let pieceImage = board.blackCapture[index].pieceImage
-                                    Image(pieceImage) // Replace with custom image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: captureSize, height: captureSize)
-                                    
-                                }
-                            }.frame(width: gridSize, height: captureSize)
-                        } else {
-                            LazyHGrid(rows: captureRows, spacing: 0) {
-                                ForEach(0..<board.blackCapture.count, id: \.self) { index in
-                                    let pieceImage = board.blackCapture[index].pieceImage
-                                    Image(pieceImage) // Replace with custom image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: captureSize, height: captureSize)
-                                    
-                                }
-                            }.frame(width: captureSize, height: gridSize)
-                        }
-                        
+                        DynamicLazyGrid(
+                            gridItems: captureRows,
+                            orientation: $orientation
+                        ) {
+                            ForEach(0..<board.blackCapture.count, id: \.self) { index in
+                                let pieceImage = board.blackCapture[index].pieceImage
+                                Image(pieceImage) // Replace with custom image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: captureSize, height: captureSize)
+                            }
+                        }.frame(width: captureWidth, height: captureHeight)
+                    
                         Spacer() // Pushes the grid to the vertical center
                         
                     }

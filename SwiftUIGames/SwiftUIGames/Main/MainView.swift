@@ -27,7 +27,7 @@ struct MainView: View {
     ]
     
     var columns: [GridItem]{
-        if orientation == .portrait || orientation == .unknown {
+        if orientation.isVertical {
             return [
                 GridItem(.flexible()),
                 GridItem(.flexible())

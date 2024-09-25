@@ -24,6 +24,9 @@
 		499F24712C8A804C00976C10 /* PieceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24702C8A804C00976C10 /* PieceExtension.swift */; };
 		49A6E6A12C8C093B008DAE30 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A02C8C093B008DAE30 /* GameView.swift */; };
 		49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A22C8C098F008DAE30 /* MainView.swift */; };
+		49E150C42CA3953B000F5698 /* DynamicStackOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E150C32CA39523000F5698 /* DynamicStackOrientation.swift */; };
+		49E150C62CA39642000F5698 /* DynamicLazyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E150C52CA39638000F5698 /* DynamicLazyGrid.swift */; };
+		49E150C82CA39A19000F5698 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E150C72CA39A0C000F5698 /* Extensions.swift */; };
 		49E342AE2C8CF90A007D9CB6 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E342AD2C8CF90A007D9CB6 /* FontExtension.swift */; };
 		49E342B02C8D77B9007D9CB6 /* DetectOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,9 @@
 		49A6E6A22C8C098F008DAE30 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49A6E6A42C8CCCEF008DAE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		49D6D1202C934F0A00808D0F /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
+		49E150C32CA39523000F5698 /* DynamicStackOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStackOrientation.swift; sourceTree = "<group>"; };
+		49E150C52CA39638000F5698 /* DynamicLazyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLazyGrid.swift; sourceTree = "<group>"; };
+		49E150C72CA39A0C000F5698 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49E342AD2C8CF90A007D9CB6 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectOrientation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,10 +205,13 @@
 		49E342AC2C8CEB46007D9CB6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				49E150C72CA39A0C000F5698 /* Extensions.swift */,
+				49E150C52CA39638000F5698 /* DynamicLazyGrid.swift */,
 				49A6E6A02C8C093B008DAE30 /* GameView.swift */,
 				49A6E6A22C8C098F008DAE30 /* MainView.swift */,
 				49E342AF2C8D77B9007D9CB6 /* DetectOrientation.swift */,
 				49973E642C8DFAD700CDF24F /* DynamicStack.swift */,
+				49E150C32CA39523000F5698 /* DynamicStackOrientation.swift */,
 				49973E662C8E15ED00CDF24F /* BundleExtension.swift */,
 				49973E682C8E1A5F00CDF24F /* SGButton.swift */,
 			);
@@ -273,7 +282,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					4902EF1D2C894BA8001E488D = {
 						CreatedOnToolsVersion = 15.4;
@@ -339,11 +348,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49E150C82CA39A19000F5698 /* Extensions.swift in Sources */,
 				499F24712C8A804C00976C10 /* PieceExtension.swift in Sources */,
 				49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */,
 				49973E652C8DFAD700CDF24F /* DynamicStack.swift in Sources */,
 				49E342B02C8D77B9007D9CB6 /* DetectOrientation.swift in Sources */,
 				49E342AE2C8CF90A007D9CB6 /* FontExtension.swift in Sources */,
+				49E150C42CA3953B000F5698 /* DynamicStackOrientation.swift in Sources */,
 				4902EF242C894BA8001E488D /* ChessBoardView.swift in Sources */,
 				4902EF222C894BA8001E488D /* SwiftUIGamesApp.swift in Sources */,
 				499F24652C8A7E4F00976C10 /* Board.swift in Sources */,
@@ -351,6 +362,7 @@
 				499F24632C8A7DCC00976C10 /* Piece.swift in Sources */,
 				49973E672C8E15ED00CDF24F /* BundleExtension.swift in Sources */,
 				49973E692C8E1A5F00CDF24F /* SGButton.swift in Sources */,
+				49E150C62CA39642000F5698 /* DynamicLazyGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +596,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -607,7 +618,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -630,7 +640,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -651,7 +660,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49D6D1202C934F0A00808D0F /* project.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
