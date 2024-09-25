@@ -43,7 +43,7 @@ struct ChessBoardView: View {
                     DynamicStack(spacing: 8) {
                         Spacer()
                         
-                        let captureSize = board.blackCapture.count > 8 || board.whiteCapture.count > 8 ? squareSize * 2 : squareSize
+                        let captureSize = squareSize / 2
                         
                         if orientation == .portrait || orientation == .unknown {
                             LazyVGrid(columns: captureRows, spacing: 0) {
@@ -52,7 +52,7 @@ struct ChessBoardView: View {
                                     Image(pieceImage) // Replace with custom image
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: squareSize, height: squareSize)
+                                        .frame(width: captureSize, height: captureSize)
                                 }
                             }.frame(width: gridSize, height: captureSize)
                             
@@ -63,7 +63,7 @@ struct ChessBoardView: View {
                                     Image(pieceImage) // Replace with custom image
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: squareSize, height: squareSize)
+                                        .frame(width: captureSize, height: captureSize)
                                 }
                             }.frame(width: captureSize, height: gridSize)
                         }
@@ -136,7 +136,7 @@ struct ChessBoardView: View {
                                                         .resizable()
                                                         .padding(2)
                                                         .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
-                                                        .frame(width: squareSize , height: squareSize)
+                                                        .frame(width: squareSize, height: squareSize)
                                                         .onTapGesture {
                                                             board.selectPiece(at: position)
                                                             if board.isBlackKingCaptured || board.isWhiteKingCaptured {
@@ -171,7 +171,7 @@ struct ChessBoardView: View {
                                     Image(pieceImage) // Replace with custom image
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: squareSize ,height: squareSize)
+                                        .frame(width: captureSize, height: captureSize)
                                     
                                 }
                             }.frame(width: gridSize, height: captureSize)
@@ -182,7 +182,7 @@ struct ChessBoardView: View {
                                     Image(pieceImage) // Replace with custom image
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: squareSize ,height: squareSize)
+                                        .frame(width: captureSize, height: captureSize)
                                     
                                 }
                             }.frame(width: captureSize, height: gridSize)
