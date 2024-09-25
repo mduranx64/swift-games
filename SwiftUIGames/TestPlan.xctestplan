@@ -25,6 +25,7 @@
       }
     },
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:SwiftUIGames.xcodeproj",
         "identifier" : "4902EF392C894BA9001E488D",

@@ -63,7 +63,7 @@ struct ChessBoardView: View {
                         
                         VStack {
                             Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
-                            Text("Black move")
+                            Text("Black moves")
                                 .font(Font.App.chalkboardSERegular.of(size: 14))
                                 .foregroundStyle(.black)
                         }.opacity(board.currentTurn == .black ? 1 : 0)
@@ -151,7 +151,7 @@ struct ChessBoardView: View {
                         
                         VStack {
                             Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
-                            Text("White move")
+                            Text("White moves")
                                 .font(Font.App.chalkboardSERegular.of(size: 14))
                                 .foregroundStyle(.white)
                         }.opacity(board.currentTurn == .white ? 1 : 0)
