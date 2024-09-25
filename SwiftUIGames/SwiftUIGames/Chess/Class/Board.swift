@@ -66,7 +66,7 @@ public class Board: ObservableObject {
 
         if let from = selectedPosition, getPieceAt(newPosition)?.type != nil && getPieceAt(from) != nil {
             if getPieceAt(from)?.color == getPieceAt(newPosition)?.color,
-               getPieceAt(from)?.type == .rook,
+               getPieceAt(from)?.type == .king,
                getPieceAt(newPosition)?.type == .rook {
                 
                 if movePiece(from: from, to: newPosition) {
