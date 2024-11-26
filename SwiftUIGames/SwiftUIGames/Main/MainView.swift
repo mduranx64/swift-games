@@ -150,10 +150,15 @@ struct MainView: View {
                 .padding()
                 .background(.gameBackground)
                 .cornerRadius(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.gameText, lineWidth: 1) // Rounded border
+                )
                 .frame(maxWidth: geometry.size.width * 0.8)
                 .transition(.scale) // Add a transition effect
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .zIndex(1) // Ensure it appears above other views
+                
             }
         }
     }

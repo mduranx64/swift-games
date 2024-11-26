@@ -25,7 +25,7 @@ struct GameView: View {
                 .multilineTextAlignment(.center)
         }
         .padding()
-        .background(Color.viewBackground)
+        .background(Color.gameBackground)
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
