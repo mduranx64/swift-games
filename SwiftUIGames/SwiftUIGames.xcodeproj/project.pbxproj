@@ -308,6 +308,7 @@
 				en,
 				Base,
 				"es-419",
+				"pt-BR",
 			);
 			mainGroup = 4902EF152C894BA8001E488D;
 			productRefGroup = 4902EF1F2C894BA8001E488D /* Products */;
