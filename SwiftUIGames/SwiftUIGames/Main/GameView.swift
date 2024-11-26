@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-    var title: String
+    var title: LocalizedStringResource
     var image: Image
     
     var body: some View {

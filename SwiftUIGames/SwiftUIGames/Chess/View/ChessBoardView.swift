@@ -220,7 +220,9 @@ struct ChessBoardView: View {
                             .tint(.gameText)
                             
                             HStack {
-                                SGButton(title: "Accept", action: {
+                                SGButton(
+                                    title: "Accept",
+                                    action: {
                                     showPawnAlert = false
                                     board.promotePiece(type: promotedPieceType)
                                 })
@@ -253,7 +255,9 @@ struct ChessBoardView: View {
                             
                             HStack {
                                 
-                                SGButton(title: "Accept", action: {
+                                SGButton(
+                                    title: "Accept",
+                                    action: {
                                     dismiss()
                                 })
                             }
@@ -284,11 +288,15 @@ struct ChessBoardView: View {
                             
                             HStack {
                                 
-                                SGButton(title: "Cancel", action: {
+                                SGButton(
+                                    title: "Cancel",
+                                    action: {
                                     showCustomAlert = false
                                 })
                                 Spacer(minLength: 16)
-                                SGButton(title: "Accept", action: {
+                                SGButton(
+                                    title: "Accept",
+                                    action: {
                                     dismiss()
                                 })
                             }
@@ -328,7 +336,9 @@ struct ChessBoardView: View {
                             
                             HStack {
                                 
-                                SGButton(title: "Accept", action: {
+                                SGButton(
+                                    title: "Accept",
+                                    action: {
                                     showMenuAlert = false
                                 })
                                 

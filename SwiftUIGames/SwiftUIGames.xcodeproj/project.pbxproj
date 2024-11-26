@@ -24,6 +24,7 @@
 		499F24712C8A804C00976C10 /* PieceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499F24702C8A804C00976C10 /* PieceExtension.swift */; };
 		49A6E6A12C8C093B008DAE30 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A02C8C093B008DAE30 /* GameView.swift */; };
 		49A6E6A32C8C098F008DAE30 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6E6A22C8C098F008DAE30 /* MainView.swift */; };
+		49B664502CF6446600CC5E7F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 49B6644F2CF6446600CC5E7F /* Localizable.xcstrings */; };
 		49E150C42CA3953B000F5698 /* DynamicStackOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E150C32CA39523000F5698 /* DynamicStackOrientation.swift */; };
 		49E150C62CA39642000F5698 /* DynamicLazyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E150C52CA39638000F5698 /* DynamicLazyGrid.swift */; };
 		49E150C82CA39A19000F5698 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E150C72CA39A0C000F5698 /* Extensions.swift */; };
@@ -71,6 +72,7 @@
 		49A6E6A02C8C093B008DAE30 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		49A6E6A22C8C098F008DAE30 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49A6E6A42C8CCCEF008DAE30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		49B6644F2CF6446600CC5E7F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		49D6D1202C934F0A00808D0F /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
 		49E150C32CA39523000F5698 /* DynamicStackOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStackOrientation.swift; sourceTree = "<group>"; };
 		49E150C52CA39638000F5698 /* DynamicLazyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLazyGrid.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				4902EF212C894BA8001E488D /* SwiftUIGamesApp.swift */,
 				4902EF272C894BA9001E488D /* Assets.xcassets */,
 				4902EF292C894BA9001E488D /* Preview Content */,
+				49B6644F2CF6446600CC5E7F /* Localizable.xcstrings */,
 			);
 			path = SwiftUIGames;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"es-419",
 			);
 			mainGroup = 4902EF152C894BA8001E488D;
 			productRefGroup = 4902EF1F2C894BA8001E488D /* Products */;
@@ -324,6 +328,7 @@
 			files = (
 				4902EF2B2C894BA9001E488D /* Preview Assets.xcassets in Resources */,
 				4902EF282C894BA9001E488D /* Assets.xcassets in Resources */,
+				49B664502CF6446600CC5E7F /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +468,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -522,6 +528,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -546,6 +553,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,6 +587,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

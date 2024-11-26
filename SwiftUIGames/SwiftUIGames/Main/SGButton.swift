@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SGButton: View {
-    var title: String
+    var title: LocalizedStringResource
     var action: () -> Void // Action closure that gets executed when the button is tapped
     
     var body: some View {

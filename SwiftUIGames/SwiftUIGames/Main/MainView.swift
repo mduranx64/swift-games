@@ -77,13 +77,16 @@ struct MainView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(gameList, id: \.id) { item in
-                            GameView(title: item.title, image: item.image)
-                                .onTapGesture {
-                                    selectedGame = item.game
-                                    if selectedGame != .comingSoon {
-                                        isModalPresented = true
-                                    }
+                            GameView(
+                                title: .init(stringLiteral: item.title),
+                                image: item.image
+                            )
+                            .onTapGesture {
+                                selectedGame = item.game
+                                if selectedGame != .comingSoon {
+                                    isModalPresented = true
                                 }
+                            }
                         }
                     }
                     .padding()
@@ -136,7 +139,9 @@ struct MainView: View {
                                         .foregroundStyle(.gameText)
                     HStack {
     
-                        SGButton(title: "Accept", action: {
+                        SGButton(
+                            title: "Accept",
+                            action: {
                             showInfoAlert = false // Cancel action
                         })
                     }
