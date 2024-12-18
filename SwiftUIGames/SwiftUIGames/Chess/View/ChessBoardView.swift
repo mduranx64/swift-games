@@ -128,8 +128,14 @@ struct ChessBoardView: View {
                                                     Image(pieceImage) // Replace with custom image
                                                         .resizable()
                                                         .padding(2)
-                                                        .border(board.isSelected(at: position) ? Color.yellow : Color.clear, width: 2)
                                                         .frame(width: squareSize, height: squareSize)
+                                                        .scaleEffect(board.isSelected(at: position) ? 1.2 : 1.0)
+                                                        .animation(.spring(response: 0.3, dampingFraction: 0.5), value: board.isSelected(at: position))
+                                                        .overlay {
+                                                            Rectangle()
+                                                                .stroke(board.isSelected(at: position) ? Color.yellow : Color.clear, lineWidth: 2)
+                                                                
+                                                        }
                                                         .onTapGesture {
                                                             board.selectPiece(at: position)
                                                             if board.isBlackKingCaptured || board.isWhiteKingCaptured {
