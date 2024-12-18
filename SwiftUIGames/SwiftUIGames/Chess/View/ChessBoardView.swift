@@ -60,12 +60,12 @@ struct ChessBoardView: View {
                             }
                         }.frame(width: captureWidth, height: captureHeight)
                         
-                        
                         VStack {
-                            Image(systemName: "gamecontroller.fill").foregroundStyle(.black)
+                            Image(systemName: "gamecontroller.fill")
+                                .foregroundStyle(.gameText)
                             Text("Black moves")
                                 .font(Font.App.chalkboardSERegular.of(size: 14))
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.gameText)
                         }.opacity(board.currentTurn == .black ? 1 : 0)
                         
                         // Pushes the grid to the vertical center
@@ -150,10 +150,11 @@ struct ChessBoardView: View {
                         }.frame(width: gridSize, height: gridSize)
                         
                         VStack {
-                            Image(systemName: "gamecontroller.fill").foregroundStyle(.white)
+                            Image(systemName: "gamecontroller.fill")
+                                .foregroundStyle(.gameText)
                             Text("White moves")
                                 .font(Font.App.chalkboardSERegular.of(size: 14))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.gameText)
                         }.opacity(board.currentTurn == .white ? 1 : 0)
                         
                         DynamicLazyGrid(
