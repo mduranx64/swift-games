@@ -125,6 +125,8 @@ struct ChessBoardView: View {
                                                 ForEach(0..<row.count, id: \.self) { y in
                                                     let pieceImage = row[y]?.pieceImage ?? .empty
                                                     let position = Position(x: x, y: y)
+                                                    let px = CGFloat(position.x + 1) * squareSize
+                                                    let py = CGFloat(position.y + 1) * squareSize
                                                     Image(pieceImage) // Replace with custom image
                                                         .resizable()
                                                         .padding(2)
@@ -145,6 +147,7 @@ struct ChessBoardView: View {
                                                                 showPawnAlert = true
                                                             }
                                                         }
+                                                        .print("x: \(px) y: \(py)")
                                                 }
                                             }
                                         }
@@ -395,14 +398,12 @@ struct ChessBoardView: View {
     }
 }
 
-struct ChessBoardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChessBoardView(board: Board())
-    }
+#Preview {
+    ChessBoardView(board: Board())
 }
 
 extension View {
-    func Print(_ item: Any) -> some View {
+    func print(_ item: Any) -> some View {
 #if DEBUG
         debugPrint(item)
 #endif
