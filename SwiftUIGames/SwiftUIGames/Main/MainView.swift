@@ -9,6 +9,7 @@ import SwiftUI
 
 enum Game {
     case chess
+    case checkers
     case comingSoon
 }
 
@@ -23,7 +24,8 @@ struct MainView: View {
     
     // Sample game list
     let gameList: [GameItem] = [
-        GameItem(title: "Chess", image: Image(.chessCover), game: .chess)
+        GameItem(title: "Chess", image: Image(.chessCover), game: .chess),
+        GameItem(title: "Checkers", image: Image(.chessCover), game: .checkers)
     ]
     
     var columns: [GridItem]{
@@ -163,13 +165,16 @@ struct MainView: View {
         }
     }
     
-    func navigateToGame(_ game: Game) -> AnyView {
+    @ViewBuilder
+    func navigateToGame(_ game: Game) -> some View {
         // Handle navigation based on the selected game
         switch game {
         case .chess:
-            return AnyView(ChessBoardView(board: Board()))
+            ChessBoardView(board: Board())
+        case .checkers:
+            EmptyView()
         case .comingSoon:
-            return AnyView(EmptyView())
+            EmptyView()
         }
     }
 }

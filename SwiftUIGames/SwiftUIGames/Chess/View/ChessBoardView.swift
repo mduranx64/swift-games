@@ -75,7 +75,6 @@ struct ChessBoardView: View {
                                 //Board
                                 VStack(spacing: 0) {
                                     
-                                    // Embed LazyHGrid in a square with 32 points padding on each side
                                     LazyHGrid(rows: rows, spacing: 0) {
                                         ForEach(0..<64, id: \.self) { index in
                                             // Determine row and column based on the index
